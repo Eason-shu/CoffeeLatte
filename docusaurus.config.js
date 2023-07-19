@@ -258,7 +258,6 @@ module.exports = {
       },
     ],
   ],
-
   stylesheets: [
     {
       rel: "preconnect",

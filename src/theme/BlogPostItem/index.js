@@ -283,20 +283,7 @@ function Count({ postId, ...post }) {
     <BrowserOnly fallback={<div></div>}>
       {() => {
         // if (localStorage.getItem(postId)) return null;
-
-        const addViewCount = async () => {
-          await fetch("https://api.www.shuzhilin.top/post/increase_view", {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ postId }),
-          });
-          // localStorage.setItem(postId, true);
-        };
-
         useEffect(() => {
-          addViewCount();
         }, []);
         return null;
       }}

@@ -50,67 +50,7 @@ function Hero() {
             <Translate description="my name">拿铁要加冰</Translate>
           </span>
         </animated.div>
-        <animated.p style={animatedTexts[1]}>
-          <Translate
-            id="homepage.hero.text"
-            description="hero text"
-            values={{
-              bilibiliText: (
-                <Link to="/">
-                  <Translate
-                    id="hompage.hero.text.bilibili"
-                    description="Bilibili docs link label"
-                  >
-                    技术视频教程、
-                  </Translate>
-                </Link>
-              ),
-              courses: (
-                <Link to="/">
-                  <Translate
-                    id="hompage.hero.text.course"
-                    description="Course link label"
-                  >
-                    实战课程、
-                  </Translate>
-                </Link>
-              ),
-              blogs: (
-                <Link to="#homepage_blogs">
-                  <Translate
-                    id="hompage.hero.text.blog"
-                    description="Blog link label"
-                  >
-                    技术博客、
-                  </Translate>
-                </Link>
-              ),
-              links: (
-                <Link to="/">
-                  <Translate
-                    id="hompage.hero.text.link"
-                    description="Link link label"
-                  >
-                    前端资源导航、
-                  </Translate>
-                </Link>
-              ),
-              ideas: (
-                <Link to="/lifestyle">
-                  <Translate
-                    id="hompage.hero.text.idea"
-                    description="Idea link label"
-                  >
-                    想法和生活点滴
-                  </Translate>
-                </Link>
-              ),
-            }}
-          >
-            {`点击查看最新{bilibiliText}{courses}{blogs}{links}以及UP主的{ideas}。致力于帮助你以最直观、最快速的方式学会前端开发，并希望我的个人经历对你有所启发。`}
-          </Translate>
-        </animated.p>
-
+     
         <SocialLinks animatedProps={animatedTexts[4]} />
         <animated.div style={animatedTexts[2]}>
           <Button
