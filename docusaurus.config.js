@@ -16,6 +16,7 @@ module.exports = {
   favicon: "img/favicon.ico", // 站点图标 | Favicon
   organizationName: "shuzhilin", // 拥有这个仓库的 GitHub 用户或组织|Usually your GitHub org/user name.
   projectName: "shuzhilin.top", // 仓库名称 | Usually your repo name.
+
   themeConfig: {
     // 主题配置 | Theme configuration
     image: "img/logo.jpg", // 站点图片 | Image for meta tag
@@ -39,6 +40,7 @@ module.exports = {
         // ------------------------------------首页--------------------------------------------------
         {
           label: "🔝 首页",
+          to: "/blog",
           position: "right",
           items: [
             {
@@ -58,6 +60,7 @@ module.exports = {
         // -----------------------------------------Java-----------------------------------------
         {
           label: "🚀 Java",
+          to: "docs/java/",
           position: "right",
           items: [
             {
@@ -255,37 +258,7 @@ module.exports = {
       },
     ],
   ],
-  // themes: ["@docusaurus/theme-live-codeblock"],
-  plugins: [
-    path.resolve(__dirname, "./src/plugin/plugin-baidu-analytics"),
-    path.resolve(__dirname, "./src/plugin/plugin-baidu-push"),
-    // "@docusaurus/plugin-ideal-image",
-    path.resolve(__dirname, "./src/plugin/plugin-onesignal-push"),
-    path.resolve(__dirname, "./src/plugin/plugin-latest-docs"),
-    "docusaurus2-dotenv",
-    [
-      "@docusaurus/plugin-content-blog",
-      {
-        id: "secret-garden",
-        routeBasePath: "lifestyle",
-        path: "./lifestyle",
-        feedOptions: {
-          type: "all",
-          title: "拿铁要加冰",
-          copyright: `Copyright © ${new Date().getFullYear()} 拿铁要加冰  Built with Docusaurus.<p><a href="http://beian.miit.gov.cn/" >蜀ICP备2022021919号</a></p>`,
-        },
-      },
-    ],
-    // [
-    //   "@easyops-cn/docusaurus-search-local",
-    //   {
-    //     hashed: true,
-    //     // indexPages: true,
-    //     blogRouteBasePath: "/",
-    //     language: ["en", "zh"],
-    //   },
-    // ],
-  ],
+
   stylesheets: [
     {
       rel: "preconnect",
@@ -304,11 +277,11 @@ module.exports = {
       type: "text/css",
       rel: "stylesheet",
     },
-    // {
-    //   href: "https://fonts.googleapis.com/css2?family=Fira+Code&display=swap",
-    //   type: "text/css",
-    //   rel: "stylesheet",
-    // },
+    {
+      href: "https://fonts.googleapis.com/css2?family=Fira+Code&display=swap",
+      type: "text/css",
+      rel: "stylesheet",
+    },
   ],
   i18n: {
     defaultLocale: "zh-CN",

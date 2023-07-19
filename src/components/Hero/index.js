@@ -9,11 +9,14 @@ import Button from "../Button";
 
 import HeroMain from "./img/hero_main.svg";
 import CSDNIcon from "@site/static/icons/csdn.svg";
+import YuQueIcon from "@site/static/icons/yuque.svg";
+import JueJinIcon from "@site/static/icons/juejin.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
   faGithub,
   faWeixin,
+  faQq,
 } from "@fortawesome/free-brands-svg-icons";
 import useFollowers from "./useFollowers";
 import styles from "./styles.module.css";
@@ -111,27 +114,14 @@ function Hero() {
         <SocialLinks animatedProps={animatedTexts[4]} />
         <animated.div style={animatedTexts[2]}>
           <Button
-            isLink
-            href={translate({
-              id: "homepage.follow.link.href",
-              message: "https://www.yuque.com/eason_shu",
-              description: "follow me link href",
-            })}
+            isLink href="https://blog.csdn.net/weixin_44451022?spm=1000.2115.3001.5343"
           >
-            <Translate description="follow me btn text">去语雀关注</Translate>
+            <Translate description="follow me btn text">去CSDN关注</Translate>
           </Button>
         </animated.div>
       </div>
 
       <HeroMainImage />
-      {/* <animated.div
-      className="bloghome__scroll-down"
-      style={animatedBackground}
-    >
-      <button>
-        <ArrowDown />
-      </button>
-    </animated.div> */}
     </animated.div>
   );
 }
@@ -140,11 +130,25 @@ function SocialLinks({ animatedProps, ...props }) {
   // const { isDarkTheme } = useThemeContext();
   return (
     <animated.div className={styles.social__links} style={animatedProps}>
+      {/* Github */}
       <a href="https://github.com/Eason-shu">
         <FontAwesomeIcon icon={faGithub} size="lg" />
       </a>
+      {/* QQ */}
+      <a href="https://qm.qq.com/cgroup/3138066125">
+        <FontAwesomeIcon icon={faQq} size="lg" />
+      </a>
+      {/* yuQue */}
+      <a href="https://www.yuque.com/eason_shu">
+        <YuQueIcon />
+      </a>
+      {/* CSDN */}
       <a href="https://blog.csdn.net/weixin_44451022?spm=1000.2115.3001.5343">
         <CSDNIcon />
+      </a>
+      {/* juejin */}
+      <a href="https://juejin.cn/user/3228642192657389">
+        <JueJinIcon />
       </a>
     </animated.div>
   );
