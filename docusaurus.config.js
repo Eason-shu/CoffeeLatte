@@ -70,122 +70,122 @@ module.exports = {
             },
           ],
         },
-        {
-          label: "🌄 WEB",
-          position: "right",
-          items: [
-            {
-              label: "Css",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "Html",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "Javascript",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "Vue",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "React",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "Angular",
-              to: "docs/spring/spring-intro",
-            },
-          ],
-        },
-        {
-          label: "⌨ Ops",
-          position: "right",
-          items: [
-            {
-              label: "Linux",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "Docker",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "Kubernetes",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "Jenkins",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "Git",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "Svn",
-              to: "docs/spring/spring-intro",
-            },
-          ],
-        },
-        {
-          label: "🏟 数据库",
-          position: "right",
-          items: [
-            {
-              label: "Mysql",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "Oracle",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "Redis",
-              to: "docs/spring/spring-intro",
-            },
-          ],
-        },
-        {
-          label: "🧰 工具",
-          position: "right",
-          items: [
-            {
-              label: "开发工具",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "插件推荐",
-              to: "docs/spring/spring-intro",
-            },
-          ],
-        },
-        {
-          label: "📚 读书笔记",
-          position: "right",
-          items: [
-            {
-              label: "《Java编程思想》",
-              to: "docs/spring/spring-intro",
-            },
-            {
-              label: "《深入理解Java虚拟机》",
-              to: "docs/spring/spring-intro",
-            },
-          ],
-        },
-        {
-          label: "🎲 生活",
-          position: "right",
-          items: [
-            {
-              label: "健康",
-              to: "docs/spring/spring-intro",
-            },
-          ],
-        },
+        // {
+        //   label: "🌄 WEB",
+        //   position: "right",
+        //   items: [
+        //     {
+        //       label: "Css",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "Html",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "Javascript",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "Vue",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "React",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "Angular",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //   ],
+        // },
+        // {
+        //   label: "⌨ Ops",
+        //   position: "right",
+        //   items: [
+        //     {
+        //       label: "Linux",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "Docker",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "Kubernetes",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "Jenkins",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "Git",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "Svn",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //   ],
+        // },
+        // {
+        //   label: "🏟 数据库",
+        //   position: "right",
+        //   items: [
+        //     {
+        //       label: "Mysql",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "Oracle",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "Redis",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //   ],
+        // },
+        // {
+        //   label: "🧰 工具",
+        //   position: "right",
+        //   items: [
+        //     {
+        //       label: "开发工具",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "插件推荐",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //   ],
+        // },
+        // {
+        //   label: "📚 读书笔记",
+        //   position: "right",
+        //   items: [
+        //     {
+        //       label: "《Java编程思想》",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //     {
+        //       label: "《深入理解Java虚拟机》",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //   ],
+        // },
+        // {
+        //   label: "🎲 生活",
+        //   position: "right",
+        //   items: [
+        //     {
+        //       label: "健康",
+        //       to: "docs/spring/spring-intro",
+        //     },
+        //   ],
+        // },
       ],
     },
     algolia: {

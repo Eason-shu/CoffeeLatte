@@ -15,10 +15,7 @@ import {
   faGithub,
   faWeixin,
 } from "@fortawesome/free-brands-svg-icons";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-
 import useFollowers from "./useFollowers";
-
 import styles from "./styles.module.css";
 
 function Hero() {
@@ -56,7 +53,7 @@ function Hero() {
             description="hero text"
             values={{
               bilibiliText: (
-                <Link to="/docs/videos">
+                <Link to="/">
                   <Translate
                     id="hompage.hero.text.bilibili"
                     description="Bilibili docs link label"
@@ -66,7 +63,7 @@ function Hero() {
                 </Link>
               ),
               courses: (
-                <Link to="/docs/course/react-chat-ui">
+                <Link to="/">
                   <Translate
                     id="hompage.hero.text.course"
                     description="Course link label"
@@ -86,7 +83,7 @@ function Hero() {
                 </Link>
               ),
               links: (
-                <Link to="/docs/resources">
+                <Link to="/">
                   <Translate
                     id="hompage.hero.text.link"
                     description="Link link label"
