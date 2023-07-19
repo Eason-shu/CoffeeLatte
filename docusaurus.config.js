@@ -5,7 +5,6 @@
 const path = require("path");
 const math = require("remark-math");
 const katex = require("rehype-katex");
-const adsense = require("./src/plugin/remark-adsense");
 
 // own info config：https://docusaurus.io/zh-CN/docs/api/docusaurus-config
 module.exports = {
@@ -213,7 +212,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/zxuqian/www.shuzhilin.top/tree/master",
-          remarkPlugins: [math, adsense],
+          remarkPlugins: [math],
           rehypePlugins: [katex],
           showLastUpdateTime: true,
         },
