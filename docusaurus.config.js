@@ -30,7 +30,7 @@ module.exports = {
     },
     hideableSidebar: true, // 是否隐藏侧边栏 | Whether to show or hide the sidebar
     navbar: {
-      title: "拿铁要加冰 | Java开发工程师",
+      title: "拿铁要加冰",
       logo: {
         alt: "拿铁要加冰 | Java开发工程师",
         src: "img/logo.jpg",
