@@ -39,28 +39,24 @@ module.exports = {
       items: [
         // ------------------------------------首页--------------------------------------------------
         {
+          to: "/",
           label: "🔝 首页",
-          to: "/blog",
           position: "right",
           items: [
             {
-              label: "随笔",
-              to: "lifestyle",
-            },
-            {
               label: "职业",
-              to: "tags/职业",
+              to: "tags/Docusaurus",
             },
             {
               label: "健康",
-              to: "tags/健康",
+              to: "tags/Docusaurus",
             },
           ],
         },
         // -----------------------------------------Java-----------------------------------------
         {
           label: "🚀 Java",
-          to: "docs/java/",
+          // to: "docs/java/",
           position: "right",
           items: [
             {
