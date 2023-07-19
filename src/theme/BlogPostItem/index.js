@@ -8,24 +8,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import clsx from "clsx";
 import { MDXProvider } from "@mdx-js/react";
-
 import Head from "@docusaurus/Head";
 import Link from "@docusaurus/Link";
 import MDXComponents from "@theme/MDXComponents";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-
 import ThemeContext from "@theme/ThemeContext";
-
 import styles from "./styles.module.css";
 import { MarkdownSection, StyledBlogItem } from "./style";
-
 import Eye from "@site/static/icons/eye.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
-
 import BrowserOnly from "@docusaurus/BrowserOnly";
-import Comments from "@site/src/components/Comments";
 import Ad from "@site/src/components/Ad";
 import adConfig from "@site/src/components/Ad/config";
 import Adsense from "@site/src/components/Adsense";
@@ -58,21 +52,13 @@ function BlogPostItem(props) {
   } = props;
   const { date, permalink, tags, readingTime } = metadata;
 
-  // activityId, oid 为 B 站评论相关
+
   const {
     slug: postId,
-    author,
     title,
     image,
-    activityId,
-    oid,
-    bvid,
   } = frontMatter;
 
-  const authorURL = frontMatter.author_url || frontMatter.authorURL;
-  const authorTitle = frontMatter.author_title || frontMatter.authorTitle;
-  const authorImageURL =
-    frontMatter.author_image_url || frontMatter.authorImageURL;
   const imageUrl = useBaseUrl(image, { absolute: true });
 
   // 是否为黑暗主题：
@@ -239,22 +225,17 @@ function BlogPostItem(props) {
             >
               <MDXProvider components={MDXComponents}>{children}</MDXProvider>
             </MarkdownSection>
-            {/* {isBlogPostPage && (
-              <div style={{ marginTop: "1em" }}>
-                {adConfig.articleFooter.map(({ id, alt, imageSrc, link }) => (
-                  <Ad key={id} link={link} src={imageSrc} alt={alt} />
-                ))}
-              </div>
-            )} */}
+
             {isBlogPostPage && (
               <Adsense responsive="true" format="auto" slot="4590671808" />
             )}
+
           </article>
           <footer className="article__footer padding-top--md margin-top--lg margin-bottom--lg">
             {!isBlogPostPage && (
               <span className="footer__read_count">
                 <Eye
-                  // color={isDarkTheme ? "#76baff" : "#006dfe"}
+                  color={isDarkTheme ? "#76baff" : "#006dfe"}
                   className="footer__eye"
                   style={{ verticalAlign: "middle" }}
                 />{" "}
@@ -268,9 +249,7 @@ function BlogPostItem(props) {
                 </strong>
               </Link>
             )}
-            {isBlogPostPage && (
-              <Comments activityId={activityId} oid={oid} bvid={bvid} />
-            )}
+
           </footer>
         </div>
       </div>
@@ -282,7 +261,6 @@ function Count({ postId, ...post }) {
   return (
     <BrowserOnly fallback={<div></div>}>
       {() => {
-        // if (localStorage.getItem(postId)) return null;
         useEffect(() => {
         }, []);
         return null;

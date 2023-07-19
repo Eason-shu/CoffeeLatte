@@ -194,16 +194,6 @@ module.exports = {
     },
     footer: {
       style: "dark",
-      links: [
-        {
-          title: "学习",
-          items: [],
-        },
-        {
-          title: "社交媒体",
-          items: [],
-        },
-      ],
       copyright: `<p>Copyright © ${new Date().getFullYear()} 拿铁要加冰  Built with Docusaurus.</p><p><a href="http://beian.miit.gov.cn/" >蜀ICP备2022021919号</a></p>`,
     },
     prism: {
@@ -211,14 +201,9 @@ module.exports = {
       darkTheme: require("prism-react-renderer/themes/oceanicNext"),
       defaultLanguage: "javascript",
     },
-    // googleAnalytics: {
-    //   trackingID: "UA-118572241-1",
-    //   anonymizeIP: true, // Should IPs be anonymized?
-    // },
     gtag: {
       trackingID: "G-6PSESJX0BM",
-      // Optional fields.
-      anonymizeIP: true, // Should IPs be anonymized?
+      anonymizeIP: true,
     },
   },
   presets: [

@@ -50,11 +50,20 @@ function Hero() {
             <Translate description="my name">拿铁要加冰</Translate>
           </span>
         </animated.div>
-     
+        <animated.p style={animatedTexts[1]}>
+          <Translate
+            id="homepage.hero.text"
+            description="hero text"
+            values={{}}
+          >
+            {`我登楼观百川，入海即入我怀，遇事不决可问春风`}
+          </Translate>
+        </animated.p>
         <SocialLinks animatedProps={animatedTexts[4]} />
         <animated.div style={animatedTexts[2]}>
           <Button
-            isLink href="https://blog.csdn.net/weixin_44451022?spm=1000.2115.3001.5343"
+            isLink
+            href="https://blog.csdn.net/weixin_44451022?spm=1000.2115.3001.5343"
           >
             <Translate description="follow me btn text">去CSDN关注</Translate>
           </Button>
