@@ -355,7 +355,7 @@ const config = {
               },
               {
                 label: "程序设计语言",
-                to: "unversionedId",
+                to: "/programming-language",
               },
               {
                 label: "数据结构与算法",
