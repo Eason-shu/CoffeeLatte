@@ -2,13 +2,13 @@
 title: Docusaurus 搭建
 description: Docusaurus 搭建
 keywords:
-- Docusaurus
+- Docusaurus 
 - 搭建
-tags:
+tags: 
 - Docusaurus
 authors:
-- EasonShu
-date: 2023-07-19 
+- 7Wate
+date: 2023-06-28
 ---
 
 Docusaurus 是一款**静态站点生成器**。 可以搭建带有快速客户端导航的**单页应用**，充分利用了 **React**，让你的网站具有交互能力。 它提供了开箱即用的**文档功能**，不过也可用于搭建**各种网站**：个人网站、产品、博客、营销主页等等。
