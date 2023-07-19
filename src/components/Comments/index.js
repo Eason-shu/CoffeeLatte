@@ -29,7 +29,7 @@ function Comments({ activityId, oid, bvid }) {
       oid = activityId;
     }
     const res = await fetch(
-      `https://api.zxuqian.cn/comments?type=${type}&oid=${oid}&sort=1`
+      `https://api.www.shuzhilin.top/comments?type=${type}&oid=${oid}&sort=1`
     );
     const data = await res.json();
     setComments(data.replies || []);

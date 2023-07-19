@@ -170,7 +170,7 @@ function BlogPostItem(props) {
       {/* 统计 */}
       {isBlogPostPage && <Count postId={postId} />}
       <div
-        className={`row 
+        className={`row
          ${!isBlogPostPage ? "blog-list--item" : ""}`}
         style={{ margin: 0 }}
       >
@@ -285,7 +285,7 @@ function Count({ postId, ...post }) {
         // if (localStorage.getItem(postId)) return null;
 
         const addViewCount = async () => {
-          await fetch("https://api.zxuqian.cn/post/increase_view", {
+          await fetch("https://api.www.shuzhilin.top/post/increase_view", {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",

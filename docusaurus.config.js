@@ -36,8 +36,8 @@ module.exports = {
         srcDark: "img/logo.jpg",
       },
       items: [
+        // ------------------------------------首页--------------------------------------------------
         {
-          to: "/",
           label: "🔝 首页",
           position: "right",
           items: [
@@ -202,12 +202,7 @@ module.exports = {
         },
         {
           title: "社交媒体",
-          items: [
-            // {
-            //   label: "首页",
-            //   to: "/",
-            // },
-          ],
+          items: [],
         },
       ],
       copyright: `<p>Copyright © ${new Date().getFullYear()} 拿铁要加冰  Built with Docusaurus.</p><p><a href="http://beian.miit.gov.cn/" >蜀ICP备2022021919号</a></p>`,
@@ -233,7 +228,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/zxuqian/zxuqian.cn/tree/master",
+          editUrl: "https://github.com/zxuqian/www.shuzhilin.top/tree/master",
           remarkPlugins: [math, adsense],
           rehypePlugins: [katex],
           showLastUpdateTime: true,
