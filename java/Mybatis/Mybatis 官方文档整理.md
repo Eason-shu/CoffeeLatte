@@ -2,13 +2,14 @@
 title: Mybatis官方文档整理
 description: Mybatis官方文档整理
 keywords:
-- Mybatis
-- 源码分析
+  - Mybatis
+  - 源码分析
 tags:
-- Mybatis
-authors:
-- EasonShu
-date: <% tp.date.now("YYYY-MM-DD") %>
+  - Mybatis
+  - 源码分析
+last_update:
+  date: 2023-07-01
+  author: EasonShu
 ---
 # 一 基本介绍
 

@@ -285,7 +285,7 @@ const config = {
         editUrl: "https://git.7wate.com/zhouzhongping/wiki/src/branch/master",
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
-        breadcrumbs: false,
+        breadcrumbs: true,
       },
     ],
     // -----------------------------------------------------Mybatis------------------------------
@@ -300,7 +300,7 @@ const config = {
         editUrl: "https://git.7wate.com/zhouzhongping/wiki/src/branch/Mybatis",
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
-        breadcrumbs: false,
+        breadcrumbs: true,
       },
     ],
     "docusaurus-plugin-umami",
@@ -342,7 +342,7 @@ const config = {
               {
                 label: "2️⃣ Mybatis",
                 to: "/Mybatis",
-              },
+              }
             ],
           },
           {

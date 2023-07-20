@@ -2,12 +2,12 @@
 title: Docusaurus 搭建
 description: Docusaurus 搭建
 keywords:
-- Docusaurus 
+- Docusaurus
 - 搭建
-tags: 
+tags:
 - Docusaurus
 authors:
-- 7Wate
+- EasonShu
 date: 2023-06-28
 ---
 
