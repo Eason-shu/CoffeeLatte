@@ -103,6 +103,19 @@ const config = {
         breadcrumbs: true,
       },
     ],
+    // -----------------------------------------------------Spring--------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Spring",
+        path: "java/Spring",
+        routeBasePath: "Spring",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
     // -----------------------------------------------------Angular------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -181,6 +194,10 @@ const config = {
               {
                 label: "2️⃣ Mybatis",
                 to: "/Mybatis",
+              },
+              {
+                label: "3️⃣ Spring",
+                to: "/Spring",
               },
             ],
           },
