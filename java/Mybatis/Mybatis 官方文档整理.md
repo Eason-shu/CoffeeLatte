@@ -8,7 +8,7 @@ tags:
 - Mybatis
 authors:
 - EasonShu
-date: 2023-07-18
+date: <% tp.date.now("YYYY-MM-DD") %>
 ---
 # 一 基本介绍
 

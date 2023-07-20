@@ -152,6 +152,7 @@ export default function Home() {
           name="google-site-verification"
           content="_rHzOjHo4rSNNcdH1Pyby6bwPqXCZWZ4qWPXRGj11kw"
         />
+        <meta name="referrer" content="no-referrer" />
       </Head>
       <main>
         <Hero />
