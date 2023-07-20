@@ -5,6 +5,7 @@ import styles from './HomepageFeatures.module.css'
 const FeatureList = [
   {
     title: '支持 Markdown',
+    author: '陈皓',
     Svg: require('../../static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
@@ -31,7 +32,7 @@ const FeatureList = [
   },
 ]
 
-function Feature({ Svg, title, description }) {
+function Feature({ Svg,author, title, description }) {
   return (
     <div className={clsx('col col--4')}>
       <div className='text--center'>
@@ -39,6 +40,7 @@ function Feature({ Svg, title, description }) {
       </div>
       <div className='text--center padding-horiz--md'>
         <h3>{title}</h3>
+        <h4>{author}</h4>
         <p>{description}</p>
       </div>
     </div>
@@ -48,13 +50,20 @@ function Feature({ Svg, title, description }) {
 export default function HomepageFeatures() {
   return (
     <section className={styles.features}>
-      <div className='container'>
-        <div className='row'>
+      <div className="container">
+        {/* 推荐书籍 */}
+        <div className={styles.recommend}>
+          <div className="col col--12">
+            <h2>📚📚推荐书籍📚📚</h2>
+          </div>
+        </div>
+        {/* 推荐列表 */}
+        <div className="row">
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

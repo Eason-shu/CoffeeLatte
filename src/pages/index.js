@@ -124,7 +124,7 @@ function HeroMainImage() {
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout title="Home" description="拿铁要加冰的博客">
+    <Layout title="" description="拿铁要加冰的博客">
       <Head>
         // 百度
         <meta name="baidu-site-verification" content="code-7VeTrprZVx" />
