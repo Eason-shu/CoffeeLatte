@@ -63,7 +63,6 @@ const config = {
     ],
   ],
   plugins: [
-
     // -----------------------------------------------------------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -78,7 +77,7 @@ const config = {
         breadcrumbs: false,
       },
     ],
-    
+
     // -----------------------------------------------------Mybatis------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -87,7 +86,6 @@ const config = {
         path: "java/Mybatis",
         routeBasePath: "Mybatis",
         sidebarPath: require.resolve("./sidebars.js"),
-        editUrl: "https://git.7wate.com/zhouzhongping/wiki/src/branch/Mybatis",
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
         breadcrumbs: true,
@@ -122,13 +120,13 @@ const config = {
         items: [
           { to: "/blog", label: "🔝 首页", position: "right" },
           {
-            label: "🌈 Java",
+            label: "🚀 Java",
             position: "right",
             items: [
               {
-                label: "2️⃣ Mybatis",
+                label: "Mybatis",
                 to: "/Mybatis",
-              }
+              },
             ],
           },
           {
@@ -141,7 +139,6 @@ const config = {
               },
             ],
           },
-
         ],
       },
       algolia: {
