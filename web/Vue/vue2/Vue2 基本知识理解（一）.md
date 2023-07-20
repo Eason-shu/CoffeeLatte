@@ -207,7 +207,7 @@ Vue中的侦听属性（watch）是一个很有用的特性，它可以让开发
 
 # 二 数据代理
 
-
+## 2. 1 数据代理
 
 Vue的数据代理是一种让Vue实例直接访问data选项中定义的属性的机制，在Vue实例创建时，Vue会使用Object.defineProperty方法重新定义data选项中的属性，并将它们代理到Vue实例本身上，这样，我们就可以通过Vue实例直接访问data选项中定义的属性，而不需要使用this.$data。
 ```vue
@@ -272,7 +272,7 @@ Vue的数据代理是一种让Vue实例直接访问data选项中定义的属性�
   
 # 三 列表渲染的Key的唯一性
 
-
+## 3.1 列表渲染的Key的唯一性
 
 🌈**为啥需要保证key唯一？**
 ⏺️在Vue的列表渲染中，为什么要求每个子组件或元素都必须有一个唯一的key属性呢？这是因为Vue在进行列表渲染时，会基于key属性来判断两个元素是否相同，以便进行优化操作。
@@ -336,7 +336,7 @@ Vue的数据代理是一种让Vue实例直接访问data选项中定义的属性�
 
 # 四 数据监测的原理
 
-
+## 4.1 数据监测的原理
 
 Vue的数据检测原理是响应式编程的一种实现方式，它通过数据劫持和发布-订阅模式来实现数据的自动更新和视图的响应式更新，具体来说，Vue的数据检测原理主要包括以下几个步骤：
 
@@ -401,7 +401,7 @@ Watcher对象是Vue的核心概念之一，它负责监测数据的变化并更�
   
 #  五 Vue的生命周期
 
-
+## 5.1 Vue的生命周期
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1681638350154-71c3c60b-ddba-4da9-8ba7-23a3221f0909.png#averageHue=%23fefdfb&clientId=u7b427bd2-ac52-4&from=paste&id=u3e2772be&originHeight=3039&originWidth=1200&originalType=url&ratio=1.25&rotation=0&showTitle=false&size=223114&status=done&style=none&taskId=u4cb48399-a6b6-4a31-b339-fdfabd4adb4&title=)
 Vue生命周期是指在一个Vue实例创建、更新和销毁过程中，各个阶段发生的事件和回调函数。Vue的生命周期分为以下8个阶段：
