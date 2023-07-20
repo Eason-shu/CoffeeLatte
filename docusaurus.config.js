@@ -87,7 +87,7 @@ const config = {
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
-        breadcrumbs: false,
+        breadcrumbs: true,
       },
     ],
     // -----------------------------------------------------Mybatis------------------------------
