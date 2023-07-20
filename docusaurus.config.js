@@ -71,13 +71,25 @@ const config = {
         path: "work/roadmap",
         routeBasePath: "roadmap",
         sidebarPath: require.resolve("./sidebars.js"),
-        editUrl: "https://git.7wate.com/zhouzhongping/wiki/src/branch/master",
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
         breadcrumbs: false,
       },
     ],
 
+    // -----------------------------------------------------Base--------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Base",
+        path: "java/Base",
+        routeBasePath: "Base",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
     // -----------------------------------------------------Mybatis------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -123,6 +135,10 @@ const config = {
             label: "🚀 Java",
             position: "right",
             items: [
+              {
+                label: "Java基础",
+                to: "/Base",
+              },
               {
                 label: "Mybatis",
                 to: "/Mybatis",
