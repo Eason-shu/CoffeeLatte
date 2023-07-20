@@ -103,6 +103,45 @@ const config = {
         breadcrumbs: true,
       },
     ],
+    // -----------------------------------------------------Angular------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Angular",
+        path: "web/Angular",
+        routeBasePath: "Angular",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
+    // -----------------------------------------------------Vue----------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Vue",
+        path: "web/Vue",
+        routeBasePath: "Vue",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
+    // -----------------------------------------------------React--------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "React",
+        path: "web/React",
+        routeBasePath: "React",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
     "docusaurus-plugin-umami",
   ],
   themeConfig:
@@ -130,18 +169,36 @@ const config = {
         },
         hideOnScroll: true,
         items: [
-          { to: "/blog", label: "🔝 首页", position: "right" },
+          { to: "/blog", label: "🔝 博客", position: "right" },
           {
             label: "🚀 Java",
             position: "right",
             items: [
               {
-                label: "Java基础",
+                label: "1️⃣ Java基础",
                 to: "/Base",
               },
               {
-                label: "Mybatis",
+                label: "2️⃣ Mybatis",
                 to: "/Mybatis",
+              },
+            ],
+          },
+          {
+            position: "right",
+            label: "🌄 WEB",
+            items: [
+              {
+                label: "1️⃣ Angular",
+                to: "/Angular",
+              },
+              {
+                label: "2️⃣ Vue",
+                to: "/Vue",
+              },
+              {
+                label: "3️⃣ React",
+                to: "/React",
               },
             ],
           },
