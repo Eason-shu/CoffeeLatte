@@ -16,7 +16,7 @@ last_update:
   date: 2023-07-01
   author: EasonShu
 ---
-![Java](https://img1.baidu.com/it/u=1674108507,3962600426&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500)
+
 
 ## 一 集合
 Java中的集合分为两大类Collection接口，与Map接口。
