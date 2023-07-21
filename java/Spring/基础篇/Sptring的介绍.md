@@ -1091,3 +1091,72 @@ public class ConnectionFactory {
 | [session](https://springdoc.cn/spring/core.html#beans-factory-scopes-session) | 将单个Bean定义的Scope扩大到一个HTTP `Session` 的生命周期。只在Web感知的Spring `ApplicationContext` 的上下文中有效。 |
 | [application](https://springdoc.cn/spring/core.html#beans-factory-scopes-application) | 将单个Bean定义的 Scope 扩大到 `ServletContext` 的生命周期中。只在Web感知的Spring `ApplicationContext` 的上下文中有效。 |
 | [websocket](https://springdoc.cn/spring/web.html#websocket-stomp-websocket-scope) | 将单个Bean定义的 Scope 扩大到 `WebSocket` 的生命周期。仅在具有Web感知的 Spring `ApplicationContext` 的上下文中有效。 |
+
+### 4.3.1 Singleton 单例
+
+只有一个单例 Bean 的共享实例被管理，所有对具有符合该Bean定义的ID的Bean的请求都会被Spring容器返回该特定的Bean实例。
+
+换句话说，当你定义了一个Bean定义（define），并且它被定义为 singleton，Spring IoC容器就会为该Bean定义的对象创建一个确切的实例。这个单一的实例被存储在这种单体Bean的缓存中，所有后续的请求和对该命名Bean的引用都会返回缓存的对象。下面的图片显示了 singleton scope 是如何工作的，singleton scope 是Spring的默认 scope
+
+![singleton](https://springdoc.cn/spring/images/singleton.png)
+
+```java
+    /**
+     * 构造函数实例化bean
+     */
+    @Test
+    public void test6(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        User user = (User) context.getBean("user");
+        user.show2();
+        // 用于判断是否是单例模式
+        boolean user1 = context.isSingleton("user");
+        System.out.println("user1 = " + user1);
+    }
+```
+
+请记住如果我们没有配置Scope，那么他默认为singleton 
+
+![image-20230722000052779](images\image-20230722000052779.png)
+
+### 4.3.2 Prototype  原型
+
+Bean 部署的非 singleton prototype scope 导致每次对该特定Bean的请求都会创建一个新的Bean实例。也就是说，该 bean 被注入到另一个 bean 中，或者你通过容器上的 `getBean()` 方法调用来请求它。作为一项规则，你应该对所有有状态的 bean 使用 prototype scope，对无状态的 bean 使用 singleton scope。
+
+![prototype](https://springdoc.cn/spring/images/prototype.png)
+
+与其他scope相比，Spring并不管理 prototype Bean的完整生命周期。容器对prototype对象进行实例化、配置和其他方面的组装，并将其交给客户端，而对该prototype实例没有进一步的记录。因此，尽管初始化生命周期回调方法在所有对象上被调用，而不考虑scope，但在prototype的情况下，配置的销毁生命周期回调不会被调用。（简单理解如果配置Scope为Prototype ，这该对象不受Spring生命周期的管辖）
+
+```xml
+     <!-- 3. set注入  -->
+    <bean id="user" class="com.shu.pojo.User">
+        <property name="name" value="shu"/>
+    </bean>
+
+<!-- 3. set注入  -->
+    <bean id="user" class="com.shu.pojo.User" scope="prototype">
+        <property name="name" value="shu"/>
+    </bean>
+```
+
+```java
+    @Test
+    public void test6(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        User user = (User) context.getBean("user");
+        System.out.println("user = " + user);
+        User user2 = (User) context.getBean("user");
+        System.out.println("user = " + user2);
+        user.show2();
+        // 用于判断是否是单例模式
+        boolean user1 = context.isSingleton("user");
+        System.out.println("user1 = " + user1);
+    }
+
+```
+
+观察结果：
+
+![image-20230722002959713](images\image-20230722002959713.png)
+
+![image-20230722003031314](images\image-20230722003031314.png)
