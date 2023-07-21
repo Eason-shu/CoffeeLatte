@@ -513,7 +513,9 @@ DTD和XSD都是XML文档的验证机制，用于定义XML文档的结构和内�
 
 ![image-20230721095406560](images\image-20230721095406560.png)
 
-##  3.4 配置文件详细解释
+# 四 从Bean开始学习Spring
+
+
 
 上面我们完成了一个简单的案例，下面我们来看一下Spring配置文件的属性
 
@@ -546,7 +548,7 @@ DTD和XSD都是XML文档的验证机制，用于定义XML文档的结构和内�
 
 这是通过 `getBeanFactory()` 方法访问 `ApplicationContext` 的 `BeanFactory` 来实现的，该方法返回 `DefaultListableBeanFactory` 实现。`DefaultListableBeanFactory` 通过 `registerSingleton(..)` 和 `registerBeanDefinition(..)` 方法支持这种注册。
 
-###  3.4 .1 Bean 命名
+## 4.1  Bean 命名
 
 每个Bean都有一个或多个标识符（identifier）。这些标识符在承载Bean的容器中必须是唯一的。
 
@@ -611,18 +613,18 @@ public class AppConfig {
 
 注意观察我们的别名设置，和我们在Spring配置文件定义的别名配置是否一样
 
-### 3.4.2 实例化Bean
+## 4.2  实例化Bean
 
 bean 定义（definition）本质上是创建一个或多个对象的配置。容器在被要求时查看命名的Bean的配置，并使用该Bean定义所封装的配置元数据来创建（或获取）一个实际的对象。
 
 - 通常，在容器本身通过反射式地调用构造函数直接创建Bean的情况下，指定要构造的Bean类，有点相当于Java代码中的 `new` 操作符。
 - 在不太常见的情况下，即容器在一个类上调用 `static` 工厂方法来创建 bean 时，要指定包含被调用的 `static` 工厂方法的实际类。从 `static` 工厂方法的调用中返回的对象类型可能是同一个类或完全是另一个类。
 
-####  3.4.2.1  构造函数实例化
+###  4.2.1  构造函数实例化
 
 当你用构造函数的方法创建一个Bean时，所有普通的类都可以被Spring使用并与之兼容。也就是说，被开发的类不需要实现任何特定的接口，也不需要以特定的方式进行编码。只需指定Bean类就足够了。然而，根据你对该特定Bean使用的IoC类型，你可能需要一个默认（空）构造函数。
 
-**无参构造**
+#### 无参构造
 
 对象
 
@@ -685,3 +687,405 @@ public class User {
     }
 ```
 
+![image-20230721194407158](images\image-20230721194407158.png)
+
+**有参构造**
+
+介绍有参构造之前我们需要了解依赖注入的概念？
+
+依赖注入（DI）是一个过程，对象仅通过构造参数、工厂方法的参数或在对象实例被构造或从工厂方法返回后在其上设置的属性来定义它们的依赖（即与它们一起工作的其它对象）。然后，容器在创建 bean 时注入这些依赖。这个过程从根本上说是Bean本身通过使用类的直接构造或服务定位模式来控制其依赖的实例化或位置的逆过程（因此被称为控制反转）。
+
+采用DI原则，代码会更干净，当对象被提供其依赖时，解耦会更有效。对象不会查找其依赖，也不知道依赖的位置或类别。因此，你的类变得更容易测试，特别是当依赖是在接口或抽象基类上时，这允许在单元测试中使用stub或mock实现。
+
+DI有两个主要的变体。 [基于构造器的依赖注入](https://springdoc.cn/spring/core.html#beans-constructor-injection) 和 [基于setter的依赖注入](https://springdoc.cn/spring/core.html#beans-setter-injection)。
+
+#### **构造器依赖注入**
+
+基于构造函数的 DI 是通过容器调用带有许多参数的构造函数来完成的，每个参数代表一个依赖。
+
+```xml
+    <!-- 有参构造   -->
+    <bean id="user2" class="com.shu.pojo.User">
+        <constructor-arg name="name" value="shu"/>
+    </bean>
+```
+
+```java
+package com.shu.pojo;
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/7/20 23:34
+ * @version: 1.0
+ */
+public class User {
+    private String name;
+
+    public User() {
+        System.out.println("User的无参构造");
+    }
+
+    public User(String name) {
+        this.name = name;
+        System.out.println("User的有参构造");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        System.out.println("User的setName方法");
+    }
+
+    public void show() {
+        System.out.println("name=" + name);
+    }
+}
+
+```
+
+![image-20230721195018715](images\image-20230721195018715.png)
+
+观察结果我们可以发现在我们的Spring配置文件中完成了属性的注入，当然我们也可以通过参数的类型进行匹配，就如下面的一个案例，根据构造函数的参数类型进行匹配，然后进行赋值，当然官方还提供了一种`索引匹配 `和`构造函数名称`进行匹配
+
+```java
+    <bean id="user" class="com.shu.pojo.User">
+        <constructor-arg type="java.lang.String" value="shu"/>
+        <constructor-arg type="int" value="18"/>
+    </bean>
+```
+
+```java
+package com.shu.pojo;
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/7/20 23:34
+ * @version: 1.0
+ */
+public class User {
+    private String name;
+    public int age;
+
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+        System.out.println("User的有参构造");
+    }
+
+    public User() {
+        System.out.println("User的无参构造");
+    }
+
+    public User(String name) {
+        this.name = name;
+        System.out.println("User的有参构造");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        System.out.println("User的setName方法");
+    }
+
+    public void show() {
+        System.out.println("name=" + name);
+    }
+
+    public void show2() {
+        System.out.println("name=" + name);
+        System.out.println("age=" + age);
+    }
+}
+
+```
+
+![image-20230721195643502](images\image-20230721195643502.png)
+
+#### Setter的依赖注入
+
+基于 Setter 的 DI 是通过容器在调用无参数的构造函数或无参数的 `static` 工厂方法来实例化你的 bean 之后调用 Setter 方法来实现的。简单来说就是调用了你的set发放，完成赋值，这也决定我们需要编写Set方法的实现，当然这也是我们Spring中常用的实例化
+
+```xml
+    <bean id="user" class="com.shu.pojo.User">
+        <property name="name" value="shu"/>
+    </bean>
+```
+
+![image-20230721200400136](images\image-20230721200400136.png)
+
+复杂的情况，一个对象的初始化依赖其他类
+
+```xml
+    <bean id="user" class="com.shu.pojo.User">
+        <property name="name" value="shu"/>
+    </bean>
+
+    <bean id="userService2" class="com.shu.service.UserServerImpl">
+        <property name="user" ref="user"/>
+    </bean>
+```
+
+```java
+    /**
+     * set方法实例化bean
+     */
+    @Test
+    public void test7(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserServerImpl service2 =(UserServerImpl) context.getBean("userService2");
+        service2.getUser();
+
+    }
+```
+
+![image-20230721201109870](images\image-20230721201109870.png)
+
+基于构造器的DI还是基于setter的DI？
+
+>由于你可以混合使用基于构造函数的DI和基于setter的DI，一个好的经验法则是对强制依赖使用构造函数，对可选依赖使用setter方法或配置方法。请注意，在setter方法上使用 [@Autowired](https://springdoc.cn/spring/core.html#beans-autowired-annotation) 注解可以使属性成为必须的依赖；然而，带有参数程序化验证的构造器注入是更好的。
+>
+>Spring团队通常提倡构造函数注入，因为它可以让你将应用组件实现为不可变的对象，并确保所需的依赖不为 `null`。此外，构造函数注入的组件总是以完全初始化的状态返回给客户端（调用）代码。顺便提一下，大量的构造函数参数是一种不好的代码气味，意味着该类可能有太多的责任，应该重构以更好地解决适当的分离问题。
+>
+>Setter注入主要应该只用于在类中可以分配合理默认值的可选依赖。否则，必须在代码使用依赖的所有地方进行非null值检查。Setter注入的一个好处是，Setter方法使该类的对象可以在以后重新配置或重新注入。因此，通过 [JMX MBean](https://springdoc.cn/spring/integration.html#jmx) 进行管理是setter注入的一个引人注目的用例。
+>
+>对于一个特定的类，使用最合理的DI风格。有时，在处理你没有源代码的第三方类时，你会做出选择。例如，如果一个第三方类没有暴露任何setter方法，那么构造函数注入可能是唯一可用的DI形式。
+
+### 4.2.2  静态工厂方法进行实例化
+
+在定义一个用静态工厂方法创建的Bean时，使用 `class` 属性来指定包含 `static` 工厂方法的类，并使用名为 `factory-method` 的属性来指定工厂方法本身的名称。你应该能够调用这个方法（有可选的参数，如后文所述）并返回一个活的对象，随后该对象被视为通过构造函数创建的。
+
+```java
+package com.shu.factory;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+/**
+ * @description: 静态工厂, 用于书写创建复杂对象的代码
+ * @author: shu
+ * @createDate: 2023/7/21 20:14
+ * @version: 1.0
+ */
+public class StaticConnectionFactory {
+
+    public static Connection getConnection(){
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/auth?useSSL=false", "root", "123456");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+}
+
+```
+
+```xml
+    <bean id="db" class="com.shu.factory.StaticConnectionFactory" factory-method="getConnection"/>
+```
+
+```java
+    /**
+     * 静态工厂实例化bean
+     */
+    @Test
+    public void test8(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Object db = context.getBean("db");
+        System.out.println("db = " + db);
+
+    }
+
+```
+
+![image-20230721202923355](images\image-20230721202923355.png)
+
+可以发现我们的把数据的信息都放在代码中的，如果我们把要把配置信息放在配置文件中该咋写呢？
+
+```java
+package com.shu.factory;
+
+import org.springframework.beans.factory.FactoryBean;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/7/21 20:33
+ * @version: 1.0
+ */
+public class ConnectionFactoryBean implements FactoryBean<Connection> {
+    private String driverClassName;
+    private String url;
+    private String username;
+    private String password;
+
+    public String getDriverClassName() {
+        return driverClassName;
+    }
+
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    //用于书写创建复杂对象的代码
+    @Override
+    public Connection getObject() throws Exception {
+        Class.forName(driverClassName);
+        Connection conn = DriverManager.getConnection(url, username, password);
+        return conn;
+    }
+
+    @Override
+    public Class<?> getObjectType() {
+        return Connection.class;
+    }
+
+    @Override
+    public boolean isSingleton() {
+        return false;
+    }
+
+
+    public void close(Connection conn){
+        if(conn != null){
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+
+```
+
+```xml
+    <bean id="db2" class="com.shu.factory.ConnectionFactoryBean" >
+        <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+```
+
+```java
+    @Test
+    public void test9() throws Exception {
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Connection db2 =(Connection) context.getBean("db2");
+        System.out.println("db2 = " + db2);
+
+    }
+
+```
+
+![image-20230721204247258](images\image-20230721204247258.png)
+
+### 4.2.3  实例工厂方法进行实例化
+
+与 [通过静态工厂方法进行的实例化](https://springdoc.cn/spring/core.html#beans-factory-class-static-factory-method) 类似，用实例工厂方法进行的实例化从容器中调用现有 bean 的非静态方法来创建一个新的 bean。要使用这种机制，请将 `class` 属性留空，并在 `factory-bean` 属性中指定当前（或父代或祖代）容器中的一个 Bean 的名称，该容器包含要被调用来创建对象的实例方法。用 `factory-method` 属性设置工厂方法本身的名称。
+
+```java
+package com.shu.factory;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class ConnectionFactory {
+
+    public Connection getConnection(){
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/auth?useSSL=false", "root", "123456");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+}
+```
+
+```xml
+    <bean id="connFactory" class="com.shu.factory.ConnectionFactory"></bean>
+    <bean id="conn"  factory-bean="connFactory" factory-method="getConnection"/>
+```
+
+```java
+  @Test
+    public void test10() throws Exception {
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Object conn = context.getBean("conn");
+        System.out.println("conn = " + conn);
+
+    }
+```
+
+![image-20230721204631112](images\image-20230721204631112.png)
+
+### 4.2.4  确定Bean的运行时类型
+
+要确定一个特定Bean的运行时类型是不容易的。在Bean元数据定义中指定的类只是一个初始的类引用，可能与已声明的工厂方法相结合，或者是一个 `FactoryBean` 类，这可能导致Bean的运行时类型不同，或者在实例级工厂方法的情况下根本没有被设置（而是通过指定的 `factory-bean` 名称来解决）。此外，AOP代理可能会用基于接口的代理来包装Bean实例，对目标Bean的实际类型（只是其实现的接口）的暴露有限。
+
+要了解某个特定Bean的实际运行时类型，推荐的方法是对指定的Bean名称进行 `BeanFactory.getType` 调用。这将考虑到上述所有情况，并返回 `BeanFactory.getBean` 调用将为同一Bean名称返回的对象类型。
+
+## 4.3 Bean Scope
+
+当你创建一个Bean定义时，你创建了一个Bean，用于创建该Bean定义（definition）是所定义的类的实际实例。Bean定义（definition）是一个Bean的想法很重要，因为它意味着，就像一个类一样，你可以从一个Bean中创建许多对象实例。
+
+你不仅可以控制各种依赖和配置值，将其插入到从特定Bean定义创建的对象中，还可以控制从特定Bean定义创建的对象的scope。这种方法是强大而灵活的，因为你可以通过配置来选择你所创建的对象的scope，而不是在Java类级别上烘托出一个对象的scope。Bean可以被定义为部署在若干scope中的一个。
+
+| Scope                                                        | 说明                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [singleton](https://springdoc.cn/spring/core.html#beans-factory-scopes-singleton) | （默认情况下）为每个Spring IoC容器将单个Bean定义的Scope扩大到单个对象实例。 |
+| [prototype](https://springdoc.cn/spring/core.html#beans-factory-scopes-prototype) | 将单个Bean定义的Scope扩大到任何数量的对象实例。              |
+| [request](https://springdoc.cn/spring/core.html#beans-factory-scopes-request) | 将单个Bean定义的Scope扩大到单个HTTP请求的生命周期。也就是说，每个HTTP请求都有自己的Bean实例，该实例是在单个Bean定义的基础上创建的。只在Web感知的Spring `ApplicationContext` 的上下文中有效。 |
+| [session](https://springdoc.cn/spring/core.html#beans-factory-scopes-session) | 将单个Bean定义的Scope扩大到一个HTTP `Session` 的生命周期。只在Web感知的Spring `ApplicationContext` 的上下文中有效。 |
+| [application](https://springdoc.cn/spring/core.html#beans-factory-scopes-application) | 将单个Bean定义的 Scope 扩大到 `ServletContext` 的生命周期中。只在Web感知的Spring `ApplicationContext` 的上下文中有效。 |
+| [websocket](https://springdoc.cn/spring/web.html#websocket-stomp-websocket-scope) | 将单个Bean定义的 Scope 扩大到 `WebSocket` 的生命周期。仅在具有Web感知的 Spring `ApplicationContext` 的上下文中有效。 |
