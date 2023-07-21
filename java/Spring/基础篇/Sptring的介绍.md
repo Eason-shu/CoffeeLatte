@@ -16,7 +16,9 @@ tags:
   - 设计模式
 last_update:
   date: 2023-07-20 23:00:00
-  author: EasonShu  
+  author: EasonShu
+
+  
 ---
 
 # 一 Spring的介绍
@@ -505,7 +507,7 @@ DTD和XSD都是XML文档的验证机制，用于定义XML文档的结构和内�
         // 用于判断是否是原型模式
         boolean userService2 = context.isPrototype("userService");
         System.out.println("userService = " + userService2);
-        
+
 
     }
 
@@ -558,7 +560,7 @@ DTD和XSD都是XML文档的验证机制，用于定义XML文档的结构和内�
 
 `id` 属性允许你精确地指定一个 `id`。传统上，这些名字是字母数字（'myBean'、'someService’等），但它们也可以包含特殊字符。如果你想为Bean引入其他别名，
 
-你也可以在 `name` 属性中指定它们，用逗号（`,`）、分号（`;`）或空格分隔。尽管 `id` 属性被定义为 `xsd:string` 类型，但 bean id 的唯一性是由容器强制执行的，尽管不是由 XML 解析器执行。 
+你也可以在 `name` 属性中指定它们，用逗号（`,`）、分号（`;`）或空格分隔。尽管 `id` 属性被定义为 `xsd:string` 类型，但 bean id 的唯一性是由容器强制执行的，尽管不是由 XML 解析器执行。
 
 如果你不明确地提供 `name` 或 `id`，容器将为该 Bean 生成一个唯一的名称。然而，如果你想通过使用 `ref` 元素或服务定位器风格的查找来引用该 bean 的名称，你必须提供一个名称。
 
