@@ -1,7 +1,7 @@
 ---
 
 title: Spring的生命周期
-sidebar_position: 2
+sidebar_position: 3
 keywords:
   - Spring
   - 源码分析
@@ -643,7 +643,7 @@ BeanFactory就是相对不那么健全的原始一些的社会，ApplicantContex
 
 话不多说，接下来我们拿一个例子，来看看PersonBean的一生，我们先来看一下它的流程！
 
-![PersonBean的一生](E:\CoffeeLatte\java\Spring\基础篇\images\39b28c2f6756489881002aa3537b113e.png)
+![PersonBean的一生](images\39b28c2f6756489881002aa3537b113e.png)
 
 用文字描述一下这个过程：
 
