@@ -1160,3 +1160,71 @@ Bean 部署的非 singleton prototype scope 导致每次对该特定Bean的请�
 ![image-20230722002959713](images\image-20230722002959713.png)
 
 ![image-20230722003031314](images\image-20230722003031314.png)
+
+Spring原型bean-prototype不能销毁？
+
+一个原型bean的例子：
+
+[![img](https://img2020.cnblogs.com/blog/885859/202008/885859-20200807151812779-759511124.png)](https://img2020.cnblogs.com/blog/885859/202008/885859-20200807151812779-759511124.png) 
+
+结果是 注解的@PreDestroy的方法close()没有执行，而如果是单例bean 的singleton则会执行
+
+那若想销毁Spring的原型bean应该怎么办呢？
+
+**最佳答案**
+
+只要原型bean本身不持有对另一个资源(如数据库连接或会话对象)的引用,只要删除了对该对象的所有引用或对象超出范围,就会立即收集垃圾.因此,通常没有必要显式销毁原型bean，（其实官方文档也说了的）
+
+![image-20230722093447058](images\image-20230722093447058.png)
+
+```java
+/**
+* Bean PostProcessor that handles destruction of prototype beans
+*/
+@Component
+public class DestroyPrototypeBeansPostProcessor implements BeanPostProcessor, BeanFactoryAware, DisposableBean {
+
+    private BeanFactory beanFactory;
+
+    private final List<Object> prototypeBeans = new LinkedList<>();
+
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        return bean;
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        if (beanFactory.isPrototype(beanName)) {
+            synchronized (prototypeBeans) {
+                prototypeBeans.add(bean);
+            }
+        }
+        return bean;
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.beanFactory = beanFactory;
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        synchronized (prototypeBeans) {
+            for (Object bean : prototypeBeans) {
+                if (bean instanceof DisposableBean) {
+                    DisposableBean disposable = (DisposableBean)bean;
+                    try {
+                        disposable.destroy();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            prototypeBeans.clear();
+        }
+    }
+}
+```
+
+`request`、`session`、`application` 和 `websocket` scope只有在你使用Web感知的Spring `ApplicationContext` 实现（如 `XmlWebApplicationContext`）时才可用。后面补充
