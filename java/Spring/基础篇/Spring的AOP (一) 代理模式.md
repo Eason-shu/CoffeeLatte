@@ -1,5 +1,5 @@
 ---
-title: Spring的AOP(一) 代理模式
+title: Spring的AOP (一) 代理模式
 sidebar_position: 4
 keywords:
   - Spring
