@@ -593,19 +593,19 @@ Bean，也不是什么新鲜玩意儿，它们就是一帮身不由己的Java对
 - 工作：为社会创造价值
 - 死亡：人死如灯灭，不过人这盏灯灭了，还要把灯台埋起来
 
-![image-20220303101042089](E:\CoffeeLatte\java\Spring\基础篇\images\ef07b58aa2264770a7ea809fd9106d7d.png)
+![image-20220303101042089](images\ef07b58aa2264770a7ea809fd9106d7d.png)
 
 Bean实例化的时机也分为两种，BeanFactory管理的Bean是在使用到Bean的时候才会实例化Bean，ApplicantContext管理的Bean在容器初始化的时候就回完成Bean实例化。
 
 BeanFactory就是相对不那么健全的原始一些的社会，ApplicantContext是发达健全的现代社会。
 
-![BeanFactory和Applicantcontext](E:\CoffeeLatte\java\Spring\基础篇\images\39bcfaad873144bd8b88f22c85b04213.png)
+![BeanFactory和Applicantcontext](images\39bcfaad873144bd8b88f22c85b04213.png)
 
 ### Bean详细生命周期
 
 我们讲到了Bean容器四个阶段，会有一些容器级的方法，进行前置和后置的处理，比如InstantiationAwareBeanPostProcessor、BeanPostProcessor接口方法。这些方法独立于Bean之外，并且会注册到Spring容器中，在Spring容器创建Bean的时候，进行一些处理。
 
-![后处理器](E:\CoffeeLatte\java\Spring\基础篇\images\e69791084a4e4b81901b3543c3c8dbb6.png)
+![后处理器](images\e69791084a4e4b81901b3543c3c8dbb6.png)
 
 这就好像，孩子出生之前，需要做一些准备，比如备孕、养胎、备产什么的，出生之后，需要做一些护理。孩子上学前后，也需要做一些学籍的管理。
 
