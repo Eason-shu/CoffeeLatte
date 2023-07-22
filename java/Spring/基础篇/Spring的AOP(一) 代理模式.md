@@ -1,5 +1,4 @@
 ---
-****
 title: Spring的AOP(一) 代理模式
 sidebar_position: 4
 keywords:
@@ -438,9 +437,9 @@ public class Merchant implements Sell{
 /**
  * 调用处理程序
  */
-public interface InvocationHandler { 
-    Object invoke(Object proxy, Method method, Object[] args); 
-} 
+public interface InvocationHandler {
+    Object invoke(Object proxy, Method method, Object[] args);
+}
 ```
 
 - 从`InvocationHandler`这个名称我们就可以知道，实现了这个接口的中介类用做“调用处理器”。
@@ -617,7 +616,7 @@ public class TestInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-       
+
         return null;
     }
 }
