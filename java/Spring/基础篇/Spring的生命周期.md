@@ -21,7 +21,7 @@ last_update:
 # Spring的生命周期
 Spring作为当前Java最流行、最强大的轻量级框架，受到了程序员的热烈欢迎。准确的了解Spring Bean的生命周期是非常必要的。我们通常使用ApplicationContext作为Spring容器。这里，我们讲的也是 ApplicationContext中Bean的生命周期。而实际上BeanFactory也是差不多的，只不过处理器需要手动注册。
 ## 1 完整生命周期图
-![file](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7efa8da3631f47e8adf44c9a198fcf05~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![file](images\life.png)
 
 从上图可以看出，Spring Bean的生命周期管理的基本思路是：在Bean出现之前，先准备操作Bean的BeanFactory，然后操作完Bean，所有的Bean也还会交给BeanFactory进行管理。在所有Bean操作准备BeanPostProcessor作为回调。在Bean的完整生命周期管理过程中，经历了以下主要几个步骤：
 
@@ -545,4 +545,4 @@ public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBea
 
 ![image-20230722150406447](images\image-20230722150406447.png)
 
-![file](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/056ff56cd67e445f91c9334eefa74728~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![file](images\life2.png)
