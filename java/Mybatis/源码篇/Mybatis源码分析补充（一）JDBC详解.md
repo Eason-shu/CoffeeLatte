@@ -25,24 +25,21 @@ last_update:
 官网：[mybatis – MyBatis 3 | 简介](https://mybatis.org/mybatis-3/zh/index.html)
 参考书籍：[MyBatis 3源码深度解析-江荣波-微信读书](https://weread.qq.com/web/bookDetail/62c3207071a4957c62cf0b7)
 
----
-
-
----
-
 # 一 JDBC
 # 1.1 JDBC介绍
 
 - JDBC（Java Database Connectivity）是Java语言中提供的访问关系型数据的接口。
 - JDBC API基于X/Open SQL CLI，是ODBC的基础。JDBC提供了一种自然的、易于使用的Java语言与数据库交互的接口，自1997年1月Java语言引入JDBC规范后，JDBC API被广泛接受，并且广大数据库厂商开始提供JDBC驱动的实现。
 - JDBC API为Java程序提供了访问一个或多个数据源的方法，在大多数情况下，数据源是关系型数据库，它的数据是通过SQL语句来访问的。
-> 🌈🌈一般使用步骤：
+
+🌈🌈一般使用步骤：
 
 1. 与数据源建立连接
 2. 执行SQL语句
 3. 检索SQL执行结果
 4. 关闭连接
-> 📌📌案例
+
+📌📌案例
 
 ```java
  // JDBC基本使用案例
@@ -93,7 +90,8 @@ DataSource：这个接口是在JDBC 2.0规范可选包中引入的API。它比Dr
   }
 ```
 需要注意的是，JDBC API中只提供了DataSource接口，没有提供DataSource的具体实现，DataSource具体的实现由JDBC驱动程序提供。另外，目前一些主流的数据库连接池（例如DBCP、C3P0、Druid等）也提供了DataSource接口的具体实现。
-> 💯💯源码分析
+
+💯💯源码分析
 
 我们通过前面的对Mybatis的源码分析，我们就已经知道了Mybayis获取数据源连接对象实际上交给了UnpooledDataSource与PooledDataSource，但是实际上还是调用了DriverManager来获取数据库连接，所以我们先介绍Mybatis获取数据库连接
 **BaseExecutor**
@@ -124,8 +122,6 @@ DataSource：这个接口是在JDBC 2.0规范可选包中引入的API。它比Dr
     }
     return connection;
   }
-
-
 
   protected void openConnection() throws SQLException {
     if (log.isDebugEnabled()) {
@@ -310,13 +306,17 @@ private Connection doGetConnection(String username, String password) throws SQLE
 可以看到其实我们编写的案例代码其实差不多，最终一个Connection对象，简单来说就是通过遍历驱动获取连接，下面我们来仔细讲解一下Connection对象
 # 1.3 Connection
 一个Connection对象表示通过JDBC驱动与数据源建立的连接，这里的数据源可以是关系型数据库管理系统（DBMS）、文件系统或者其他通过JDBC驱动访问的数据。
-使用JDBC API的应用程序可能需要维护多个Connection对象，一个Connection对象可能访问多个数据源，也可能访问单个数据源。
-我们可以通过两种方式获取JDBC中的Connection对象：（1）通过JDBC API中提供的DriverManager类获取。（2）通过DataSource接口的实现类获取（实现）。
+
+- 使用JDBC API的应用程序可能需要维护多个Connection对象，一个Connection对象可能访问多个数据源，也可能访问单个数据源。
+- 我们可以通过两种方式获取JDBC中的Connection对象：（1）通过JDBC API中提供的DriverManager类获取。（2）通过DataSource接口的实现类获取（实现）。
+
 ## 1.3.1 数据库驱动
 JDBC-ODBC Bridge Driver：SUN发布JDBC规范时，市场上可用的JDBC驱动程序并不多，但是已经逐渐成熟的ODBC方案使得通过ODBC驱动程序几乎可以连接所有类型的数据源。所以SUN发布了JDBC-ODBC的桥接驱动，利用现成的ODBC架构将JDBC调用转换为ODBC调用，避免了JDBC无驱动可用的窘境。
-Native API Driver：这类驱动程序会直接调用数据库提供的原生链接库或客户端，因为没有中间过程，访问速度通常表现良好，但是驱动程序与数据库和平台绑定无法达到JDBC跨平台的基本目的，在JDBC规范中也是不被推荐的选择。
-JDBC-Net Driver：这类驱动程序会将JDBC调用转换为独立于数据库的协议，然后通过特定的中间组件或服务器转换为数据库通信协议，主要目的是获得更好的架构灵活性。
-Native Protocol Driver：这是最常见的驱动程序类型，开发中使用的驱动包基本都属于此类，通常由数据库厂商直接提供，例如mysql-connector-java，驱动程序把JDBC调用转换为数据库特定的网络通信协议，使用网络通信，驱动程序可以纯Java实现，支持跨平台部署，性能也较好。
+
+- Native API Driver：这类驱动程序会直接调用数据库提供的原生链接库或客户端，因为没有中间过程，访问速度通常表现良好，但是驱动程序与数据库和平台绑定无法达到JDBC跨平台的基本目的，在JDBC规范中也是不被推荐的选择。
+- JDBC-Net Driver：这类驱动程序会将JDBC调用转换为独立于数据库的协议，然后通过特定的中间组件或服务器转换为数据库通信协议，主要目的是获得更好的架构灵活性。
+  Native Protocol Driver：这是最常见的驱动程序类型，开发中使用的驱动包基本都属于此类，通常由数据库厂商直接提供，例如mysql-connector-java，驱动程序把JDBC调用转换为数据库特定的网络通信协议，使用网络通信，驱动程序可以纯Java实现，支持跨平台部署，性能也较好。
+
 ## 1.3.2 Driver接口
 所有的JDBC驱动都必须实现Driver接口，而且实现类必须包含一个静态初始化代码块。我们知道，类的静态初始化代码块会在类初始化时调用，驱动实现类需要在静态初始化代码块中向DriverManager注册自己的一个实例
 **Mysql驱动**
@@ -429,7 +429,8 @@ Driver接口中提供了一个acceptsURL()方法，DriverManager类可以通过D
 
 - 简单来说就是通过Java的SPI机制，去动态发现实现类，关键在于ServiceLoader# load方法 classpath下META-INF/services目录的java.sql.Driver文件中指定的所有实现类都会被加载。
 - 在loadInitialDrivers()方法中，通过JDK内置的ServiceLoader机制加载java.sql.Driver接口的实现类，然后对所有实现类进行遍历，这样就完成了驱动类的加载。驱动实现类会在自己的静态代码块中将驱动实现类的实例注册到DriverManager中，这样就取代了通过调用Class.forName()方法加载驱动的过程。
-> 🚀🚀具体讲解
+
+🚀🚀具体讲解
 
 DriverManager类通过Driver接口为JDBC客户端管理一组可用的驱动实现，当客户端通过DriverManager类和数据库建立连接时，DriverManager类会根getConnection()方法参数中的URL找到对应的驱动实现类，然后使用具体的驱动实现连接到对应的数据库。
 

@@ -190,7 +190,7 @@ const config = {
         content: `🎉🎉🎉 Mybatis源码分析已上线！欢迎大家学习！🎉🎉🎉`,
         backgroundColor: "#fafbfc", // Defaults to `#fff`.
         textColor: "#091E42", // Defaults to `#000`.
-        isCloseable: true, // Defaults to `true`.
+        isCloseable: false, // Defaults to `true`.
       },
       metadata: [
         {
