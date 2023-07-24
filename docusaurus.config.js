@@ -3,6 +3,7 @@
  */
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const { to } = require("react-spring");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -153,6 +154,32 @@ const config = {
         breadcrumbs: true,
       },
     ],
+    // --------------------------------------------------Power-Base-------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "power_base",
+        path: "power/Power_Base",
+        routeBasePath: "power_base",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
+    // -------------------------------------------------power-protocol------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "power_protocol",
+        path: "power/Power_Protocol",
+        routeBasePath: "power_protocol",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
     "docusaurus-plugin-umami",
   ],
   themeConfig:
@@ -214,6 +241,20 @@ const config = {
               {
                 label: "3️⃣ React",
                 to: "/React",
+              },
+            ],
+          },
+          {
+            position: "right",
+            label: "⚡ 业务知识",
+            items: [
+              {
+                label: "基本理论知识",
+                to: "/power_base",
+              },
+              {
+                label: "协议文档",
+                to: "/power_protocol",
               },
             ],
           },
