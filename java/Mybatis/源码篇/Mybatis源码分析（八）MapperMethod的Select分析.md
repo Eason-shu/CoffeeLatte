@@ -1397,7 +1397,7 @@ public class MixedSqlNode implements SqlNode {
 
 ```
 ### 1.5.2 IfSqlNode
-IfSqlNode 对应的是 <if test='xxx'> 节点，首先是通过 ONGL 检测 test 表达式是否为 true，如果为 true，则调用其子节点的 apply 方法继续进行解析。如果子节点是静态SQL节点，则子节点的文本值会直接拼接到DynamicContext中
+IfSqlNode 对应的是 if test='xxx' 节点，首先是通过 ONGL 检测 test 表达式是否为 true，如果为 true，则调用其子节点的 apply 方法继续进行解析。如果子节点是静态SQL节点，则子节点的文本值会直接拼接到DynamicContext中
 ```java
 <select id="findActiveBlogWithTitleLike"
      resultType="Blog">

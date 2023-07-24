@@ -1751,7 +1751,7 @@ public class ResultMapResolver {
 ```
 # 七 解析Sql节点
 参考官网：[mybatis – MyBatis 3 | XML 映射器](https://mybatis.org/mybatis-3/zh/sqlmap-xml.html#sql)
-<sql> 节点用来定义一些可重用的 SQL 语句片段，比如表名，或表的列名等。在映射文件中，我们可以通过 <include> 节点引用 <sql> 节点定义的内容。
+sql 节点用来定义一些可重用的 SQL 语句片段，比如表名，或表的列名等。在映射文件中，我们可以通过 include 节点引用 sql 节点定义的内容。
 ```java
     <!-- 通过用户id查询具有的角色信息数据 -->
     <select id="queryByUserId" resultMap="SysRoleMap">
