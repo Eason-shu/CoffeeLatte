@@ -1,6 +1,6 @@
 ---
 slug: /
-title: Power_Protocol
+title: Home
 sidebar_position: 1
 keywords:
   - 电力
