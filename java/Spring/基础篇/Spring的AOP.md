@@ -118,13 +118,13 @@ public class Config {
 @Aspect
 @Component
 public class MyAspect {
- 	//....   
+ 	//....
 }
 
 // 如果没有在XML配置过，那这个就是无效的AOP配置类
 @Aspect
 public class MyAspect {
- 	//....   
+ 	//....
 }
 // 如果没有@Component需要xml配置
 <bean id="loginLoggerAspect" class="com.example.app.MyAspect" />
@@ -201,7 +201,7 @@ public class LoginLoggerAspect {
 
 ```
 
-- XML 
+- XML
 
 ```java
     <!-- 定义切面   -->
@@ -210,7 +210,7 @@ public class LoginLoggerAspect {
     <aop:config>
         <aop:pointcut id="pointcut" expression="execution(* com.shu.aop.demo04.UserServiceImpl.*(..))"/>
     </aop:config>
-    
+
 ```
 
 **切面表达式详解**
@@ -305,7 +305,12 @@ execution(void com.example.app..*(..))
 ## 4.3 配置通知
 
 **注意，实际开发过程当中，Aspect 类应该遵守单一职责原则，不要把所有的Advice配置全部写在一个Aspect类里面。**
-
+JoinPoint 接口提供了许多有用的方法。
+- getArgs(): 返回方法的参数。
+- getThis(): 返回代理对象。
+- getTarget(): 返回目标对象。
+- getSignature(): 返回正在被 advice 的方法的描述。
+- toString(): 打印对所 advice 的方法的有用描述。
 - 配置式
 
 ```java
