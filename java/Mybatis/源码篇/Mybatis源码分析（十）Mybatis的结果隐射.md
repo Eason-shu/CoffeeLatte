@@ -650,7 +650,7 @@ handleRowValues方法，下面接着看
 
 1. 创建实体类对象
 2. 自动映射结果集中有的column，但resultMap中并没有配置
-3. 根据 <resultMap> 节点中配置的映射关系进行映射
+3. 根据 resultMap节点中配置的映射关系进行映射
 # 三 创建实体类对象
 我们想将查询结果映射成实体类对象，第一步当然是要创建实体类对象了
 **DefaultResultSetHandler**

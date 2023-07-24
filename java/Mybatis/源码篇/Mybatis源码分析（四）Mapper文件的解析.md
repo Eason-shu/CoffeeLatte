@@ -45,7 +45,7 @@ last_update:
 5. 接着调用configurationElement方法，注意必须以/mapper开头的XML文件，开始解析文件
 6. 第一步解析我们命名的表空间，namespace，并设置当前命名空间
 7. 第二步解析cache-ref 元素，主要为了共享缓存，具体参考官网
-8. 第三步解析<cache>元素，主要是缓存配置，具体参考官网
+8. 第三步解析cache元素，主要是缓存配置，具体参考官网
 9. 第四步解析/mapper/parameterMap元素，未来版本会移除
 10. 第五步解析/mapper/resultMap元素，主要完成数据库对象与JAVA对象的类型转换
 11. 第六步解析/mapper/sql元素，主要是我们定义的一些可以复用的Sql片段

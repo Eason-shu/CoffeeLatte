@@ -446,6 +446,7 @@ public TypeAliasRegistry() {
 
     registerAlias("ResultSet", ResultSet.class);
   }
+
 ```
 
 - 开始调用parser.parse()方法，进行文件的解析
@@ -464,10 +465,10 @@ public TypeAliasRegistry() {
   }
 ```
 
-- 注意一个 xpath 表达式 - /configuration。这个表达式代表的是 MyBatis 的<configuration/>标签，这里选中这个标签，并传递给parseConfiguration方法。
+- 注意一个 xpath 表达式 - /configuration。这个表达式代表的是 MyBatis 的configuration标签，这里选中这个标签，并传递给parseConfiguration方法。
 
 - mybatis parseConfiguration的过程是指mybatis解析配置文件的过程。在这个过程中，mybatis会读取配置文件中的信息，并将其解析为内存中的对象，以便后续使用，具体来说，mybatis在解析配置文件时会创建一个Configuration对象，并通过调用XMLConfigBuilder类的parse()方法来解析配置文件，XMLConfigBuilder类会读取配置文件中的信息，并将其转换为Configuration对象中的各种属性。
-- 例如，配置文件中的<environment>元素会被转换为Configuration对象的environment属性，<mappers>元素会被转换为Configuration对象的mapperRegistry属性，等等，总之，mybatis parseConfiguration的过程就是将配置文件中的信息解析为内存中的对象的过程。
+- 例如，配置文件中的environment元素会被转换为Configuration对象的environment属性，mappers元素会被转换为Configuration对象的mapperRegistry属性，等等，总之，mybatis parseConfiguration的过程就是将配置文件中的信息解析为内存中的对象的过程。
 ```javascript
 private void parseConfiguration(XNode root) {
     try {

@@ -24,7 +24,7 @@ last_update:
 
 - 官网：[mybatis – MyBatis 3 | 简介](https://mybatis.org/mybatis-3/zh/index.html)
 
-在Mapper文件的对sql语句的解析过程中，我们发现MapperRegistry.addMapper其实就是获取当前映射文件的命名空间，并获取其Class，也就是获取每个Mapper接口，然后为每个Mapper接口创建一个代理类工厂，new MapperProxyFactory<T>(type)，并放进 knownMappers 这个HashMap中，我们来看看这个MapperProxyFactory。下面我们来看看为啥我们可以直接调用接口的方法？
+在Mapper文件的对sql语句的解析过程中，我们发现MapperRegistry.addMapper其实就是获取当前映射文件的命名空间，并获取其Class，也就是获取每个Mapper接口，然后为每个Mapper接口创建一个代理类工厂，new MapperProxyFactory T (type)，并放进 knownMappers 这个HashMap中，我们来看看这个MapperProxyFactory。下面我们来看看为啥我们可以直接调用接口的方法？
 
 ---
 

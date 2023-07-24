@@ -1295,7 +1295,7 @@ public interface TypeHandler<T> {
 ```
 调用不同的参数处理器，来设置不同的参数这里的类型调用来设置参数
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1673872268183-37fa3903-7dc1-418f-972a-d5f21fff63ba.png#averageHue=%2341484f&clientId=ubc87a6d8-0fd8-4&from=paste&height=420&id=ub49815c9&originHeight=525&originWidth=914&originalType=binary&ratio=1&rotation=0&showTitle=false&size=145198&status=done&style=none&taskId=u58bf973f-7ded-4ef8-a71c-88f63740790&title=&width=731.2)
-BaseTypeHandler<T>来处理的设置参数类型，而许多类型的处理器继承BaseTypeHandler
+BaseTypeHandler T 来处理的设置参数类型，而许多类型的处理器继承BaseTypeHandler
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1673872745700-e99cc782-bf74-4c2a-9e5e-e8a96cf5c072.png#averageHue=%232c2c2c&clientId=ubc87a6d8-0fd8-4&from=paste&height=391&id=u98f4468d&originHeight=489&originWidth=1110&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14246&status=done&style=none&taskId=u471904cf-4a7f-466e-b252-ac01a9f4ff5&title=&width=888)
 最后根据参数类型，调用java.sql.PreparedStatement类中的参数赋值方法，对SQL语句中的参数赋值
 **DefaultParameterHandler**

@@ -288,7 +288,7 @@ public BoundSql getBoundSql(Object parameterObject) {
     return boundSql;
   }
 ```
-我们都知道 SQL 是配置在映射文件中的，但由于映射文件中的 SQL 可能会包含占位符 #{}，以及动态 SQL 标签，比如 <if>、<where> 等。因此，我们并不能直接使用映射文件中配置的 SQL。MyBatis 会将映射文件中的 SQL 解析成一组 SQL 片段。我们需要对这一组片段进行解析，从每个片段对象中获取相应的内容。然后将这些内容组合起来即可得到一个完成的 SQL 语句，这个完整的 SQL 以及其他的一些信息最终会存储在 BoundSql 对象中。下面我们来看一下 BoundSql 类的成员变量信息，如下：
+我们都知道 SQL 是配置在映射文件中的，但由于映射文件中的 SQL 可能会包含占位符 #{}，以及动态 SQL 标签，比如 if、where 等。因此，我们并不能直接使用映射文件中配置的 SQL。MyBatis 会将映射文件中的 SQL 解析成一组 SQL 片段。我们需要对这一组片段进行解析，从每个片段对象中获取相应的内容。然后将这些内容组合起来即可得到一个完成的 SQL 语句，这个完整的 SQL 以及其他的一些信息最终会存储在 BoundSql 对象中。下面我们来看一下 BoundSql 类的成员变量信息，如下：
 ```java
 // 可能含有“?”占位符的sql语句
   private final String sql;
