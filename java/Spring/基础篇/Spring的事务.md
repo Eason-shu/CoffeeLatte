@@ -56,7 +56,7 @@ last_update:
 - 数据源的封装，在Mybatis中我们用SqlSessionFactory来执行增删改查操作，但是在我们的Spring中提供了SqlSessionFactoryBean这个类来封装数据源的连接
 - 包扫描的封装，在我们原来的Mybatis中我们需要配置包扫描的方式，在Spring中提供了一个MapperScannerConfigurer类对我们的接口进行扫描
 
-![未命名绘图.drawio](images\Spring的AOP.md)
+![未命名绘图.drawio](images\Spring.png)
 
 ##  1.5 Mybatis与Spring整合
 
