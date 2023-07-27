@@ -17,20 +17,20 @@ last_update:
   author: EasonShu
 ---
 
-# 一 Spring与Mybatis整合
+# 一 Spring 与 Mybatis 整合
 
-## 1.1 单独使用Mybatis 的问题
+## 1.1 单独使用 Mybatis 的问题
 
-- 配置繁琐，如果我们单独使用Mybatis需要写多个Mapper的配置，配置文件臃肿
-- 代码冗余，系统中存在冗余代码，特别是APl调用的时候
+- 配置繁琐，如果我们单独使用 Mybatis 需要写多个 Mapper 的配置，配置文件臃肿
+- 代码冗余，系统中存在冗余代码，特别是 APl 调用的时候
 
-## 1.2 Spring为啥需要与Mybatis整合
+## 1.2 Spring 为啥需要与 Mybatis 整合
 
--  JavaEE开发需要持久层进⾏数据库的访问操作
-- JDBC Hibernate MyBatis进⾏持久开发过程存在⼤量的代码冗余
-- Spring基于模板设计模式对于上述的持久层技术进⾏了封装，极大的简化了代码
+- JavaEE 开发需要持久层进⾏数据库的访问操作
+- JDBC Hibernate MyBatis 进⾏持久开发过程存在⼤量的代码冗余
+- Spring 基于模板设计模式对于上述的持久层技术进⾏了封装，极大的简化了代码
 
-##  1.3 Spring可以与那些持久层技术进⾏整合
+## 1.3 Spring 可以与那些持久层技术进⾏整合
 
 ```javascript
 1.JDBC
@@ -41,7 +41,7 @@ last_update:
  |- SqlSessionFactoryBean MapperScannerConfigure
 ```
 
-## 1.4 Mybatis的开发步骤
+## 1.4 Mybatis 的开发步骤
 
 ```
 1. 实体
@@ -53,12 +53,12 @@ last_update:
 7. MybatisAPI调⽤
 ```
 
-- 数据源的封装，在Mybatis中我们用SqlSessionFactory来执行增删改查操作，但是在我们的Spring中提供了SqlSessionFactoryBean这个类来封装数据源的连接
-- 包扫描的封装，在我们原来的Mybatis中我们需要配置包扫描的方式，在Spring中提供了一个MapperScannerConfigurer类对我们的接口进行扫描
+- 数据源的封装，在 Mybatis 中我们用 SqlSessionFactory 来执行增删改查操作，但是在我们的 Spring 中提供了 SqlSessionFactoryBean 这个类来封装数据源的连接
+- 包扫描的封装，在我们原来的 Mybatis 中我们需要配置包扫描的方式，在 Spring 中提供了一个 MapperScannerConfigurer 类对我们的接口进行扫描
 
 ![未命名绘图.drawio](images\Spring.png)
 
-##  1.5 Mybatis与Spring整合
+## 1.5 Mybatis 与 Spring 整合
 
 - 依赖
 
@@ -93,7 +93,7 @@ last_update:
     </dependencies>
 ```
 
-- 配置文件的配置主要包括：数据源的配置，SqlSessionFactory的配置，MapperScannerConfigurer的配置
+- 配置文件的配置主要包括：数据源的配置，SqlSessionFactory 的配置，MapperScannerConfigurer 的配置
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -157,7 +157,7 @@ last_update:
   </dependency>
 ```
 
-log4j.properties配置文件
+log4j.properties 配置文件
 
 ```properties
 log4j.rootLogger=DEBUG,console,file
@@ -184,7 +184,7 @@ log4j.logger.java.sql.ResultSet=DEBUG
 log4j.logger.java.sql.PreparedStatement=INFO
 ```
 
-mybatis-config.xml配置文件
+mybatis-config.xml 配置文件
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -235,18 +235,18 @@ public class APlTest {
 
 ## 1.6 思考？
 
-Spring与Mybatis整合后，为什么DAO不提交事务，但是数据能够插⼊数据库中？
+Spring 与 Mybatis 整合后，为什么 DAO 不提交事务，但是数据能够插⼊数据库中？
 
 Connection --> tx Mybatis(Connection) 本质上控制连接对象
 
 (Connection) ---> 连接池(DataSource)
 
-1. Mybatis提供的连接池对象 ---> 创建Connection Connection.setAutoCommit(false) ⼿⼯的控制了事务 ， 操作完成后，⼿ ⼯提交
-2. Druid（C3P0 DBCP）作为连接池 ---> 创建Connection Connection.setAutoCommit(true) true默认值 保持⾃动控制事务，⼀条 sql ⾃动提交
-3. 答案：因为Spring与Mybatis整合时，引⼊了外部连接池对象，保持⾃动的事务提交这 个机制(Connection.setAutoCommit(true)),不需要⼿⼯进⾏事务的操作，也能进 ⾏事务的提交
-4. 注意：未来实战中，还会⼿⼯控制事务(多条sql⼀起成功，⼀起失败)，后续Spring通过 事务控制解决这个问题
+1. Mybatis 提供的连接池对象 ---> 创建 Connection Connection.setAutoCommit(false) ⼿⼯的控制了事务 ， 操作完成后，⼿ ⼯提交
+2. Druid（C3P0 DBCP）作为连接池 ---> 创建 Connection Connection.setAutoCommit(true) true 默认值 保持⾃动控制事务，⼀条 sql ⾃动提交
+3. 答案：因为 Spring 与 Mybatis 整合时，引⼊了外部连接池对象，保持⾃动的事务提交这 个机制(Connection.setAutoCommit(true)),不需要⼿⼯进⾏事务的操作，也能进 ⾏事务的提交
+4. 注意：未来实战中，还会⼿⼯控制事务(多条 sql ⼀起成功，⼀起失败)，后续 Spring 通过 事务控制解决这个问题
 
-# 二 Spring中的事务
+# 二 Spring 中的事务
 
 ## 2.1 什么叫事务
 
@@ -256,9 +256,9 @@ Connection --> tx Mybatis(Connection) 本质上控制连接对象
 
 ```java
 public void savePerson() {
-    
+
   personDao.save(person);
-    
+
   personDetailDao.save(personDetail);
  }
 ```
@@ -272,11 +272,9 @@ public void savePerson() {
 
 万一在这两个操作之间突然出现错误比如银行系统崩溃或者网络故障，导致小明余额减少而小红的余额没有增加，这样就不对了。事务就是保证这两个关键操作要么都成功，要么都要失败。
 
-## 2.2 事务的4大特点
+## 2.2 事务的 4 大特点
 
-**原子性：**原子性是指事务是一个不可分割的工作单位，事务中的操作要么全部成功，要么全部失败。比如在同一个事务中的SQL语句，要么全部执行成功，要么全部执行失败。
-
-
+**原子性：**原子性是指事务是一个不可分割的工作单位，事务中的操作要么全部成功，要么全部失败。比如在同一个事务中的 SQL 语句，要么全部执行成功，要么全部执行失败。
 
 ```mysql
 begin transaction;
@@ -289,13 +287,13 @@ commit transaction;
 
 换一种方式理解就是：事务按照预期生效，数据的状态是预期的状态。
 
-举例说明：张三向李四转100元，转账前和转账后的数据是正确的状态，这就叫一致性，如果出现张三转出100元，李四账号没有增加100元这就出现了数据错误，就没有达到一致性。
+举例说明：张三向李四转 100 元，转账前和转账后的数据是正确的状态，这就叫一致性，如果出现张三转出 100 元，李四账号没有增加 100 元这就出现了数据错误，就没有达到一致性。
 
 **隔离性：**事务的隔离性是多个用户并发访问数据库时，数据库为每一个用户开启的事务，不能被其他事务的操作数据所干扰，多个并发事务之间要相互隔离。
 
 **持久性:** 持久性是指一个事务一旦被提交，它对数据库中数据的改变就是永久性的，接下来即使数据库发生故障也不应该对其有任何影响。
 
-例如我们在使用JDBC操作数据库时，在提交事务方法后，提示用户事务操作完成，当我们程序执行完成直到看到提示后，就可以认定事务以及正确提交，即使这时候数据库出现了问题，也必须要将我们的事务完全执行完成，否则就会造成我们看到提示事务处理完毕，但是数据库因为故障而没有执行事务的重大错误。
+例如我们在使用 JDBC 操作数据库时，在提交事务方法后，提示用户事务操作完成，当我们程序执行完成直到看到提示后，就可以认定事务以及正确提交，即使这时候数据库出现了问题，也必须要将我们的事务完全执行完成，否则就会造成我们看到提示事务处理完毕，但是数据库因为故障而没有执行事务的重大错误。
 
 ## 2.3 如何控制事务
 
@@ -368,7 +366,7 @@ public void aMethod {
 }
 ```
 
-## 2.5 Spring的事务属性
+## 2.5 Spring 的事务属性
 
 事务属性：描述事务特征的⼀系列值 1. 隔离属性 2. 传播属性 3. 只读属性 4. 超时属性 5. 异常属性
 
@@ -386,7 +384,7 @@ public void aMethod {
 @Transactional(isolation=Isolation.READ_COMMITTED)
 ```
 
-•**丢失修改（Lost to modify）:** 指在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。 例如：事务1读取某表中的数据A=20，事务2也读取A=20，事务1修改A=A-1，事务2也修改A=A-1，最终结果A=19，事务1的修改被丢失。
+•**丢失修改（Lost to modify）:** 指在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。 例如：事务 1 读取某表中的数据 A=20，事务 2 也读取 A=20，事务 1 修改 A=A-1，事务 2 也修改 A=A-1，最终结果 A=19，事务 1 的修改被丢失。
 
 ```
 
@@ -410,9 +408,9 @@ public void aMethod {
 
 不可重复读的重点是修改，幻读的重点在于新增或者删除。
 
-例1（同样的条件, 你读取过的数据, 再次读取出来发现值不一样了 ）：事务1中的A先生读取自己的工资为 1000的操作还没完成，事务2中的B先生就修改了A的工资为2000，导 致A再读自己的工资时工资变为 2000；这就是不可重复读。
+例 1（同样的条件, 你读取过的数据, 再次读取出来发现值不一样了 ）：事务 1 中的 A 先生读取自己的工资为 1000 的操作还没完成，事务 2 中的 B 先生就修改了 A 的工资为 2000，导 致 A 再读自己的工资时工资变为 2000；这就是不可重复读。
 
-例2（同样的条件, 第1次和第2次读出来的记录数不一样 ）：假某工资单表中工资大于3000的有4人，事务1读取了所有工资大于3000的人，共查到4条记录，这时事务2 又插入了一条工资大于3000的记录，事务1再次读取时查到的记录就变为了5条，这样就导致了幻读。
+例 2（同样的条件, 第 1 次和第 2 次读出来的记录数不一样 ）：假某工资单表中工资大于 3000 的有 4 人，事务 1 读取了所有工资大于 3000 的人，共查到 4 条记录，这时事务 2 又插入了一条工资大于 3000 的记录，事务 1 再次读取时查到的记录就变为了 5 条，这样就导致了幻读。
 
 #### 2.5.1.2 事务隔离级别
 
@@ -424,7 +422,7 @@ public void aMethod {
 
 •**REPEATABLE-READ（可重读）:** 对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，**可以阻止脏读和不可重复读，但幻读仍有可能发生。**
 
-•**SERIALIZABLE(可串行化):** 最高的隔离级别，完全服从ACID的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，**该级别可以防止脏读、不可重复读以及幻读**。
+•**SERIALIZABLE(可串行化):** 最高的隔离级别，完全服从 ACID 的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，**该级别可以防止脏读、不可重复读以及幻读**。
 
 **数据库对于隔离属性的⽀持**
 
@@ -452,6 +450,9 @@ Mysql
 select @@tx_isolation
 ```
 
+这里需要注意的是：与 SQL 标准不同的地方在于 InnoDB 存储引擎在 REPEATABLE-READ（可重读）事务隔离级别下使用的是 Next-Key Lock 锁算法，因此可以避免幻读的产生，这与其他数据库系统(如 SQL Server)是不同的。所以说 InnoDB 存储引擎的默认支持的隔离级别是 REPEATABLE-READ（可重读） 已经可以完全保证事务的隔离性要求，即达到了 SQL 标准的 SERIALIZABLE(可串行化)隔离级别。
+因为隔离级别越低，事务请求的锁越少，所以大部分数据库系统的隔离级别都是 READ-COMMITTED(读取提交内容):，但是你要知道的是 InnoDB 存储引擎默认使用 REPEATABLE-READ（可重读）并不会有任何性能损失。
+InnoDB 存储引擎在 分布式事务 的情况下一般会用到 SERIALIZABLE(可串行化)隔离级别。
 Oracle
 
 ```sql
@@ -464,4 +465,3 @@ FROM v$transaction t
 JOIN v$session s ON t.addr = s.taddr
 AND s.sid = sys_context('USERENV', 'SID');
 ```
-
