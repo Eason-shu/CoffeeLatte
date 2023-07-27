@@ -1,9 +1,10 @@
+---
 title: Spring的事务
 sidebar_position: 6
 keywords:
   - Spring
   - 源码分析
-tags:
+  tags:
   - Spring
   - 源码分析
   - Java
@@ -11,9 +12,10 @@ tags:
   - IOC
   - AOP
   - 学习笔记
-  last_update:
+    last_update:
     date: 2023-07-25 23:00:00
     author: EasonShu
+---
 
 # 一 Spring 与 Mybatis 整合
 
@@ -272,6 +274,8 @@ public void savePerson() {
 
 ## 2.2 事务的 4 大特点
 
+![image-20230727182037752](images\image-20230727182037752.png)
+
 **原子性：**原子性是指事务是一个不可分割的工作单位，事务中的操作要么全部成功，要么全部失败。比如在同一个事务中的 SQL 语句，要么全部执行成功，要么全部执行失败。
 
 ```mysql
@@ -378,6 +382,8 @@ public void aMethod {
 
 •**脏读（Dirty read）:** 当一个事务正在访问数据并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另外一个事务也访问了这个数据，然后使用了这个数据。因为这个数据是还没有提交的数据，那么另外一个事务读到的这个数据是“脏数据”，依据“脏数据”所做的操作可能是不正确的。
 
+![image-20230727184231357](images\image-20230727184231357.png)
+
 ```java
 @Transactional(isolation=Isolation.READ_COMMITTED)
 ```
@@ -413,7 +419,7 @@ public void aMethod {
             }
             transactionService1.rollback(transactionStatus);
         }).start();
-       
+
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -429,7 +435,7 @@ public void aMethod {
 
 ![image-20230727160011282](images\image-20230727160011282.png)
 
-开启事务我们先查询了一下原来的数据，为8500
+开启事务我们先查询了一下原来的数据，为 8500
 
 ![image-20230727160039725](images\image-20230727160039725.png)
 
@@ -441,7 +447,7 @@ public void aMethod {
 
 •**不可重复读（Unrepeatableread）:** 指在一个事务内多次读同一数据。在这个事务还没有结束时，另一个事务也访问该数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据可能不太一样。这就发生了在一个事务内两次读到的数据是不一样的情况，因此称为不可重复读。
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/iaIdQfEric9TzWuuhjqx58LnibzsWR0Pf8xPO0sKQUAqx3NWriabBicbQzLwYnpBEsULiacFibuibuBe8TC2USy5tKDeOw/640?wx_fmt=png)
+![image-20230727185500849](images\image-20230727185500849.png)
 
 ```
 解决⽅案 @Transactional(isolation=Isolation.REPEATABLE_READ)
@@ -450,7 +456,7 @@ public void aMethod {
 
 •**幻读（Phantom read）:** 幻读与不可重复读类似。它发生在一个事务（T1）读取了几行数据，接着另一个并发事务（T2）插入了一些数据时。在随后的查询中，第一个事务（T1）就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/iaIdQfEric9TzWuuhjqx58LnibzsWR0Pf8xg1ADPPKhaKfIicKYTTPqkqOIJmM258ZGq3cWStaqHmjWv9nnKcdiaic4w/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![image-20230727190421687](images\image-20230727190421687.png)
 
 ```
 解决⽅案 @Transactional(isolation=Isolation.SERIALIZABLE)
@@ -525,7 +531,7 @@ AND s.sid = sys_context('USERENV', 'SID');
 
 概念：他描述了事务解决嵌套问题的特征
 
- 什么叫做事务的嵌套：他指的是⼀个⼤的事务中，包含了若⼲个⼩的事务 问题：⼤事务中融⼊了很多⼩的事务，他们彼此影响，最终就会导致外部⼤的事务，丧失了 事务的原⼦性
+什么叫做事务的嵌套：他指的是⼀个⼤的事务中，包含了若⼲个⼩的事务 问题：⼤事务中融⼊了很多⼩的事务，他们彼此影响，最终就会导致外部⼤的事务，丧失了 事务的原⼦性
 
 我们在 A 类的`aMethod（）`方法中调用了 B 类的 `bMethod()` 方法。这个时候就涉及到业务层方法之间互相调用的事务问题。如果我们的 `bMethod()`如果发生异常需要回滚，如何配置事务传播行为才能让 `aMethod()`也跟着回滚呢？这个时候就需要事务传播行为的知识了，如果你不知道的话一定要好好看一下。
 
@@ -648,6 +654,8 @@ Class B {
 - **`TransactionDefinition.PROPAGATION_NOT_SUPPORTED`**: 以非事务方式运行，如果当前存在事务，则把当前事务挂起。
 - **`TransactionDefinition.PROPAGATION_NEVER`**: 以非事务方式运行，如果当前存在事务，则抛出异常。
 
+![image-20230727191554178](images\image-20230727191554178.png)
+
 ### 2.5.3 只读属性(readOnly)
 
 针对于只进⾏查询操作的业务⽅法，可以加⼊只读属性，提供运⾏效率
@@ -659,20 +667,20 @@ Class B {
 
 ### 2.5.4 超时属性(timeout)
 
-指定了事务等待的最⻓时间 
+指定了事务等待的最⻓时间
 
- 为什么事务进⾏等待？ 当前事务访问数据时，有可能访问的数据被别的事务进⾏加锁的处理，那么此时本事务就必须 进⾏等待。等待时间 秒，@Transactional(timeout=2) ，超时属性的默认值 -1 最终由对应的数据库来指定
+为什么事务进⾏等待？ 当前事务访问数据时，有可能访问的数据被别的事务进⾏加锁的处理，那么此时本事务就必须 进⾏等待。等待时间 秒，@Transactional(timeout=2) ，超时属性的默认值 -1 最终由对应的数据库来指定
 
 ### 2.5.5 异常属性
 
-- Spring事务处理过程中 默认 对于RuntimeException及其⼦类 采⽤的是回滚的策略 默认 对于Exception及其⼦类 采⽤的是提交的策略
+- Spring 事务处理过程中 默认 对于 RuntimeException 及其⼦类 采⽤的是回滚的策略 默认 对于 Exception 及其⼦类 采⽤的是提交的策略
 
 ```java
-rollbackFor = {java.lang.Exception,xxx,xxx} noRollbackFor = {java.lang.RuntimeException,xxx,xx} 
-@Transactional(rollbackFor = {java.lang.Exception.class},noRollbackFor = {java.lang.RuntimeException.class}) 
+rollbackFor = {java.lang.Exception,xxx,xxx} noRollbackFor = {java.lang.RuntimeException,xxx,xx}
+@Transactional(rollbackFor = {java.lang.Exception.class},noRollbackFor = {java.lang.RuntimeException.class})
 ```
 
-- 建议：实战中使⽤RuntimeExceptin及其⼦类 使⽤事务异常属性的默认值
+- 建议：实战中使⽤ RuntimeExceptin 及其⼦类 使⽤事务异常属性的默认值
 
 ### 2.5.6 总结
 
@@ -683,8 +691,11 @@ rollbackFor = {java.lang.Exception,xxx,xxx} noRollbackFor = {java.lang.RuntimeEx
 4. 超时属性 默认值 -1
 5. 异常属性 默认值
 增删改操作 @Transactional
-查询操作 
+查询操作
 @Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
 ```
 
 面试参考：https://juejin.cn/post/7215188852850409528
+
+![事务.drawio](images\事务.drawio.png)
+
