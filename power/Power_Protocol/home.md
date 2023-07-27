@@ -13,6 +13,6 @@ last_update:
   date: 2023-07-24
   author: EasonShu
 ---
-![power](../images/file.png)
+![power](../images/power.jpg)
 
 
