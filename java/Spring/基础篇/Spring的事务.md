@@ -1,4 +1,3 @@
----
 title: Spring的事务
 sidebar_position: 6
 keywords:
@@ -12,10 +11,9 @@ tags:
   - IOC
   - AOP
   - 学习笔记
-last_update:
-  date: 2023-07-25 23:00:00
-  author: EasonShu
----
+  last_update:
+    date: 2023-07-25 23:00:00
+    author: EasonShu
 
 # 一 Spring 与 Mybatis 整合
 
@@ -380,17 +378,70 @@ public void aMethod {
 
 •**脏读（Dirty read）:** 当一个事务正在访问数据并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另外一个事务也访问了这个数据，然后使用了这个数据。因为这个数据是还没有提交的数据，那么另外一个事务读到的这个数据是“脏数据”，依据“脏数据”所做的操作可能是不正确的。
 
-```
+```java
 @Transactional(isolation=Isolation.READ_COMMITTED)
 ```
 
-•**丢失修改（Lost to modify）:** 指在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。 例如：事务 1 读取某表中的数据 A=20，事务 2 也读取 A=20，事务 1 修改 A=A-1，事务 2 也修改 A=A-1，最终结果 A=19，事务 1 的修改被丢失。
+我们来看下面的一个关键代码：
 
+```java
+ /**
+     * 模拟事务脏读
+     */
+    @Test
+    public void dirtyReadTest(){
+        ApplicationContext factory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserTestService userService = factory.getBean("userTestService", UserTestService.class);
+        TransactionService transactionService = factory.getBean("transactionService", TransactionService.class);
+        int userId = 1;
+        // 开启事务
+        TransactionStatus transactionStatus1 = transactionService.begin();
+        BigDecimal initialBalance = userService.readBalance(userId);
+        System.out.println("Initial Balance for User ID " + userId + ": " + initialBalance);
+        // 在另一个线程中更新用户余额
+        new Thread(() -> {
+            TransactionService transactionService1 = factory.getBean("transactionService", TransactionService.class);
+            TransactionStatus transactionStatus = transactionService1.begin();
+            userService.updateBalance(userId, initialBalance.subtract(BigDecimal.valueOf(500.00)));
+            BigDecimal bigDecimal = userService.readBalance(userId);
+            System.out.println("Balance after dirty read: " + bigDecimal);
+            // 休眠3
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            transactionService1.rollback(transactionStatus);
+        }).start();
+       
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // 提交事务
+        transactionService.commit(transactionStatus1);
+        // 读取用户余额
+        BigDecimal balanceAfterCommit = userService.readBalance(userId);
+        System.out.println("Balance after commit: " + balanceAfterCommit);
+    }
 ```
 
-```
+![image-20230727160011282](images\image-20230727160011282.png)
+
+开启事务我们先查询了一下原来的数据，为8500
+
+![image-20230727160039725](images\image-20230727160039725.png)
+
+在一个新线程中手动开启事务并行修改数据，但是注意事务并没有提交，有查询了一下余额
+
+![image-20230727160114608](images\image-20230727160114608.png)
+
+之后线程中进行了事务的回滚，而数据库中没有发生修改
 
 •**不可重复读（Unrepeatableread）:** 指在一个事务内多次读同一数据。在这个事务还没有结束时，另一个事务也访问该数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据可能不太一样。这就发生了在一个事务内两次读到的数据是不一样的情况，因此称为不可重复读。
+
+![图片](https://mmbiz.qpic.cn/mmbiz_png/iaIdQfEric9TzWuuhjqx58LnibzsWR0Pf8xPO0sKQUAqx3NWriabBicbQzLwYnpBEsULiacFibuibuBe8TC2USy5tKDeOw/640?wx_fmt=png)
 
 ```
 解决⽅案 @Transactional(isolation=Isolation.REPEATABLE_READ)
@@ -398,6 +449,8 @@ public void aMethod {
 ```
 
 •**幻读（Phantom read）:** 幻读与不可重复读类似。它发生在一个事务（T1）读取了几行数据，接着另一个并发事务（T2）插入了一些数据时。在随后的查询中，第一个事务（T1）就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。
+
+![图片](https://mmbiz.qpic.cn/mmbiz_png/iaIdQfEric9TzWuuhjqx58LnibzsWR0Pf8xg1ADPPKhaKfIicKYTTPqkqOIJmM258ZGq3cWStaqHmjWv9nnKcdiaic4w/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ```
 解决⽅案 @Transactional(isolation=Isolation.SERIALIZABLE)
@@ -465,3 +518,173 @@ FROM v$transaction t
 JOIN v$session s ON t.addr = s.taddr
 AND s.sid = sys_context('USERENV', 'SID');
 ```
+
+### 2.5.2 传播属性(PROPAGATION)
+
+参考博客：https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486668&idx=2&sn=0381e8c836442f46bdc5367170234abb&chksm=cea24307f9d5ca11c96943b3ccfa1fc70dc97dd87d9c540388581f8fe6d805ff548dff5f6b5b&token=1776990505&lang=zh_CN#rd
+
+概念：他描述了事务解决嵌套问题的特征
+
+ 什么叫做事务的嵌套：他指的是⼀个⼤的事务中，包含了若⼲个⼩的事务 问题：⼤事务中融⼊了很多⼩的事务，他们彼此影响，最终就会导致外部⼤的事务，丧失了 事务的原⼦性
+
+我们在 A 类的`aMethod（）`方法中调用了 B 类的 `bMethod()` 方法。这个时候就涉及到业务层方法之间互相调用的事务问题。如果我们的 `bMethod()`如果发生异常需要回滚，如何配置事务传播行为才能让 `aMethod()`也跟着回滚呢？这个时候就需要事务传播行为的知识了，如果你不知道的话一定要好好看一下。
+
+```java
+Class A {
+    @Transactional(propagation=propagation.xxx)
+    public void aMethod {
+        //do something
+        B b = new B();
+        b.bMethod();
+    }
+}
+
+Class B {
+    @Transactional(propagation=propagation.xxx)
+    public void bMethod {
+       //do something
+    }
+}
+```
+
+![image-20230727135529896](images\image-20230727135529896.png)
+
+#### 2.5.2.1 **`TransactionDefinition.PROPAGATION_REQUIRED`**
+
+使用的最多的一个事务传播行为，我们平时经常使用的`@Transactional`注解默认使用就是这个事务传播行为。如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。也就是说：
+
+1. 如果外部方法没有开启事务的话，`Propagation.REQUIRED`修饰的内部方法会新开启自己的事务，且开启的事务相互独立，互不干扰。
+2. 如果外部方法开启事务并且被`Propagation.REQUIRED`的话，所有`Propagation.REQUIRED`修饰的内部方法和外部方法均属于同一事务 ，只要一个方法回滚，整个事务均回滚。
+
+举个例子：如果我们上面的`aMethod()`和`bMethod()`使用的都是`PROPAGATION_REQUIRED`传播行为的话，两者使用的就是同一个事务，只要其中一个方法回滚，整个事务均回滚。
+
+```java
+Class A {
+    @Transactional(propagation=propagation.PROPAGATION_REQUIRED)
+    public void aMethod {
+        //do something
+        B b = new B();
+        b.bMethod();
+    }
+}
+
+Class B {
+    @Transactional(propagation=propagation.PROPAGATION_REQUIRED)
+    public void bMethod {
+       //do something
+    }
+}
+
+```
+
+#### 2.5.2.2 **`TransactionDefinition.PROPAGATION_REQUIRES_NEW`**
+
+创建一个新的事务，如果当前存在事务，则把当前事务挂起。也就是说不管外部方法是否开启事务，`Propagation.REQUIRES_NEW`修饰的内部方法会新开启自己的事务，且开启的事务相互独立，互不干扰。
+
+举个例子：如果我们上面的`bMethod()`使用`PROPAGATION_REQUIRES_NEW`事务传播行为修饰，`aMethod`还是用`PROPAGATION_REQUIRED`修饰的话。如果`aMethod()`发生异常回滚，`bMethod()`不会跟着回滚，因为 `bMethod()`开启了独立的事务。但是，如果 `bMethod()`抛出了未被捕获的异常并且这个异常满足事务回滚规则的话,`aMethod()`同样也会回滚，因为这个异常被 `aMethod()`的事务管理机制检测到了。
+
+```java
+Class A {
+    @Transactional(propagation=propagation.PROPAGATION_REQUIRED)
+    public void aMethod {
+        //do something
+        B b = new B();
+        b.bMethod();
+    }
+}
+
+Class B {
+    @Transactional(propagation=propagation.REQUIRES_NEW)
+    public void bMethod {
+       //do something
+    }
+}
+```
+
+#### 2.5.2.3 **`TransactionDefinition.PROPAGATION_NESTED`**
+
+如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于`TransactionDefinition.PROPAGATION_REQUIRED`。也就是说：
+
+1. 在外部方法未开启事务的情况下`Propagation.NESTED`和`Propagation.REQUIRED`作用相同，修饰的内部方法都会新开启自己的事务，且开启的事务相互独立，互不干扰。
+2. 如果外部方法开启事务的话，`Propagation.NESTED`修饰的内部方法属于外部事务的子事务，外部主事务回滚的话，子事务也会回滚，而内部子事务可以单独回滚而不影响外部主事务和其他子事务。
+
+这里还是简单举个例子：
+
+如果 `aMethod()` 回滚的话，`bMethod()`和`bMethod2()`都要回滚，而`bMethod()`回滚的话，并不会造成 `aMethod()` 和`bMethod()`回滚。
+
+```java
+Class A {
+    @Transactional(propagation=propagation.PROPAGATION_REQUIRED)
+    public void aMethod {
+        //do something
+        B b = new B();
+        b.bMethod();
+        b.bMethod2();
+    }
+}
+
+Class B {
+    @Transactional(propagation=propagation.PROPAGATION_NESTED)
+    public void bMethod {
+       //do something
+    }
+    @Transactional(propagation=propagation.PROPAGATION_NESTED)
+    public void bMethod2 {
+       //do something
+    }
+}
+
+```
+
+#### 2.5.2.4 **`TransactionDefinition.PROPAGATION_MANDATORY`**
+
+如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。（mandatory：强制性）
+
+这个使用的很少，就不举例子来说了。
+
+**若是错误的配置以下 3 种事务传播行为，事务将不会发生回滚，这里不对照案例讲解了，使用的很少。**
+
+- **`TransactionDefinition.PROPAGATION_SUPPORTS`**: 如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。
+- **`TransactionDefinition.PROPAGATION_NOT_SUPPORTED`**: 以非事务方式运行，如果当前存在事务，则把当前事务挂起。
+- **`TransactionDefinition.PROPAGATION_NEVER`**: 以非事务方式运行，如果当前存在事务，则抛出异常。
+
+### 2.5.3 只读属性(readOnly)
+
+针对于只进⾏查询操作的业务⽅法，可以加⼊只读属性，提供运⾏效率
+
+分享一下关于事务只读属性，其他人的解答：
+
+1. 如果你一次执行单条查询语句，则没有必要启用事务支持，数据库默认支持 SQL 执行期间的读一致性；
+2. 如果你一次执行多条查询语句，例如统计查询，报表查询，在这种场景下，多条查询 SQL 必须保证整体的读一致性，否则，在前条 SQL 查询之后，后条 SQL 查询之前，数据被其他用户改变，则该次整体的统计查询将会出现读数据不一致的状态，此时，应该启用事务支持
+
+### 2.5.4 超时属性(timeout)
+
+指定了事务等待的最⻓时间 
+
+ 为什么事务进⾏等待？ 当前事务访问数据时，有可能访问的数据被别的事务进⾏加锁的处理，那么此时本事务就必须 进⾏等待。等待时间 秒，@Transactional(timeout=2) ，超时属性的默认值 -1 最终由对应的数据库来指定
+
+### 2.5.5 异常属性
+
+- Spring事务处理过程中 默认 对于RuntimeException及其⼦类 采⽤的是回滚的策略 默认 对于Exception及其⼦类 采⽤的是提交的策略
+
+```java
+rollbackFor = {java.lang.Exception,xxx,xxx} noRollbackFor = {java.lang.RuntimeException,xxx,xx} 
+@Transactional(rollbackFor = {java.lang.Exception.class},noRollbackFor = {java.lang.RuntimeException.class}) 
+```
+
+- 建议：实战中使⽤RuntimeExceptin及其⼦类 使⽤事务异常属性的默认值
+
+### 2.5.6 总结
+
+```java
+1. 隔离属性 默认值
+2. 传播属性 Required(默认值) 增删改 Supports 查询操作
+3. 只读属性 readOnly false 增删改 true 查询操作
+4. 超时属性 默认值 -1
+5. 异常属性 默认值
+增删改操作 @Transactional
+查询操作 
+@Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
+```
+
+面试参考：https://juejin.cn/post/7215188852850409528
