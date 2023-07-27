@@ -428,7 +428,7 @@ public void aMethod {
 
 **数据库对于隔离属性的⽀持**
 
-![image-20230727093429852](images\Spring的AOP.md)
+![image-20230727093429852](images\2.png)
 
 ```
 Oracle不⽀持REPEATABLE_READ值 如何解决不可重复读
