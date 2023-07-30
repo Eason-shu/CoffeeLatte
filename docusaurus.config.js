@@ -8,6 +8,7 @@ const { to } = require("react-spring");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "拿铁要加冰 | Java开发工程师", // 标题 | Title
+  staticDirectories: ["public", "static"], // 静态文件夹 | Static directory
   tagline: "活到老，学到老，作为程序员的自我修养，哈哈哈哈哈", // 标语 | Tagline
   url: "https://www.lottecoffee.com", // 站点地址 | Your website URL
   baseUrl: "/", // 站点根目录 | Base URL for your project */
@@ -63,7 +64,12 @@ const config = {
   ],
   plugins: [
     // -----------------------------------------------------------------------------------
-    ["drawio", {}],
+    [
+      "drawio",
+      {
+        lib: "https://cdn.jsdelivr.net/npm/docusaurus-plugin-drawio/viewer.min.js",
+      },
+    ],
     // -----------------------------------------------------------------------------------
     [
       "@docusaurus/plugin-content-docs",
