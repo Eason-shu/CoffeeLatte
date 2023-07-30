@@ -517,7 +517,7 @@ DTD和XSD都是XML文档的验证机制，用于定义XML文档的结构和内�
 
 # 四 从Bean开始学习Spring
 
-
+![image-20230730134210898](images\image-20230730134210898.png)
 
 上面我们完成了一个简单的案例，下面我们来看一下Spring配置文件的属性
 
@@ -1228,3 +1228,7 @@ public class DestroyPrototypeBeansPostProcessor implements BeanPostProcessor, Be
 ```
 
 `request`、`session`、`application` 和 `websocket` scope只有在你使用Web感知的Spring `ApplicationContext` 实现（如 `XmlWebApplicationContext`）时才可用。后面补充
+
+总结：
+
+![IOC.drawio](images\IOC.drawio.png)
