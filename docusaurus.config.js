@@ -63,6 +63,8 @@ const config = {
   ],
   plugins: [
     // -----------------------------------------------------------------------------------
+    ["drawio", {}],
+    // -----------------------------------------------------------------------------------
     [
       "@docusaurus/plugin-content-docs",
       {
@@ -184,8 +186,7 @@ const config = {
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    (
-      {
+    ({
       // announcementBar: {
       //   id: "support_us",
       //   content: `🎉🎉🎉 Mybatis源码分析已上线！欢迎大家学习！🎉🎉🎉`,
@@ -196,7 +197,7 @@ const config = {
       metadata: [
         {
           name: "keywords",
-          content: "7wate, wiki, blog, c, c++, java, python, linux",
+          content: "7wate, easonshu, blog, c, c++, java, python, linux",
         },
       ],
       navbar: {
@@ -274,7 +275,7 @@ const config = {
       algolia: {
         apiKey: "5d5a02bdf02df700355c8ccd84b78d13",
         appId: "8W3YJXJGF2",
-        indexName: "wiki",
+        indexName: "easonshu",
       },
       umami: {
         websiteid: "7efcd733-c232-43db-9f17-10a00c53b152",
