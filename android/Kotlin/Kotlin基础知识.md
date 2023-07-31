@@ -114,11 +114,165 @@ public class HelloWorld {
 ```
 我们可以看到，Kotlin 的代码比 Java 的代码简洁很多，而且 Kotlin 的代码更加符合人类的思维，更加容易阅读，下面我们来看看 Kotlin 的基本语法。
 
-## 2.2 基本类型
+
+## 2.2 变量
+
+变量：在程序运行过程中，其值可以发生改变的量。
+基本语法：`var 变量名: 变量类型 = 变量值`
+
+```kotlin
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/7/31 14:15
+ * @version: 1.0
+ */
+class VariableTest {
+    // 总结：
+    // 1. 变量的格式：var 变量名: 变量类型 = 变量值
+    // 2. 变量的类型可以省略不写，由编译器自动推断
+    // 3. 变量的类型可以省略不写，但是变量的值不能省略不写
+    // 4. 变量的类型可以省略不写，但是变量的值不能省略不写，变量的值可以通过后面的赋值语句赋值
+
+
+    var name: String = "张三"
+    var age: Int = 18
+    var height: Double = 1.75
+    var isMarried: Boolean = false
+}
+
+fun main(args: Array<String>) {
+    val variableTest = VariableTest()
+    println("姓名：${variableTest.name}")
+    println("年龄：${variableTest.age}")
+    println("身高：${variableTest.height}")
+    println("婚否：${variableTest.isMarried}")
+    // 不指定类型，由编译器自动推断
+    var name = "李四"
+    var age = 20
+    var height = 1.80
+    var isMarried = true
+    // 指定类型，不允许修改
+    val name1: String = "王五"
+    val age1: Int = 22
+    val height1: Double = 1.85
+    val isMarried1: Boolean = false
+    println("姓名：${name}")
+    println("年龄：${age}")
+    println("身高：${height}")
+    println("婚否：${isMarried}")
+    println("姓名：${name1}")
+    println("年龄：${age1}")
+    println("身高：${height1}")
+    println("婚否：${isMarried1}")
+    // 指定类型，不赋值，由编译器自动推断
+    val name2: String
+    val age2: Int
+    val height2: Double
+    val isMarried2: Boolean
+    name2 = "赵六"
+    age2 = 24
+    height2 = 1.90
+    isMarried2 = true
+    println("姓名：${name2}")
+    println("年龄：${age2}")
+    println("身高：${height2}")
+    println("婚否：${isMarried2}")
+}
+```
+![image-20230731151808714](image\image-20230731151808714.png)
+
+我们可以对比一下 Java 的变量定义：
+
+```java
+// 定义变量
+String name = "张三";
+int age = 18;
+double height = 1.75;
+boolean isMarried = false;
+// 定义常量
+final String name1 = "李四";
+final int age1 = 20;
+final double height1 = 1.80;
+final boolean isMarried1 = true;
+```
+我们可以一发现变量的定义，Kotlin 比 Java 的代码简洁很多，而且 Kotlin 的代码更加符合人类的思维，更加容易阅读，但是这只是正对学习 Kotlin 的人来说，对于 Java 开发者来说，Java 的代码更加容易阅读。
+## 2.3 简单函数
+函数：完成某个功能的代码块。
+基本语法：`fun 函数名(参数列表): 返回值类型 { 函数体 }`
+
+```kotlin
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/7/31 14:04
+ * @version: 1.0
+ */
+class FuntionTest {
+
+    // 格式：fun 函数名(参数名: 参数类型): 返回值类型 {}
+    // 总结：
+    // 1. 函数的参数可以有多个，用逗号隔开
+    // 2. 函数的参数格式：参数名: 参数类型
+    // 3. 函数的返回值类型在函数名后面用冒号隔开
+    // 4. 函数的返回值类型可以省略不写，如果省略不写，那么函数的返回值类型就是Unit，相当于Java中的void
+    // 5. ${}是字符串模板，可以在字符串中使用变量, 也可以使用表达式
+
+    /**
+     * 加法
+     */
+    fun sum(a: Int, b: Int): Int {
+        return a + b
+    }
+
+    /**
+     * 减法
+     */
+    fun sub(a: Int, b: Int): Int {
+        return a - b
+    }
+
+    /**
+     * 乘法
+     */
+    fun mul(a: Int, b: Int): Int {
+        return a * b
+    }
+
+    /**
+     * 除法
+     */
+    fun div(a: Int, b: Int): Int {
+        return a / b
+    }
+
+    /**
+     * 取余
+     */
+    fun mod(a: Int, b: Int): Int {
+        return a % b
+    }
+
+}
+
+
+fun main(args: Array<String>) {
+    val funtionTest = FuntionTest()
+    println("加法：${funtionTest.sum(1, 2)}")
+    println("减法：${funtionTest.sub(1, 2)}")
+    println("乘法：${funtionTest.mul(1, 2)}")
+    println("除法：${funtionTest.div(1, 2)}")
+    println("取余：${funtionTest.mod(1, 2)}")
+}
+```
+
+![image-20230731152250543](image\image-20230731152250543.png)
+
+## 2.4 基本类型
 
 ![image-20230731153057054](image\image-20230731153057054.png)
 
-### 2.2.1 字符串
+### 2.4.1 字符串
 
 - Kotlin 中字符串用 `String` 类型表示。 通常，字符串值是双引号（`"`）中的字符序列
 
@@ -127,18 +281,21 @@ public class HelloWorld {
   ```
 
 - 字符串是不可变的。 一旦初始化了一个字符串，就不能改变它的值或者给它赋新值。 所有转换字符串的操作都以一个新的 `String` 对象来返回结果，而保持原始字符串不变
+
 - 字符串可以包含模板表达式 ，即一些小段代码，会求值并把结果合并到字符串中。 模板表达式以美元符（`$`）开头，由一个简单的名字构成
 
   ```kotlin
   val i = 10
   val s = "i = $i" // 求值结果为 "i = 10"
   ```
+
 - 或者用花括号括起来的任意表达式
 
   ```kotlin
   val s = "abc"
   val str = "$s.length is ${s.length}" // 求值结果为 "abc.length is 3"
   ```
+
 - 原始字符串使用三个引号（`"""`）分界符括起来，内部没有转义并且可以包含换行以及任何其他字符
 
   ```kotlin
@@ -147,11 +304,12 @@ public class HelloWorld {
       print(c)
   """
   ```
+
 - 字符串字面值可以包含以下特殊字符：
 
-    - 转义字符：`\t`、`\b`、`\n`、`\r`、`\'`、`\"`、`\\` 以及 `\$`
-    - 字符字面值：任何其他字符都可以按照字面值来使用，例如：`fun main() { val s = "abc"; println("$s.length is ${s.length}") }`
-    - 字符串模板：字符串可以包含模板表达式 ，即一些小段代码，会求值并把结果合并到字符串中。 模板表达式以美元符（`$`）开头，由一个简单的名字构成，或者用花括号括起来的任意表达式，例如：`fun main() { val i = 10; val s = "i = $i"; println(s) }`
+  - 转义字符：`\t`、`\b`、`\n`、`\r`、`\'`、`\"`、`\\` 以及 `\$`
+  - 字符字面值：任何其他字符都可以按照字面值来使用，例如：`fun main() { val s = "abc"; println("$s.length is ${s.length}") }`
+  - 字符串模板：字符串可以包含模板表达式 ，即一些小段代码，会求值并把结果合并到字符串中。 模板表达式以美元符（`$`）开头，由一个简单的名字构成，或者用花括号括起来的任意表达式，例如：`fun main() { val i = 10; val s = "i = $i"; println(s) }`
 
  - 字符串基本方法，例如：字符串的长度，取反，截取，去掉空格，等等方法
 
@@ -223,7 +381,7 @@ fun main() {
 
 ![image-20230731154427887](image\image-20230731154427887.png)
 
-### 2.2.2 数字
+### 2.4.2 数字
 
 Kotlin 提供了一组表示数字的内置类型。 对于整数，有四种不同大小的类型，因此值的范围也不同：
 
@@ -439,7 +597,7 @@ fun main(){
 }
 ```
 
-### 2.2.3 字串
+### 2.4.3 字串
 
 字符可以以转义反斜杠 `\` 开始。 支持这几个转义序列：
 
@@ -462,7 +620,8 @@ println("Hello\"World!")
 println("Hello\\World!")
 println("Hello\$World!")
 ```
-### 2.2.4 布尔
+
+### 2.4.4 布尔
 
 布尔用 `Boolean` 类型表示，它有两个值：`true` 和 `false`。
 布尔值的内置运算有：
@@ -478,7 +637,8 @@ println(b || c)
 println(b && c)
 println(!b)
 ```
-### 2.2.5 数组
+
+### 2.4.5 数组
 
 数组在 Kotlin 中使用 `Array` 类来表示，它定义了 `get` 和 `set` 函数（按照运算符重载约定这会转变为 `[]`）以及 `size` 属性，以及一些其他有用的成员函数：
 
@@ -539,6 +699,7 @@ fun main() {
     arrayTest.printArray2()
 }
 ```
+
 - `arrayOf()` 函数用于创建一个指定元素的数组，这个函数的返回值是一个数组，数组的元素类型是根据传递的参数来决定的，如果传递的是整数，那么数组的元素类型就是 `Int`，如果传递的是字符串，那么数组的元素类型就是 `String`，以此类推。
 - `arrayOfNulls()` 函数用于创建一个指定元素的数组，这个函数的返回值是一个数组，数组的元素类型是根据传递的参数来决定的，如果传递的是整数，那么数组的元素类型就是 `Int`，如果传递的是字符串，那么数组的元素类型就是 `String`，以此类推。与 `arrayOf()` 函数不同的是，`arrayOfNulls()` 函数创建的数组的元素都是 `null`。
 - `Array()` 函数用于创建一个指定元素的数组，这个函数的返回值是一个数组，数组的元素类型是根据传递的参数来决定的，如果传递的是整数，那么数组的元素类型就是 `Int`，如果传递的是字符串，那么数组的元素类型就是 `String`，以此类推。与 `arrayOf()` 函数不同的是，`Array()` 函数创建的数组的元素都是 `null`。
@@ -548,16 +709,17 @@ fun main() {
 - `doubleArrayOf()` 函数用于创建一个指定元素的 `Double` 数组，这个函数的返回值是一个 `Double` 数组。
 - `booleanArrayOf()` 函数用于创建一个指定元素的 `Boolean` 数组，这个函数的返回值是一个 `Boolean` 数组。
 - 数组的遍历，可以使用 `for` 循环，也可以使用 `forEach()` 函数，`forEach()` 函数的参数是一个函数，这个函数的参数是数组的元素，这个函数的返回值是 `Unit`，`Unit` 相当于 Java 中的 `void`。
-### 2.2.6 无符号类型
+
+### 2.4.6 无符号类型
 
 Kotlin 提供了一组无符号类型，用来改善对数字溢出的处理。这些类型在 Kotlin/JVM 中不可用。
 
-| 类型    | 大小（比特数） | 最小值 | 最大值 |
-| ------- | -------------- | ------ | ------ |
-| `UByte` | 8              | 0      | 255    |
-| `UShort`| 16             | 0      | 65535  |
-| `UInt`  | 32             | 0      | 2^32-1 |
-| `ULong` | 64             | 0      | 2^64-1 |
+| 类型     | 大小（比特数） | 最小值 | 最大值 |
+| -------- | -------------- | ------ | ------ |
+| `UByte`  | 8              | 0      | 255    |
+| `UShort` | 16             | 0      | 65535  |
+| `UInt`   | 32             | 0      | 2^32-1 |
+| `ULong`  | 64             | 0      | 2^64-1 |
 
 无符号类型的字面值分为两类：十进制和十六进制。对于十进制，没有前缀；对于十六进制，前缀是 `0x`。例如：
 
@@ -570,7 +732,6 @@ val c: ULong = 0xCAFEBABEu
 无符号类型支持常用的算术运算，以及位运算。请注意，无符号类型不支持有符号类型的减法或者除法。
 
 ```kotlin
-
 val a: UInt = 23u
 val b: UInt = 22u
 val c: UInt = a + b
@@ -584,160 +745,562 @@ val x: Int = -1
 val y: Long = x.toULong()
 ```
 
+### 2.4.7 类型判断与转换
 
-
-
-
-## 2.2 变量
-
-变量：在程序运行过程中，其值可以发生改变的量。
-基本语法：`var 变量名: 变量类型 = 变量值`
+使用 `is` 操作符或其否定形式 `!is` 在运行时检测对象是否符合给定类型
 
 ```kotlin
 /**
- * @description:
+ * @description: is 类型判断
  * @author: shu
- * @createDate: 2023/7/31 14:15
+ * @createDate: 2023/7/31 21:03
  * @version: 1.0
  */
-class VariableTest {
-    // 总结：
-    // 1. 变量的格式：var 变量名: 变量类型 = 变量值
-    // 2. 变量的类型可以省略不写，由编译器自动推断
-    // 3. 变量的类型可以省略不写，但是变量的值不能省略不写
-    // 4. 变量的类型可以省略不写，但是变量的值不能省略不写，变量的值可以通过后面的赋值语句赋值
+class IsTypeTest {
 
+    /**
+     * 判断是否是String类型
+     */
+    fun isString(obj: Any): Boolean {
+        return obj is String
+    }
 
-    var name: String = "张三"
-    var age: Int = 18
-    var height: Double = 1.75
-    var isMarried: Boolean = false
+    /**
+     * 判断是否不是Int类型
+     */
+    fun notIsInt(obj: Any): Boolean {
+        return obj !is Int
+    }
 }
 
-fun main(args: Array<String>) {
-    val variableTest = VariableTest()
-    println("姓名：${variableTest.name}")
-    println("年龄：${variableTest.age}")
-    println("身高：${variableTest.height}")
-    println("婚否：${variableTest.isMarried}")
-    // 不指定类型，由编译器自动推断
-    var name = "李四"
-    var age = 20
-    var height = 1.80
-    var isMarried = true
-    // 指定类型，不允许修改
-    val name1: String = "王五"
-    val age1: Int = 22
-    val height1: Double = 1.85
-    val isMarried1: Boolean = false
-    println("姓名：${name}")
-    println("年龄：${age}")
-    println("身高：${height}")
-    println("婚否：${isMarried}")
-    println("姓名：${name1}")
-    println("年龄：${age1}")
-    println("身高：${height1}")
-    println("婚否：${isMarried1}")
-    // 指定类型，不赋值，由编译器自动推断
-    val name2: String
-    val age2: Int
-    val height2: Double
-    val isMarried2: Boolean
-    name2 = "赵六"
-    age2 = 24
-    height2 = 1.90
-    isMarried2 = true
-    println("姓名：${name2}")
-    println("年龄：${age2}")
-    println("身高：${height2}")
-    println("婚否：${isMarried2}")
+fun main() {
+    val isTypeTest = IsTypeTest()
+    println(isTypeTest.isString("abc"))
+    println(isTypeTest.notIsInt("abc"))
 }
 ```
 
-![image-20230731151808714](image\image-20230731151808714.png)
+**智能替换**
 
-我们可以对比一下 Java 的变量定义：
-
-```java
-// 定义变量
-String name = "张三";
-int age = 18;
-double height = 1.75;
-boolean isMarried = false;
-// 定义常量
-final String name1 = "李四";
-final int age1 = 20;
-final double height1 = 1.80;
-final boolean isMarried1 = true;
-```
-我们可以一发现变量的定义，Kotlin 比 Java 的代码简洁很多，而且 Kotlin 的代码更加符合人类的思维，更加容易阅读，但是这只是正对学习 Kotlin 的人来说，对于 Java 开发者来说，Java 的代码更加容易阅读。
-## 2.3 函数
-函数：完成某个功能的代码块。
-基本语法：`fun 函数名(参数列表): 返回值类型 { 函数体 }`
+大多数场景都不需要在 Kotlin 中使用显式转换操作符，因为编译器跟踪不可变值的 `is`-检测以及[显式转换](https://book.kotlincn.net/text/typecasts.html#不安全的转换操作符)，并在必要时自动插入（安全的）转换
 
 ```kotlin
 /**
- * @description:
+ * @description: is 类型判断
  * @author: shu
- * @createDate: 2023/7/31 14:04
+ * @createDate: 2023/7/31 21:03
  * @version: 1.0
  */
-class FuntionTest {
-
-    // 格式：fun 函数名(参数名: 参数类型): 返回值类型 {}
-    // 总结：
-    // 1. 函数的参数可以有多个，用逗号隔开
-    // 2. 函数的参数格式：参数名: 参数类型
-    // 3. 函数的返回值类型在函数名后面用冒号隔开
-    // 4. 函数的返回值类型可以省略不写，如果省略不写，那么函数的返回值类型就是Unit，相当于Java中的void
-    // 5. ${}是字符串模板，可以在字符串中使用变量, 也可以使用表达式
+class IsTypeTest {
 
     /**
-     * 加法
+     * 判断是否是String类型
      */
-    fun sum(a: Int, b: Int): Int {
-        return a + b
+    fun isString(obj: Any): Boolean {
+        return obj is String
     }
 
     /**
-     * 减法
+     * 判断是否不是Int类型
      */
-    fun sub(a: Int, b: Int): Int {
-        return a - b
+    fun notIsInt(obj: Any): Boolean {
+        return obj !is Int
     }
 
     /**
-     * 乘法
+     * 判断是否是String类型
      */
-    fun mul(a: Int, b: Int): Int {
-        return a * b
-    }
+    fun isType(obj: Any) {
+        when(obj) {
+            is String -> println("obj is String")
+            is Int -> println("obj is Int")
+            is Long -> println("obj is Long")
+            is Boolean -> println("obj is Boolean")
+            is Array<*> -> println("obj is Array")
+            is Char -> println("obj is Char")
+            is Float -> println("obj is Float")
+            is Double -> println("obj is Double")
+            is Short -> println("obj is Short")
+            is Byte -> println("obj is Byte")
+            else -> println("obj is not know")
 
-    /**
-     * 除法
-     */
-    fun div(a: Int, b: Int): Int {
-        return a / b
-    }
-
-    /**
-     * 取余
-     */
-    fun mod(a: Int, b: Int): Int {
-        return a % b
+        }
     }
 
 }
 
-
-fun main(args: Array<String>) {
-    val funtionTest = FuntionTest()
-    println("加法：${funtionTest.sum(1, 2)}")
-    println("减法：${funtionTest.sub(1, 2)}")
-    println("乘法：${funtionTest.mul(1, 2)}")
-    println("除法：${funtionTest.div(1, 2)}")
-    println("取余：${funtionTest.mod(1, 2)}")
+fun main() {
+    val isTypeTest = IsTypeTest()
+//    println(isTypeTest.isString("abc"))
+//    println(isTypeTest.notIsInt("abc"))
+    isTypeTest.isType("abc")
 }
 ```
 
-![image-20230731152250543](image\image-20230731152250543.png)
+请注意，当编译器能保证变量在检测和使用之间不可改变时，智能转换才有效。 更具体地，智能转换适用于以下情形：
+
+- `val` 局部变量——总是可以，[局部委托属性除外](https://book.kotlincn.net/text/delegated-properties.html)。
+- `val` 属性——如果属性是 private 或 internal，或者该检测在声明属性的同一[模块](https://book.kotlincn.net/text/visibility-modifiers.html#模块)中执行。智能转换不能用于 open 的属性或者具有自定义 getter 的属性。
+- `var` 局部变量——如果变量在检测和使用之间没有修改、没有在会修改它的 lambda 中捕获、并且不是局部委托属性。
+- `var` 属性——决不可能（因为该变量可以随时被其他代码修改）。
+
+## 2.5 控制流程
+
+### 2.5.1 If 语句
+
+- 概念：`if` 语句用于基于给定的布尔表达式的真假来执行代码块。
+- 语法： `if (布尔表达式) { 代码块 }`
+- 说明：如果布尔表达式的值为 `true`，则执行 `if` 代码块中的代码，否则执行 `if` 代码块后面的代码。
+
+```kotlin
+package Controller
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/7/31 21:12
+ * @version: 1.0
+ */
+class IF {
+
+    /**
+     * if语句
+     */
+    fun isScore(score: Int): String {
+        return if (score >= 90) {
+            "优秀"
+        } else if (score >= 80) {
+            "良好"
+        } else if (score >= 70) {
+            "中等"
+        } else if (score >= 60) {
+            "及格"
+        } else {
+            "不及格"
+        }
+    }
+}
+
+fun main() {
+    val iF = IF()
+    println(iF.isScore(90))
+}
+
+```
+
+### 2.5.2 when 语句
+
+- 概念：`when` 语句用于取代 `if-else if` 和 `switch` 语句，`when` 语句类似其他语言的 `switch` 操作符。
+- 语法：`when` 语句有点类似其他语言的 `switch` 操作符。其最简单的形式如下：
+
+```kotlin
+when (变量) {
+    取值1 -> 代码块1
+    取值2 -> 代码块2
+    取值3 -> 代码块3
+    ...
+    else -> 代码块n
+}
+```
+
+- in 运算符：`in` 运算符用于检测某个变量是否属于某个区间，`in` 运算符会检测变量是否在指定的区间内，如果在区间内，返回 `true`，否则返回 `false`。
+- !in 运算符：`!in` 运算符用于检测某个变量是否不属于某个区间，`!in` 运算符会检测变量是否不在指定的区间内，如果不在区间内，返回 `true`，否则返回 `false`。
+- is 运算符：`is` 运算符用于检测某个变量是否属于某个类型，`is` 运算符会检测变量是否是指定的类型，如果是指定的类型，返回 `true`，否则返回 `false`。
+- !is 运算符：`!is` 运算符用于检测某个变量是否不属于某个类型，`!is` 运算符会检测变量是否不是指定的类型，如果不是指定的类型，返回 `true`，否则返回 `false`。
+- 说明：`when` 语句会从上到下依次判断每个条件是否满足，如果满足，执行对应的代码块，如果不满足，继续判断下一个条件，如果所有条件都不满足，执行 `else` 代码块。
+
+```kotlin
+when (x) {
+    in 1..10 -> print("x is in the range")
+    in validNumbers -> print("x is valid")
+    !in 10..20 -> print("x is outside the range")
+    else -> print("none of the above")
+}
+```
+
+```kotlin
+package Controller
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/7/31 22:30
+ * @version: 1.0
+ */
+class WhenTest {
+
+        /**
+        * when语句
+        */
+        fun isScore(score: Int): String {
+            return when(score) {
+                90 -> "优秀"
+                80 -> "良好"
+                70 -> "中等"
+                60 -> "及格"
+                else -> "不及格"
+            }
+        }
+
+        /**
+        * when语句
+        */
+        fun isScore2(score: Int): String {
+            return when(score) {
+                in 90..100 -> "优秀"
+                in 80..89 -> "良好"
+                in 70..79 -> "中等"
+                in 60..69 -> "及格"
+                else -> "不及格"
+            }
+        }
+
+        /**
+        * when语句
+        */
+        fun isScore3(score: Int): String {
+            return when(score) {
+                90, 100 -> "优秀"
+                80, 89 -> "良好"
+                70, 79 -> "中等"
+                60, 69 -> "及格"
+                else -> "不及格"
+            }
+        }
+
+        /**
+        * when语句
+        */
+        fun isScore4(score: Int): String {
+            return when(score) {
+                90, 100 -> "优秀"
+                80, 89 -> "良好"
+                70, 79 -> "中等"
+                60, 69 -> "及格"
+                else -> {
+                    println("else")
+                    "不及格"
+                }
+            }
+        }
+
+        /**
+        * when语句
+        */
+        fun isScore5(score: Int): String {
+            return when(score) {
+                90, 100 -> "优秀"
+                80, 89 -> "良好"
+                70, 79 -> "中等"
+                60, 69 -> "及格"
+                else -> {
+                    println("else")
+                    "不及格"
+                }
+            }
+        }
+
+        /**
+        * when语句
+        */
+        fun isScore6(score: Int): String {
+            return when (score) {
+                90, 100 -> "优秀"
+                80, 89 -> "良好"
+                70, 79 -> "中等"
+                60, 69 -> "及格"
+                else -> {
+                    println("else")
+                    "不及格"
+                }
+            }
+        }
+}
+
+fun main() {
+    val whenTest = WhenTest()
+    println(whenTest.isScore(90))
+    println(whenTest.isScore2(90))
+    println(whenTest.isScore3(90))
+    println(whenTest.isScore4(90))
+    println(whenTest.isScore5(90))
+    println(whenTest.isScore6(90))
+}
+```
+
+### 2.5.3 for 循环
+
+- 概念：`for` 循环用于对任何类型的集合进行遍历。
+- 语法：`for` 循环的语法格式如下：
+
+```kotlin
+for (item in 集合) {
+    代码块
+}
+```
+
+- 说明：`for` 循环会遍历集合中的每个元素，将元素赋值给变量 `item`，然后执行 `for` 循环中的代码块。
+- `for` 循环的 `item` 变量可以省略，如果省略，那么 `for` 循环中的代码块就不能使用 `item` 变量。
+- `for` 循环的 `item` 变量可以使用 `val` 或 `var` 修饰，如果使用 `val` 修饰，那么 `item` 变量就是只读变量，不能修改，如果使用 `var` 修饰，那么 `item` 变量就是可读写变量，可以修改。
+- `for` 循环的 `item` 变量的类型可以省略不写，由编译器自动推断，也可以显式指定类型。
+
+```kotlin
+package Controller
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/7/31 22:33
+ * @version: 1.0
+ */
+class ForTest {
+
+    // for循环
+    fun forTest() {
+        for (i in 1..10) {
+            println(i)
+        }
+    }
+    // 数组遍历
+    fun forTest2() {
+        val arr = arrayOf(1, 2, 3, 4, 5)
+        for (i in arr) {
+            println(i)
+        }
+    }
+    // withIndex
+    fun forTest3() {
+        val arr = arrayOf(1, 2, 3, 4, 5)
+        for ((index, value) in arr.withIndex()) {
+            println("下标：$index, 值：$value")
+        }
+    }
+
+}
+
+fun main() {
+    val forTest = ForTest()
+    forTest.forTest()
+    forTest.forTest2()
+    forTest.forTest3()
+}
+
+```
+
+### 2.5.4 while 循环
+
+- 概念：`while` 循环用于重复执行一段代码，直到指定的条件不满足为止。
+- 语法：`while` 循环的语法格式如下：
+
+```kotlin
+while (布尔表达式) {
+    代码块
+}
+```
+
+- 说明：`while` 循环会重复执行 `while` 循环中的代码块，直到布尔表达式的值为 `false` 为止。
+- `while` 循环的布尔表达式可以省略不写，如果省略不写，那么 `while` 循环的布尔表达式的值就是 `true`，这样 `while` 循环就会无限循环下去，直到程序崩溃。
+- `while` 循环的布尔表达式可以使用 `val` 或 `var` 修饰，如果使用 `val` 修饰，那么布尔表达式就是只读变量，不能修改，如果使用 `var` 修饰，那么布尔表达式就是可读写变量，可以修改。
+- `while` 循环的布尔表达式的类型可以省略不写，由编译器自动推断，也可以显式指定类型。
+
+```kotlin
+package Controller
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/7/31 22:35
+ * @version: 1.0
+ */
+class WhileTest {
+
+        /**
+        * while循环
+        */
+        fun whileTest() {
+            var i = 1
+            while (i <= 10) {
+                println(i)
+                i++
+            }
+        }
+
+        /**
+        * do...while循环
+        */
+        fun doWhileTest() {
+            var i = 1
+            do {
+                println(i)
+                i++
+            } while (i <= 10)
+        }
+
+}
+
+fun main() {
+    val whileTest = WhileTest()
+    whileTest.whileTest()
+    whileTest.doWhileTest()
+}
+```
+
+- 说明：i++ 和 ++i 的区别：i++ 表示先使用 i 的值，然后再让 i 加 1，++i 表示先让 i 加 1，然后再使用 i 的值。
+
+### 2.5.5 返回与跳转
+
+Kotlin 有三种结构化跳转表达式：
+return 默认从最直接包围它的函数或者匿名函数返回。
+break 终止最直接包围它的循环。
+continue 继续下一次最直接包围它的循环。
+所有这些表达式都可以用作更大表达式的一部分：
+
+```kotlin
+val s = person.name ?: return
+```
+
+```kotlin
+fun foo() {
+    listOf(1, 2, 3, 4, 5).forEach {
+        if (it == 3) return // 非局部直接返回到 foo() 的调用者
+        print(it)
+    }
+    println("this point is unreachable")
+}
+```
+
+```kotlin
+fun foo() {
+    listOf(1, 2, 3, 4, 5).forEach lit@{
+        if (it == 3) return@lit // 局部返回到该 lambda 表达式的调用者，即 forEach 循环
+        print(it)
+    }
+    print(" done with explicit label")
+}
+```
+
+```kotlin
+fun foo() {
+    listOf(1, 2, 3, 4, 5).forEach {
+        if (it == 3) return@forEach // 隐式标签更方便。该 lambda 表达式的隐式标签是 foo
+        print(it)
+    }
+    print(" done with implicit label")
+}
+```
+
+```kotlin
+fun foo() {
+    run loop@{
+        listOf(1, 2, 3, 4, 5).forEach {
+            if (it == 3) return@loop // 从传入 run 的 lambda 表达式非局部返回
+            print(it)
+        }
+    }
+    print(" done with nested loop")
+}
+```
+
+```kotlin
+fun foo() {
+    listOf(1, 2, 3, 4, 5).forEach(fun(value: Int) {
+        if (value == 3) return  // 局部返回到匿名函数的调用者，即 forEach 循环
+        print(value)
+    })
+    print(" done with anonymous function")
+}
+```
+
+break 和 continue 标签
+在 Kotlin 中任何表达式都可以用标签（label）来标记。 标签的格式为标识符后跟 @ 符号，例如：abc@、fooBar@都是有效的标签。 要为一个表达式加标签，我们只要在其前加标签即可。
+
+```kotlin
+loop@ for (i in 1..100) {
+    // ……
+}
+```
+
+现在，我们可以用标签限制 break 或者continue：
+
+```kotlin
+loop@ for (i in 1..100) {
+    for (j in 1..100) {
+        if (……) break@loop
+    }
+}
+```
+
+标签限制的 break 跳转到刚好位于该标签指定的循环后面的执行点。 continue 继续标签指定的循环的下一次迭代。
+
+### 2.5.6 异常
+
+- Kotlin 中所有异常类继承自 Throwable 类。 每个异常都有消息、堆栈回溯信息以及可选的原因。
+- Kotlin 中的所有异常都是不可检查的，即它们不会在函数签名中声明。 Kotlin 中有两种异常：可检查异常和不可检查异常。
+- 可检查异常：可检查异常是指在函数签名中声明的异常，这种异常必须在函数签名中声明，调用这种函数时，必须使用 `try-catch` 语句处理这种异常，否则程序就会编译失败。
+
+``` kotlin
+package Controller
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/7/31 22:42
+ * @version: 1.0
+ */
+class CatchTest {
+    // try...catch
+    fun tryCatchTest() {
+        try {
+            val a = 10 / 0
+        } catch (e: Exception) {
+            println(e.message)
+        }
+    }
+}
+
+fun main() {
+    val catchTest = CatchTest()
+    catchTest.tryCatchTest()
+}
+```
+
+- 不可检查异常：不可检查异常是指在函数签名中没有声明的异常，这种异常不需要在函数签名中声明，调用这种函数时，可以使用 `try-catch` 语句处理这种异常，也可以不处理，如果不处理，那么程序就会崩溃。
+
+**try...catch...finally**
+
+```kotlin
+package Controller
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/7/31 22:42
+ * @version: 1.0
+ */
+class CatchTest {
+    // try...catch
+    fun tryCatchTest() {
+        try {
+            val a = 10 / 0
+        } catch (e: Exception) {
+            println(e.message)
+        }finally {
+            println("finally")
+        }
+    }
+}
+
+fun main() {
+    val catchTest = CatchTest()
+    catchTest.tryCatchTest()
+}
+```
+
+try是一个表达式，即它可以有一个返回值：
+
+```kotlin
+val a: Int? = try { input.toInt() } catch (e: NumberFormatException) { null }
+```
+
+try-表达式的返回值是 try 块中的最后一个表达式或者是（所有）catch 块中的最后一个表达式。 finally 块中的内容不会影响表达式的结果。
+
