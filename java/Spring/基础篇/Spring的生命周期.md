@@ -45,13 +45,6 @@ Spring作为当前Java最流行、最强大的轻量级框架，受到了程序�
 
 步骤12：如果Bean类实现DisposableBean接口，则当Application不再需要Bean引用时，将调用destroy()方法。 步骤13：如果配置文件中的Bean定义包含destroy-method属性，那么将调用Bean类中的相应方法定义
 
-
-
-作者：Tom弹架构
-链接：https://juejin.cn/post/7039202232985714695
-来源：稀土掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
 ## 2 案例
 
 ### 2.1 1 简单的Bean
