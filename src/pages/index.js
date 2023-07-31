@@ -127,7 +127,7 @@ export default function Home() {
     <Layout title="" description="拿铁要加冰的博客">
       <Head>
         // 百度
-        <meta name="baidu-site-verification" content="code-7VeTrprZVx" />
+        <meta name="baidu-site-verification" content="codeva-sELXlADyNl" />
         // 360
         <meta
           name="360-site-verification"

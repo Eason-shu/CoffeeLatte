@@ -19,6 +19,9 @@ const config = {
     defaultLocale: "zh-Hans",
     locales: ["zh-Hans"],
   },
+  scripts: [
+    {src: 'https://hm.baidu.com/hm.js?<id>',  async: true}
+  ],
   presets: [
     [
       "classic",
@@ -206,17 +209,17 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // announcementBar: {
-      //   id: "support_us",
-      //   content: `🎉🎉🎉 Mybatis源码分析已上线！欢迎大家学习！🎉🎉🎉`,
-      //   backgroundColor: "#fafbfc", // Defaults to `#fff`.
-      //   textColor: "#091E42", // Defaults to `#000`.
-      //   isCloseable: false, // Defaults to `true`.
-      // },
+      announcementBar: {
+        id: "support_us",
+        content: `🎉🎉🎉 Kotlin教程已上线！欢迎大家学习！🎉🎉🎉`,
+        backgroundColor: "#fafbfc", // Defaults to `#fff`.
+        textColor: "#091E42", // Defaults to `#000`.
+        isCloseable: false, // Defaults to `true`.
+      },
       metadata: [
         {
-          name: "keywords",
-          content: "7wate, easonshu, blog, c, c++, java, python, linux",
+          name: "lottecoffee",
+          content: "拿铁要加冰 的个人生活和工作记录，欢迎大家一起学习！",
         },
       ],
       navbar: {
