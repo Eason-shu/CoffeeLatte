@@ -302,8 +302,8 @@ const config = {
         ],
       },
       algolia: {
-        apiKey: "5d5a02bdf02df700355c8ccd84b78d13",
-        appId: "8W3YJXJGF2",
+        apiKey: "5d5a02bdf02df700355c8ccd8072fff5d867a155d7c523d58761fd761",
+        appId: "OZ5VV8CD4F",
         indexName: "easonshu",
       },
       umami: {
