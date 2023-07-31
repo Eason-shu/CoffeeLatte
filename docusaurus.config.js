@@ -188,6 +188,19 @@ const config = {
         breadcrumbs: true,
       },
     ],
+    // -------------------------------------------------Kotlin------------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Kotlin",
+        path: "android/Kotlin",
+        routeBasePath: "Kotlin",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
     "docusaurus-plugin-umami",
   ],
   themeConfig:
@@ -249,6 +262,16 @@ const config = {
               {
                 label: "3️⃣ React",
                 to: "/React",
+              },
+            ],
+          },
+          {
+            position: "right",
+            label: "📱 Android",
+            items: [
+              {
+                label: "1️⃣ Kotlin",
+                to: "/Kotlin",
               },
             ],
           },
