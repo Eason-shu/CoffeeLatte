@@ -1304,3 +1304,510 @@ val a: Int? = try { input.toInt() } catch (e: NumberFormatException) { null }
 
 try-表达式的返回值是 try 块中的最后一个表达式或者是（所有）catch 块中的最后一个表达式。 finally 块中的内容不会影响表达式的结果。
 
+# 三 类与对象
+
+## 3.1 类
+
+- 概念：类是具有相同属性和方法的对象的集合，它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。
+- 语法：类的语法格式如下：
+
+```kotlin
+class 类名 {
+    属性
+    方法
+}
+```
+- 类声明由类名、类头（指定其类型参数、主构造函数等）以及由花括号包围的类体构成。类头与类体都是可选的； 如果一个类没有类体，可以省略花括号。
+### 3.1.1 构造函数
+
+- 概念：构造函数是用于初始化类的新对象的特殊函数。
+- 语法：构造函数的语法格式如下：
+
+```kotlin
+class 类名(参数列表) {
+    属性
+    方法
+}
+```
+- 说明：构造函数的参数列表可以省略不写，如果省略不写，那么构造函数的参数列表就是空的，如果省略不写，那么构造函数的 `()` 可以省略不写。
+- 说明：构造函数的参数列表可以使用 `val` 或 `var` 修饰，如果使用 `val` 修饰，那么构造函数的参数就是只读变量，不能修改，如果使用 `var` 修饰，那么构造函数的参数就是可读写变量，可以修改。
+- 主构造函数：类的主构造函数是类头的一部分：它跟在类名（与可选的类型参数）后。 如果主构造函数没有任何注解或者可见性修饰符，可以省略这个 constructor 关键字。
+
+```kotlin
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/1 14:11
+ * @version: 1.0
+ */
+class Person @Inject constructor(var name: String, var age: Int) {
+    init {
+        println("init")
+    }
+}
+```
+
+- 主构造函数不能包含任何的代码。初始化的代码可以放到以 init 关键字作为前缀的初始化块（initializer blocks）中：
+
+```kotlin
+class Person constructor(firstName: String) {
+    init {
+        println("FirstName is $firstName")
+    }
+}
+```
+### 3.1.2 次构造函数
+
+- 概念：次构造函数是类中定义的其他构造函数，次构造函数的作用是为了扩展类的构造函数。
+- 语法：次构造函数的语法格式如下：
+
+```kotlin
+class 类名 {
+    constructor(参数列表) {
+        // 构造函数的函数体
+    }
+}
+```
+
+- 说明：次构造函数的参数列表可以省略不写，如果省略不写，那么次构造函数的参数列表就是空的，如果省略不写，那么次构造函数的 `()` 可以省略不写。
+- 说明：次构造函数的参数列表可以使用 `val` 或 `var` 修饰，如果使用 `val` 修饰，那么次构造函数的参数就是只读变量，不能修改，如果使用 `var` 修饰，那么次构造函数的参数就是可读写变量，可以修改。
+- 如果类有一个主构造函数，每个次构造函数需要委托给主构造函数， 可以直接委托或者通过别的次构造函数间接委托。委托到同一个类的另一个构造函数用 this 关键字即可
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/1 14:11
+ * @version: 1.0
+ */
+class Person (var name: String, var age: Int) {
+    constructor(name: String) : this(name, 0) {
+        println("constructor")
+    }
+    init {
+        println("init")
+    }
+}
+
+fun main() {
+    val person = Person("Alice", 20)
+    println(person.name)
+    println(person.age)
+    println("-----------")
+    val person1 = Person("Alice01")
+    println(person1.name)
+}
+```
+
+![image-20230801141849985](image\image-20230801141849985.png)
+
+### 3.1.3 创建类实例
+- 概念：创建类实例是指使用类的构造函数创建类的对象。
+- 语法：创建类实例的语法格式如下：
+
+```kotlin
+val 对象名 = 类名(参数列表)
+```
+### 3.1.4 类的成员
+- 概念：类的成员是指类中定义的属性和方法。
+- 说明：类的成员分为两种：属性和方法。
+- 属性：类的属性是指类中定义的变量，类的属性分为两种：字段和属性。
+- 字段：字段是指类中定义的变量，字段分为两种：成员变量和局部变量。
+- 成员变量：成员变量是指类中定义的变量，成员变量分为两种：实例变量和静态变量。
+- 实例变量：实例变量是指类中定义的变量，实例变量是属于对象的，每个对象都有一份实例变量的拷贝，修改其中一个对象的实例变量，不会影响其他对象的实例变量。
+- 静态变量：静态变量是指类中定义的变量，静态变量是属于类的，所有对象共享一份静态变量，修改其中一个对象的静态变量，会影响其他对象的静态变量。
+- 局部变量：局部变量是指类中定义的变量，局部变量是属于方法的，只有在方法的作用域内才能使用局部变量。
+- 方法：类的方法是指类中定义的函数，类的方法分为两种：实例方法和静态方法。
+- 实例方法：实例方法是指类中定义的函数，实例方法是属于对象的，只有通过对象才能调用实例方法。
+- 静态方法：静态方法是指类中定义的函数，静态方法是属于类的，只能通过类名调用静态方法。
+## 3.2 继承
+- 在 Kotlin 中所有类都有一个共同的超类 Any，对于没有超类型声明的类它是默认超类
+Any 有三个方法：equals()、 hashCode() 与 toString()。因此，为所有 Kotlin 类都定义了这些方法。
+
+默认情况下，Kotlin 类是最终（final）的——它们不能被继承。 要使一个类可继承，请用 open 关键字标记它：
+``` kotlin
+open class Base // 该类开放继承
+```
+### 3.2.1 继承类
+- 概念：继承类是指使用 `:` 关键字继承父类的类。
+- 语法：继承类的语法格式如下：
+
+```kotlin
+class 子类名 : 父类名() {
+    属性
+    方法
+}
+```
+如果派生类有一个主构造函数，其基类可以（并且必须）根据其参数在该主构造函数中初始化。
+如果派生类没有主构造函数，那么每个次构造函数必须使用super 关键字初始化其基类型，或委托给另一个做到这点的构造函数。
+注意，在这种情况下，不同的次构造函数可以调用基类型的不同的构造函数：
+``` kotlin
+class MyView : View {
+    constructor(ctx: Context) : super(ctx)
+
+    constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs)
+}
+```
+### 3.2.2 覆盖方法
+- 概念：覆盖方法是指子类重写父类的方法。
+- 语法：覆盖方法的语法格式如下：
+
+```kotlin
+override fun 方法名(参数列表): 返回值类型 {
+    // 方法体
+}
+```
+- 案例：定义一个 `Person` 类，定义一个 `eat` 方法，定义一个 `Student` 类，继承 `Person` 类，重写 `eat` 方法。
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/1 15:02
+ * @version: 1.0
+ */
+open class Person {
+    /**
+     * 定义一个方法
+     */
+    open fun eat(name: String) {
+        println("$name is eating. ")
+    }
+}
+
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/1 15:03
+ * @version: 1.0
+ */
+class Student : Person() {
+    /**
+     * 重写父类的方法
+     */
+    override fun eat(name: String) {
+        println("$name is eating. ")
+    }
+}
+
+fun main(args: Array<String>) {
+    val student = Student()
+    student.eat("shu")
+}
+```
+- 注意：标记为 override 的成员本身是开放的，因此可以在子类中覆盖。如果你想禁止再次覆盖， 使用 final 关键字
+### 3.2.3 覆盖属性
+- 概念：覆盖属性是指子类重写父类的属性。
+- 语法：覆盖属性的语法格式如下：
+
+```kotlin
+override var 属性名: 属性类型 = 属性值
+```
+- 案例：定义一个 `Person` 类，定义一个 `name` 属性，定义一个 `Student` 类，继承 `Person` 类，重写 `name` 属性。
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/1 15:02
+ * @version: 1.0
+ */
+open class Person {
+
+    open var name: String = "shu"
+    /**
+     * 定义一个方法
+     */
+    open fun eat(name: String) {
+        println("$name is eating. ")
+    }
+}
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/1 15:03
+ * @version: 1.0
+ */
+class Student : Person() {
+
+    override var name: String = "other, not shu"
+    /**
+     * 重写父类的方法
+     */
+   override fun eat(name: String) {
+        println("$name is eating. ")
+    }
+}
+
+fun main(args: Array<String>) {
+    val student = Student()
+    student.eat("shu")
+    println(student.name)
+}
+```
+- 注意：你也可以用一个 var 属性覆盖一个 val 属性，但反之则不行。这是允许的，因为一个 val 属性本质上声明了一个 getter 方法， 而将其覆盖为 var 只是在子类中额外声明一个 setter 方法。
+### 3.2.4 覆盖规则
+- 在 Kotlin 中，实现继承由下述规则规定：
+- 如果一个类从它的直接超类继承相同成员的多个实现，它必须覆盖这个成员并提供其自己的实现（也许用继承来的其中之一）。为了表示采用从哪个超类型继承的实现，我们使用由尖括号中超类型名限定的 super，如 super<Base>：
+``` kotlin
+open class A {
+    open fun f() { print("A") }
+    fun a() { print("a") }
+}
+```
+``` kotlin
+interface B {
+    fun f() { print("B") } // 接口成员默认就是“open”的
+    fun b() { print("b") }
+}
+```
+``` kotlin
+class C() : A(), B {
+    // 编译器要求覆盖 f()：
+    override fun f() {
+        super<A>.f() // 调用 A.f()
+        super<B>.f() // 调用 B.f()
+    }
+}
+```
+- 请注意，如果我们只从 A 或者 B 中选择一个实现 f()，那么我们的解决方案将会一直工作：
+``` kotlin
+class C() : A(), B {
+    override fun f() {
+        super<A>.f() // 调用 A.f()
+    }
+}
+```
+- 但是如果从两个接口继承 f() 并且我们没有覆盖它，我们将会得到一个错误：
+``` kotlin
+class C() : A(), B
+```
+- 解决方案是覆盖 f() 并提供我们自己的实现来消除歧义。
+### 3.2.5 派生类初始化顺序
+- 在构造派生类的新实例期间，第一步完成其基类的初始化（在本例中为 Base）。
+- 在这之后，可以使用传给派生类的主构造函数的参数初始化派生类声明的属性。
+- 最后，执行派生类的构造函数体。
+- 如果类有一个主构造函数，每个次构造函数需要直接或间接通过另一个次构造函数代理到主构造函数。 在同一个类中代理到另一个构造函数用 this 关键字即可：
+``` kotlin
+class Person(val name: String) {
+    constructor (name: String, parent: Person) : this(name) {
+        parent.children.add(this)
+    }
+}
+```
+- 如果一个非抽象类没有声明任何（主或次）构造函数，它会有一个生成的不带参数的主构造函数。 构造函数的可见性是 public。如果你不希望你的类有公共的构造函数，你就得声明一个空的主构造函数：
+``` kotlin
+class DontCreateMe private constructor () {
+}
+```
+### 3.2.6 调用超类实现
+- 派生类中的代码可以使用 super 关键字调用其超类的函数与属性访问器的实现：
+``` kotlin
+open class Foo {
+    open fun f() { println("Foo.f()") }
+    open val x: Int get() = 1
+}
+
+class Bar : Foo() {
+    override fun f() {
+        super.f()
+        println("Bar.f()")
+    }
+
+    override val x: Int get() = super.x + 1
+}
+```
+- 如果类具有一个主构造函数，其基类型可以（并且必须） 用（基类型的）主构造函数参数就地初始化。
+- 如果类没有主构造函数，那么每个次构造函数必须使用 super 关键字初始化其基类型，或委托给另一个构造函数做到这一点。 注意，在这种情况下，不同的次构造函数可以调用基类型的不同的构造函数：
+``` kotlin
+class MyView : View {
+    constructor(ctx: Context) : super(ctx)
+
+    constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs)
+}
+```
+## 3.3 属性
+- 概念：属性是指类中定义的变量，类的属性分为两种：字段和属性。
+- 字段：字段是指类中定义的变量，字段分为两种：成员变量和局部变量。
+- Kotlin 类中的属性既可以用关键字 var 声明为可变的， 也可以用关键字 val 声明为只读的。
+- 对于只读属性，只提供了 getter 方法，对于可变属性，还提供了 setter 方法。
+- 语法：属性的语法格式如下：
+
+```kotlin
+var/val 属性名: 属性类型 = 属性值
+```
+- 说明：属性的类型可以省略不写，由编译器自动推断，也可以显式指定类型。
+### 3.3.1 属性的 getter 和 setter
+- 概念：属性的 getter 和 setter 是指属性的访问器。
+- 说明：属性的 getter 和 setter 是可选的，如果属性的 getter 和 setter 都不需要，那么可以省略不写。
+- 语法：属性的 getter 和 setter 的语法格式如下：
+
+```kotlin
+var/val 属性名: 属性类型 = 属性值
+    get() {
+        // getter 方法的函数体
+    }
+    set(value) {
+        // setter 方法的函数体
+    }
+```
+- 说明：属性的 getter 和 setter 的函数体可以省略不写，如果省略不写，那么属性的 getter 和 setter 的函数体就是空的。
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/1 15:16
+ * @version: 1.0
+ */
+class Rectangle(val width: Int, val height: Int) {
+    val area: Int // property type is optional since it can be inferred from the getter's return type
+        get() = this.width * this.height
+}
+fun main(args: Array<String>) {
+    val rectangle = Rectangle(5, 2)
+    println(rectangle.area)
+}
+```
+### 3.3.2 幕后字段
+在 Kotlin 中，字段仅作为属性的一部分在内存中保存其值时使用。字段不能直接声明。 然而，当一个属性需要一个幕后字段时，Kotlin 会自动提供。这个幕后字段可以使用 field 标识符在访问器中引用
+- 语法：幕后字段的语法格式如下：
+
+```kotlin
+var/val 属性名: 属性类型 = 属性值
+    get() {
+        // getter 方法的函数体
+        return 幕后字段
+    }
+    set(value) {
+        // setter 方法的函数体
+        幕后字段 = value
+    }
+```
+- 说明：幕后字段的名称可以省略不写，如果省略不写，那么幕后字段的名称就是 `field`。
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/1 15:16
+ * @version: 1.0
+ */
+class Rectangle(val width: Int, val height: Int) {
+    val area: Int // property type is optional since it can be inferred from the getter's return type
+        get() = this.width * this.height
+    // 幕后字段
+    var counter = 0 // 这个初始器直接为幕后字段赋值
+        set(value) {
+            if (value >= 0)
+                field = value
+            // counter = value // ERROR StackOverflow: Using actual name 'counter' would make setter recursive
+        }
+}
+fun main(args: Array<String>) {
+    val rectangle = Rectangle(5, 2)
+    println(rectangle.area)
+    rectangle.counter = 1
+    println(rectangle.counter)
+}
+```
+### 3.3.3 幕后属性
+
+如果你的需求不符合这套*隐式的幕后字段*方案， 那么总可以使用 *幕后属性（backing property）*
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/1 15:16
+ * @version: 1.0
+ */
+class Rectangle(val width: Int, val height: Int) {
+    val area: Int // property type is optional since it can be inferred from the getter's return type
+        get() = this.width * this.height
+    // 幕后字段
+    var counter = 0 // 这个初始器直接为幕后字段赋值
+        set(value) {
+            if (value >= 0)
+                field = value
+            // counter = value // ERROR StackOverflow: Using actual name 'counter' would make setter recursive
+        }
+   // 幕后属性
+    private var _table: Map<String, Int>? = null
+    public val table: Map<String, Int>
+        get() {
+            if (_table == null) {
+                _table = HashMap() // Type parameters are inferred
+            }
+            return _table ?: throw AssertionError("Set to null by another thread")
+        }
+
+
+
+
+}
+fun main(args: Array<String>) {
+    val rectangle = Rectangle(2, 3)
+    println(rectangle.area)
+    rectangle.counter = 1
+    println(rectangle.counter)
+    rectangle.counter = -1
+    println(rectangle.counter)
+    println(rectangle.table)
+
+}
+```
+
+### 3.3.4 编译期常量
+
+- 概念：编译期常量是指使用 `const` 关键字修饰的属性。
+- 说明：编译期常量只能修饰基本数据类型和 `String` 类型，不能修饰其他类型。
+- 语法：编译期常量的语法格式如下：
+
+```kotlin
+const val 常量名: 常量类型 = 常量值
+```
+如果只读属性的值在编译期是已知的，那么可以使用 const 修饰符将其标记为编译期常量。 这种属性需要满足以下要求：
+必须位于顶层或者是 object 声明 或伴生对象的一个成员
+必须以 String 或原生类型值初始化
+不能有自定义 getter
+这些属性可以用在注解中：
+``` kotlin
+const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
+@Deprecated(SUBSYSTEM_DEPRECATED) fun foo() { …… }
+```
+### 3.3.5 延迟初始化属性与变量
+
+- 概念：延迟初始化属性与变量是指使用 `lateinit` 关键字修饰的属性与变量。
+- 说明：延迟初始化属性与变量只能修饰类的属性与变量，不能修饰其他类型。
+- 语法：延迟初始化属性与变量的语法格式如下：
+
+```kotlin
+lateinit var 属性名: 属性类型
+```
+### 3.3.6 委托属性
+
+- 概念：委托属性是指使用 `by` 关键字委托的属性。
+- 说明：委托属性只能修饰类的属性，不能修饰其他类型。
+- 语法：委托属性的语法格式如下：
+
+```kotlin
+var/val 属性名: 属性类型 by 委托对象
+```
+- 说明：委托属性的委托对象可以是任意类型，但是必须实现 `getValue` 和 `setValue` 方法。
