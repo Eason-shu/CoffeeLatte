@@ -86,7 +86,19 @@ const config = {
         breadcrumbs: false,
       },
     ],
-
+    // -----------------------------------------------------------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "tools",
+        path: "work/tools",
+        routeBasePath: "tools",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
     // -----------------------------------------------------Base--------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -300,6 +312,10 @@ const config = {
                 label: "求职之路",
                 to: "/roadmap",
               },
+              {
+                label: "工具",
+                to: "/tools",
+              }
             ],
           },
         ],
