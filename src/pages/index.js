@@ -1,18 +1,14 @@
 import React from "react";
-import clsx from "clsx";
 import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./index.module.css";
 import HomepageFeatures from "../components/HomepageFeatures";
 import Head from "@docusaurus/Head";
-import HeroImg from "../../static/img/Hero.jpg";
+import VedioFeatures from "../components/VedioFeatures";
 import Translate from "@docusaurus/Translate";
 import { useTrail, animated } from "react-spring";
 import HeroMain from "./img/hero_main.svg";
-import CSDNIcon from "@site/static/icons/csdn.svg";
-import YuQueIcon from "@site/static/icons/yuque.svg";
-import JueJinIcon from "@site/static/icons/juejin.svg";
+
 
 const svgList = [
   {
@@ -130,6 +126,7 @@ export default function Home() {
       </Head>
       <main>
         <Hero />
+        {/* <VedioFeatures /> */}
         {/* <MyHero /> */}
         <HomepageFeatures />
       </main>
