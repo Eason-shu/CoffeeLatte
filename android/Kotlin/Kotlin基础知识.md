@@ -1384,7 +1384,7 @@ object OptionalTest {
        // ? 来表达非空
         val str: String? = null
         println(str?.length)
-        
+
     }
 }
 ```
@@ -1556,57 +1556,7 @@ val 对象名 = 类名(参数列表)
 
 抽象是相对于具象而言的。例如，设计一个图形编辑软件，问题领域中存在着长方形（Rectangle）、圆形（Circle）、三角形（Triangle）等一些具体概念，它们是具象。但是它们又都属于形状（Shape）这个抽象的概念。
 
-![image-20230802152522345](image\image-20230802152522345.png) 
-
-
-
-## 3.2 继承
-
-- 在 Kotlin 中所有类都有一个共同的超类 Any，对于没有超类型声明的类它是默认超类
-  Any 有三个方法：equals()、 hashCode() 与 toString()。因此，为所有 Kotlin 类都定义了这些方法。
-
-默认情况下，Kotlin 类是最终（final）的——它们不能被继承。 要使一个类可继承，请用 open 关键字标记它：
-
-```kotlin
-open class Base // 该类开放继承
-```
-
-### 3.2.1 继承类
-
-- 概念：继承类是指使用 `:` 关键字继承父类的类。
-- 语法：继承类的语法格式如下：
-
-```kotlin
-class 子类名 : 父类名() {
-    属性
-    方法
-}
-```
-
-如果派生类有一个主构造函数，其基类可以（并且必须）根据其参数在该主构造函数中初始化。
-如果派生类没有主构造函数，那么每个次构造函数必须使用 super 关键字初始化其基类型，或委托给另一个做到这点的构造函数。
-注意，在这种情况下，不同的次构造函数可以调用基类型的不同的构造函数：
-
-```kotlin
-class MyView : View {
-    constructor(ctx: Context) : super(ctx)
-
-    constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs)
-}
-```
-
-### 3.2.2 覆盖方法
-
-- 概念：覆盖方法是指子类重写父类的方法。
-- 语法：覆盖方法的语法格式如下：
-
-```kotlin
-override fun 方法名(参数列表): 返回值类型 {
-    // 方法体
-}
-```
-
-- 案例：定义一个 `Person` 类，定义一个 `eat` 方法，定义一个 `Student` 类，继承 `Person` 类，重写 `eat` 方法。
+![image-20230802152522345](image\image-20230802152522345.png)
 
 ```kotlin
 package Class
@@ -1614,232 +1564,14 @@ package Class
 /**
  * @description:
  * @author: shu
- * @createDate: 2023/8/1 15:02
+ * @createDate: 2023/8/2 20:46
  * @version: 1.0
  */
-open class Person {
-    /**
-     * 定义一个方法
-     */
-    open fun eat(name: String) {
-        println("$name is eating. ")
-    }
-}
-
-package Class
-
-/**
- * @description:
- * @author: shu
- * @createDate: 2023/8/1 15:03
- * @version: 1.0
- */
-class Student : Person() {
-    /**
-     * 重写父类的方法
-     */
-    override fun eat(name: String) {
-        println("$name is eating. ")
-    }
-}
-
-fun main(args: Array<String>) {
-    val student = Student()
-    student.eat("shu")
+abstract class Shape {
+    abstract fun draw()
+    abstract fun erase()
 }
 ```
-
-- 注意：标记为 override 的成员本身是开放的，因此可以在子类中覆盖。如果你想禁止再次覆盖， 使用 final 关键字
-
-### 3.2.3 覆盖属性
-
-- 概念：覆盖属性是指子类重写父类的属性。
-- 语法：覆盖属性的语法格式如下：
-
-```kotlin
-override var 属性名: 属性类型 = 属性值
-```
-
-- 案例：定义一个 `Person` 类，定义一个 `name` 属性，定义一个 `Student` 类，继承 `Person` 类，重写 `name` 属性。
-
-```kotlin
-package Class
-
-/**
- * @description:
- * @author: shu
- * @createDate: 2023/8/1 15:02
- * @version: 1.0
- */
-open class Person {
-
-    open var name: String = "shu"
-    /**
-     * 定义一个方法
-     */
-    open fun eat(name: String) {
-        println("$name is eating. ")
-    }
-}
-package Class
-
-/**
- * @description:
- * @author: shu
- * @createDate: 2023/8/1 15:03
- * @version: 1.0
- */
-class Student : Person() {
-
-    override var name: String = "other, not shu"
-    /**
-     * 重写父类的方法
-     */
-   override fun eat(name: String) {
-        println("$name is eating. ")
-    }
-}
-
-fun main(args: Array<String>) {
-    val student = Student()
-    student.eat("shu")
-    println(student.name)
-}
-```
-
-- 注意：你也可以用一个 var 属性覆盖一个 val 属性，但反之则不行。这是允许的，因为一个 val 属性本质上声明了一个 getter 方法， 而将其覆盖为 var 只是在子类中额外声明一个 setter 方法。
-
-### 3.2.4 覆盖规则
-
-- 在 Kotlin 中，实现继承由下述规则规定：
-- 如果一个类从它的直接超类继承相同成员的多个实现，它必须覆盖这个成员并提供其自己的实现（也许用继承来的其中之一）。为了表示采用从哪个超类型继承的实现，我们使用由尖括号中超类型名限定的 super，如 `super<Base>`：
-
-```kotlin
-open class A {
-    open fun f() { print("A") }
-    fun a() { print("a") }
-}
-```
-
-```kotlin
-interface B {
-    fun f() { print("B") } // 接口成员默认就是“open”的
-    fun b() { print("b") }
-}
-```
-
-```kotlin
-class C() : A(), B {
-    // 编译器要求覆盖 f()：
-    override fun f() {
-        super<A>.f() // 调用 A.f()
-        super<B>.f() // 调用 B.f()
-    }
-}
-```
-
-- 请注意，如果我们只从 A 或者 B 中选择一个实现 f()，那么我们的解决方案将会一直工作：
-
-```kotlin
-class C() : A(), B {
-    override fun f() {
-        super<A>.f() // 调用 A.f()
-    }
-}
-```
-
-- 但是如果从两个接口继承 f() 并且我们没有覆盖它，我们将会得到一个错误：
-
-```kotlin
-class C() : A(), B
-```
-
-- 解决方案是覆盖 f() 并提供我们自己的实现来消除歧义。
-
-### 3.2.5 派生类初始化顺序
-
-- 在构造派生类的新实例期间，第一步完成其基类的初始化（在本例中为 Base）。
-- 在这之后，可以使用传给派生类的主构造函数的参数初始化派生类声明的属性。
-- 最后，执行派生类的构造函数体。
-- 如果类有一个主构造函数，每个次构造函数需要直接或间接通过另一个次构造函数代理到主构造函数。 在同一个类中代理到另一个构造函数用 this 关键字即可：
-
-```kotlin
-class Person(val name: String) {
-    constructor (name: String, parent: Person) : this(name) {
-        parent.children.add(this)
-    }
-}
-```
-
-- 如果一个非抽象类没有声明任何（主或次）构造函数，它会有一个生成的不带参数的主构造函数。 构造函数的可见性是 public。如果你不希望你的类有公共的构造函数，你就得声明一个空的主构造函数：
-
-```kotlin
-class DontCreateMe private constructor () {
-}
-```
-
-### 3.2.6 调用超类实现
-
-- 派生类中的代码可以使用 super 关键字调用其超类的函数与属性访问器的实现：
-
-```kotlin
-open class Foo {
-    open fun f() { println("Foo.f()") }
-    open val x: Int get() = 1
-}
-
-class Bar : Foo() {
-    override fun f() {
-        super.f()
-        println("Bar.f()")
-    }
-
-    override val x: Int get() = super.x + 1
-}
-```
-
-- 如果类具有一个主构造函数，其基类型可以（并且必须） 用（基类型的）主构造函数参数就地初始化。
-- 如果类没有主构造函数，那么每个次构造函数必须使用 super 关键字初始化其基类型，或委托给另一个构造函数做到这一点。 注意，在这种情况下，不同的次构造函数可以调用基类型的不同的构造函数：
-
-```kotlin
-class MyView : View {
-    constructor(ctx: Context) : super(ctx)
-
-    constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs)
-}
-```
-
-## 3.3 属性
-
-- 概念：属性是指类中定义的变量，类的属性分为两种：字段和属性。
-- 字段：字段是指类中定义的变量，字段分为两种：成员变量和局部变量。
-- Kotlin 类中的属性既可以用关键字 var 声明为可变的， 也可以用关键字 val 声明为只读的。
-- 对于只读属性，只提供了 getter 方法，对于可变属性，还提供了 setter 方法。
-- 语法：属性的语法格式如下：
-
-```kotlin
-var/val 属性名: 属性类型 = 属性值
-```
-
-- 说明：属性的类型可以省略不写，由编译器自动推断，也可以显式指定类型。
-
-### 3.3.1 属性的 getter 和 setter
-
-- 概念：属性的 getter 和 setter 是指属性的访问器。
-- 说明：属性的 getter 和 setter 是可选的，如果属性的 getter 和 setter 都不需要，那么可以省略不写。
-- 语法：属性的 getter 和 setter 的语法格式如下：
-
-```kotlin
-var/val 属性名: 属性类型 = 属性值
-    get() {
-        // getter 方法的函数体
-    }
-    set(value) {
-        // setter 方法的函数体
-    }
-```
-
-- 说明：属性的 getter 和 setter 的函数体可以省略不写，如果省略不写，那么属性的 getter 和 setter 的函数体就是空的。
 
 ```kotlin
 package Class
@@ -1850,35 +1582,70 @@ package Class
  * @createDate: 2023/8/1 15:16
  * @version: 1.0
  */
-class Rectangle(val width: Int, val height: Int) {
-    val area: Int // property type is optional since it can be inferred from the getter's return type
-        get() = this.width * this.height
+class Rectangle: Shape() {
+    override fun draw() {
+        println("绘制矩形")
+    }
+
+    override fun erase() {
+        println("擦除矩形")
+    }
 }
-fun main(args: Array<String>) {
-    val rectangle = Rectangle(5, 2)
-    println(rectangle.area)
+
+fun main() {
+    val rectangle = Rectangle()
+    rectangle.draw()
+    rectangle.erase()
 }
 ```
-
-### 3.3.2 幕后字段
-
-在 Kotlin 中，字段仅作为属性的一部分在内存中保存其值时使用。字段不能直接声明。 然而，当一个属性需要一个幕后字段时，Kotlin 会自动提供。这个幕后字段可以使用 field 标识符在访问器中引用
-
-- 语法：幕后字段的语法格式如下：
 
 ```kotlin
-var/val 属性名: 属性类型 = 属性值
-    get() {
-        // getter 方法的函数体
-        return 幕后字段
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/2 20:48
+ * @version: 1.0
+ */
+class Circle: Shape() {
+    override fun draw() {
+        println("绘制圆形")
     }
-    set(value) {
-        // setter 方法的函数体
-        幕后字段 = value
+
+    override fun erase() {
+        println("擦除圆形")
     }
+
+}
+fun main() {
+    val circle = Circle()
+    circle.draw()
+    circle.erase()
+}
 ```
 
-- 说明：幕后字段的名称可以省略不写，如果省略不写，那么幕后字段的名称就是 `field`。
+现在我们有了抽象类，但是没有成员。通常，一个类的成员包括属性和函数。抽象类的成员也必须是抽象的，需要使用abstract关键字修饰。下面我们声明一个抽象类Shape，并带有width、heigth、radius属性
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/2 20:46
+ * @version: 1.0
+ */
+abstract class Shape {
+    abstract var wight: Double
+    abstract var height: Double
+    abstract var radius: Double
+    abstract fun draw()
+    abstract fun erase()
+}
+```
+
+构造函数实现
 
 ```kotlin
 package Class
@@ -1889,28 +1656,22 @@ package Class
  * @createDate: 2023/8/1 15:16
  * @version: 1.0
  */
-class Rectangle(val width: Int, val height: Int) {
-    val area: Int // property type is optional since it can be inferred from the getter's return type
-        get() = this.width * this.height
-    // 幕后字段
-    var counter = 0 // 这个初始器直接为幕后字段赋值
-        set(value) {
-            if (value >= 0)
-                field = value
-            // counter = value // ERROR StackOverflow: Using actual name 'counter' would make setter recursive
-        }
+class Rectangle(override var wight: Double, override var height: Double, override var radius: Double) : Shape() {
+    override fun draw() {
+        println("绘制矩形")
+    }
+
+    override fun erase() {
+        println("擦除矩形")
+    }
 }
-fun main(args: Array<String>) {
-    val rectangle = Rectangle(5, 2)
-    println(rectangle.area)
-    rectangle.counter = 1
-    println(rectangle.counter)
+
+fun main() {
+    val rectangle = Rectangle(1.0, 2.0, 3.0)
+    rectangle.draw()
+    rectangle.erase()
 }
 ```
-
-### 3.3.3 幕后属性
-
-如果你的需求不符合这套*隐式的幕后字段*方案， 那么总可以使用 _幕后属性（backing property）_
 
 ```kotlin
 package Class
@@ -1918,89 +1679,37 @@ package Class
 /**
  * @description:
  * @author: shu
- * @createDate: 2023/8/1 15:16
+ * @createDate: 2023/8/2 20:48
  * @version: 1.0
  */
-class Rectangle(val width: Int, val height: Int) {
-    val area: Int // property type is optional since it can be inferred from the getter's return type
-        get() = this.width * this.height
-    // 幕后字段
-    var counter = 0 // 这个初始器直接为幕后字段赋值
-        set(value) {
-            if (value >= 0)
-                field = value
-            // counter = value // ERROR StackOverflow: Using actual name 'counter' would make setter recursive
-        }
-   // 幕后属性
-    private var _table: Map<String, Int>? = null
-    public val table: Map<String, Int>
-        get() {
-            if (_table == null) {
-                _table = HashMap() // Type parameters are inferred
-            }
-            return _table ?: throw AssertionError("Set to null by another thread")
-        }
+class Circle(override var wight: Double, override var height: Double, override var radius: Double) : Shape() {
+    override fun draw() {
+        println("绘制圆形")
+    }
 
-
-
+    override fun erase() {
+        println("擦除圆形")
+    }
 
 }
-fun main(args: Array<String>) {
-    val rectangle = Rectangle(2, 3)
-    println(rectangle.area)
-    rectangle.counter = 1
-    println(rectangle.counter)
-    rectangle.counter = -1
-    println(rectangle.counter)
-    println(rectangle.table)
-
+fun main() {
+    val circle = Circle(1.0, 2.0, 3.0)
+    circle.draw()
+    circle.erase()
 }
 ```
 
-### 3.3.4 编译期常量
+当子类继承了某个类之后，便可以使用父类中的成员变量，但并不是完全继承父类的所有成员变量。具体的原则如下：
 
-- 概念：编译期常量是指使用 `const` 关键字修饰的属性。
-- 说明：编译期常量只能修饰基本数据类型和 `String` 类型，不能修饰其他类型。
-- 语法：编译期常量的语法格式如下：
+- 能够继承父类的public和protected成员变量
+- 不能继承父类的private成员变量
+- 对于父类的包访问权限成员变量，如果子类和父类在同一个包下，则子类能够继承；否则，子类不能继承；
+- 对于子类可以继承的父类成员变量，如果在子类中出现了同名称的成员变量，则会发生隐藏现象，即子类的成员变量会屏蔽掉父类的同名成员变量。
+- 如果要在子类中访问父类中的同名成员变量，需要使用super关键字进行引用。
 
-```kotlin
-const val 常量名: 常量类型 = 常量值
-```
+### 3.2.2 接口
 
-如果只读属性的值在编译期是已知的，那么可以使用 const 修饰符将其标记为编译期常量。 这种属性需要满足以下要求：
-必须位于顶层或者是 object 声明 或伴生对象的一个成员
-必须以 String 或原生类型值初始化
-不能有自定义 getter
-这些属性可以用在注解中：
-
-```kotlin
-const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
-@Deprecated(SUBSYSTEM_DEPRECATED) fun foo() { …… }
-```
-
-### 3.3.5 延迟初始化属性与变量
-
-- 概念：延迟初始化属性与变量是指使用 `lateinit` 关键字修饰的属性与变量。
-- 说明：延迟初始化属性与变量只能修饰类的属性与变量，不能修饰其他类型。
-- 语法：延迟初始化属性与变量的语法格式如下：
-
-```kotlin
-lateinit var 属性名: 属性类型
-```
-
-### 3.3.6 委托属性
-
-- 概念：委托属性是指使用 `by` 关键字委托的属性。
-- 说明：委托属性只能修饰类的属性，不能修饰其他类型。
-- 语法：委托属性的语法格式如下：
-
-```kotlin
-var/val 属性名: 属性类型 by 委托对象
-```
-
-- 说明：委托属性的委托对象可以是任意类型，但是必须实现 `getValue` 和 `setValue` 方法。
-
-## 3.4 接口
+接口是一种比抽象类更加抽象的“类”。接口本身代表的是一种“类型”的概念。但在语法层面，接口本身不是类，不能实例化接口，只能实例化它的实现类。
 
 - 概念：接口是指具有相同属性和方法的对象的集合，它定义了该集合中每个对象所共有的属性和方法。对象是接口的实例。
 - Kotlin 的接口可以既包含抽象方法的声明也包含实现。与抽象类不同的是，接口无法保存状态。它可以有属性但必须声明为抽象或提供访问器实现。
@@ -2013,9 +1722,8 @@ interface 接口名 {
 }
 ```
 
-### 3.4.1 实现接口
+接口是没有构造函数的。我们使用冒号“:”语法来实现一个接口，如果有多个接口，用“，”逗号隔开：
 
-- 概念：实现接口是指使用 `:` 关键字实现接口的类。
 - 语法：实现接口的语法格式如下：
 
 ```kotlin
@@ -2059,7 +1767,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-### 3.4.2 接口中的属性
+### 3.2.3 接口中的属性
 
 - 可以在接口中定义属性。在接口中声明的属性要么是抽象的，要么提供访问器的实现。在接口中声明的属性不能有幕后字段（backing field），因此接口中声明的访问器不能引用它们
 - 语法：接口中的属性的语法格式如下：
@@ -2110,7 +1818,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-### 3.4.3 接口继承
+### 3.2.4 接口继承
 
 - 概念：接口继承是指使用 `:` 关键字继承接口的接口。
 - 语法：接口继承的语法格式如下：
@@ -2128,8 +1836,6 @@ interface 子接口名 : 父接口名 {
 package Interface
 
 /**
- * @description: 接口是指具有相同属性和方法的对象的集合，它定义了该集合中每个对象所共有的属性和方法。对象是接口的实例。
- * Kotlin 的接口可以既包含抽象方法的声明也包含实现。与抽象类不同的是，接口无法保存状态。它可以有属性但必须声明为抽象或提供访问器实现。
  * @createDate: 2023/8/1 15:31
  * @version: 1.0
  */
@@ -2189,88 +1895,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-### 3.4.4 解决覆盖冲突
-
-- 概念：解决覆盖冲突是指当一个类实现多个接口时，多个接口中有相同的方法，那么必须重写这个方法。
-- 语法：解决覆盖冲突的语法格式如下：
-
-```kotlin
-class 类名 : 父接口1, 父接口2 {
-    override fun 方法名(参数列表): 返回值类型 {
-        // 方法体
-    }
-}
-```
-
-```kotlin
-package Interface
-
-/**
- * @description: 接口是指具有相同属性和方法的对象的集合，它定义了该集合中每个对象所共有的属性和方法。对象是接口的实例。
- * Kotlin 的接口可以既包含抽象方法的声明也包含实现。与抽象类不同的是，接口无法保存状态。它可以有属性但必须声明为抽象或提供访问器实现。
- * @createDate: 2023/8/1 15:31
- * @version: 1.0
- */
-
-interface Person {
-    /**
-     * 定义一个属性
-     */
-    var name: String
-    /**
-     * 定义一个方法
-     */
-    fun eat(name: String) {
-        println("$name is eating. ")
-    }
-}
-
-interface Student {
-    /**
-     * 定义一个属性
-     */
-    var age: Int
-    /**
-     * 定义一个方法
-     */
-    fun study(name: String) {
-        println("$name is studying. ")
-    }
-}
-
-class StudentImpl : Person, Student {
-    /**
-     * 实现接口中的属性
-     */
-    override var name: String = "shu"
-    /**
-     * 实现接口中的属性
-     */
-    override var age: Int = 20
-    /**
-     * 实现接口中的方法
-     */
-    override fun eat(name: String) {
-        println("$name is eating. ")
-    }
-    /**
-     * 实现接口中的方法
-     */
-    override fun study(name: String) {
-        println("$name is studying. ")
-    }
-}
-
-fun main(args: Array<String>) {
-    val student = StudentImpl()
-    student.eat("shu")
-    println(student.name)
-    student.study("shu")
-    println(student.age)
-}
-```
-
-### 3.4.5 函数式接口
+### 3.2.5 函数式接口
 
 - 概念：函数式接口是指只有一个抽象方法的接口。
 - 只有一个抽象方法的接口称为函数式接口或 单一抽象方法（SAM）接口。函数式接口可以有多个非抽象成员，但只能有一个抽象成员。
@@ -2319,65 +1944,113 @@ fun main(args: Array<String>) {
 }
 ```
 
-## 3.5 可见性修饰符
+## 3.3 Object 对象
 
-- private 意味着只该成员在这个类内部（包含其所有成员）可见；
-- protected 意味着该成员具有与 private 一样的可见性，但也在子类中可见。
-- internal 意味着能见到类声明的本模块内的任何客户端都可见其 internal 成员。
-- public 意味着能见到类声明的任何客户端都可见其 public 成员。
-- 如果你没有显式指定任何可见性修饰符，默认可见性是 public，这意味着你的声明将随处可见。
-- 请注意在 Kotlin 中外部类不能访问内部类的 private 成员。
-- 案例：定义一个 `Person` 类，定义一个 `Student` 类，继承 `Person` 类，定义一个 `Teacher` 类，继承 `Person` 类，定义一个 `Test` 类，测试 `Person` 类的可见性修饰符。
+单例模式是一种常用的软件设计模式。例如，Spring中的Bean默认就是单例。通过单例模式可以保证系统中一个类只有一个实例。即一个类只有一个对象实例。
+
+Kotlin中没有静态属性和方法，但是可以使用关键字object声明一个object单例对象：
 
 ```kotlin
-package VisibilityModifier
+package Class
 
 /**
- * @description: 可见性修饰符
- * @createDate: 2023/8/1 15:31
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/2 21:03
  * @version: 1.0
  */
-
-open class Person {
-    /**
-     * 定义一个属性
-     */
+object User {
     var name: String = "shu"
+    var age: Int = 18
+    fun eat() {
+        println("eat")
+    }
+}
+fun main() {
+    println(User.name)
+    println(User.age)
+    User.eat()
+}
+```
+
+Kotlin中还提供了伴生对象，用companion object关键字声明，一个类只能有一个伴生对象。
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/1 15:02
+ * @version: 1.0
+ */
+open class Person {
+
+    open var name: String = "shu"
     /**
      * 定义一个方法
      */
-    fun eat(name: String) {
+    open fun eat(name: String) {
         println("$name is eating. ")
     }
-}
 
-class Student : Person() {
-    /**
-     * 定义一个方法
-     */
-    fun study(name: String) {
-        println("$name is studying. ")
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val person = Person()
+            person.eat("shu")
+        }
     }
 }
+```
 
-class Teacher : Person() {
-    /**
-     * 定义一个方法
-     */
-    fun teach(name: String) {
-        println("$name is teaching. ")
-    }
+## 3.4 数据类
+
+数据类就是只存储数据，不包含操作行为的类。Kotlin中的数据类可以为我们节省大量的样板代码（Java中强制我们要去写一堆getter、setter代码，而实际上这些方法都是“不言自明”的），这样最终的代码更易于理解，便于维护。
+
+数据类有如下限制：
+
+- 主构造函数至少包含一个参数
+- 参数必须标识为val或者var
+- 不能为abstract、open、sealed或者inner；
+- 不能继承其他类（但可以实现接口）。
+
+格式：
+
+```kotlin
+    data class LoginUser(val username: String, val password: String)
+```
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/2 21:14
+ * @version: 1.0
+ */
+data class LoginUser(val username: String, val password: String)
+fun main(){
+    val loginUser = LoginUser("shu", "123456")
+    println(loginUser)
 }
 
-fun main(args: Array<String>) {
-    val student = Student()
-    student.eat("shu")
-    println(student.name)
-    student.study("shu")
-    val teacher = Teacher()
-    teacher.eat("shu")
-    println(teacher.name)
-    teacher.teach("shu")
+```
+
+Kotlin标准库提供了Pair和Triple数据类，分别表示二元组和三元组对象。它们的定义分别如下：
+
+```kotlin
+public data class Pair<out A, out B>(public val first: A, public val second: B) : Serializable {
+    override fun toString(): String = "($first, $second)"
+}
+
+public data class Triple<out A, out B, out C>(
+    public val first: A,
+    public val second: B,
+    public val third: C
+) : Serializable {
+    override fun toString(): String = "($first, $second, $third)"
 }
 ```
 
