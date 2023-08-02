@@ -19,9 +19,7 @@ const config = {
     defaultLocale: "zh-Hans",
     locales: ["zh-Hans"],
   },
-  scripts: [
-    {src: 'https://hm.baidu.com/hm.js?<id>',  async: true}
-  ],
+  scripts: [{ src: "https://hm.baidu.com/hm.js?<id>", async: true }],
   presets: [
     [
       "classic",
@@ -80,19 +78,6 @@ const config = {
         id: "roadmap",
         path: "work/roadmap",
         routeBasePath: "roadmap",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: false,
-      },
-    ],
-    // -----------------------------------------------------------------------------------
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "tools",
-        path: "work/tools",
-        routeBasePath: "tools",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
@@ -217,6 +202,7 @@ const config = {
       },
     ],
     "docusaurus-plugin-umami",
+    "./src/plugin/postcss-tailwind-loader.js",
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -314,8 +300,8 @@ const config = {
               },
               {
                 label: "工具",
-                to: "/tools",
-              }
+                to: "tools",
+              },
             ],
           },
         ],

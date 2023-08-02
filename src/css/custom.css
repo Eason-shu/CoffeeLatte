@@ -10,6 +10,14 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital@1&family=Poppins:wght@500&display=swap"); */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
+/* tailWind支持 */
+.tailwind {
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+    @tailwind screens;
+}
+
 :root {
   --ifm-color-primary: hsl(214deg, 100%, 60%);
 
