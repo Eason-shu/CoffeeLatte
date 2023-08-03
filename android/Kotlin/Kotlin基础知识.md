@@ -122,7 +122,7 @@ public class HelloWorld {
 ## 2.2 变量
 
 - 变量（数据名称）标识一个对象的地址，我们称之为标识符。而具体存放的数据占用内存的大小和存放的形式则由其类型来决定。
-- 在Kotlin中，所有的变量类型都是引用类型。Kotlin的变量分为val（不可变的）和var（可变的）。可以简单理解为：val是只读的，仅能一次赋值，后面就不能被重新赋值；　var是可写的，在它生命周期中可以被多次赋值。
+- 在 Kotlin 中，所有的变量类型都是引用类型。Kotlin 的变量分为 val（不可变的）和 var（可变的）。可以简单理解为：val 是只读的，仅能一次赋值，后面就不能被重新赋值；　 var 是可写的，在它生命周期中可以被多次赋值。
 - 基本语法：`var 变量名: 变量类型 = 变量值`
 
 ```kotlin
@@ -207,12 +207,12 @@ final boolean isMarried1 = true;
 
 注意点：
 
-只要可以，应尽量在Kotlin中首选使用val不变值。因为在程序中大部分地方只需要使用不可变的变量，而使用val变量可以带来可预测的行为和线程安全等优点。
+只要可以，应尽量在 Kotlin 中首选使用 val 不变值。因为在程序中大部分地方只需要使用不可变的变量，而使用 val 变量可以带来可预测的行为和线程安全等优点。
 
 ## 2.3 关键字与修饰符
 
 - 关键字：通常情况下，编程语言中都有一些具有特殊意义的标识符是不能用作变量名的，这些具有特殊意义的标识符叫做关键字（又称保留字），编译器需要针对这些关键字进行词法分析，这是编译器对源码进行编译的基础步骤之一。
-- 修饰符：Kotlin中的修饰符关键字主要分为：类修饰符、成员修饰符、访问权限修饰符、协变逆变修饰符、函数修饰符、属性修饰符、参数修饰符、具体化类型修饰符等。
+- 修饰符：Kotlin 中的修饰符关键字主要分为：类修饰符、成员修饰符、访问权限修饰符、协变逆变修饰符、函数修饰符、属性修饰符、参数修饰符、具体化类型修饰符等。
 
 ![image-20230802143212402](image\image-20230802143212402.png)
 
@@ -700,7 +700,7 @@ try-表达式的返回值是 try 块中的最后一个表达式或者是（所�
 
 ### 2.4.7 标签
 
-在Kotlin中任何表达式都可以用标签（label）来标记。标签的格式为标识符后跟@符号，如abc@、_isOK@都是有效的标签。我们可以用Label标签来控制return、break或continue语句的跳转（jump）行为。
+在 Kotlin 中任何表达式都可以用标签（label）来标记。标签的格式为标识符后跟@符号，如 abc@、\_isOK@都是有效的标签。我们可以用 Label 标签来控制 return、break 或 continue 语句的跳转（jump）行为。
 
 ```kotlin
 package Controller
@@ -732,19 +732,17 @@ fun main() {
 
 ## 2.5 重载与操作符
 
-- Kotlin允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如“+”或“*”）和固定的优先级
+- Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示（如“+”或“\*”）和固定的优先级
 
 ![image-20230802144912965](image\image-20230802144912965.png)
 
-具体使用跟Java一样我就不多介绍了
+具体使用跟 Java 一样我就不多介绍了
 
 ## 2.6 包声明
 
-- 我们在*.kt源文件开头声明package命名空间。
+- 我们在\*.kt 源文件开头声明 package 命名空间。
 
 ![image-20230802145158673](image\image-20230802145158673.png)
-
-
 
 ## 2.7 基本类型
 
@@ -756,12 +754,12 @@ fun main() {
 
 - 基本数据类型在被创建时，在栈上给其划分一块内存，将数值直接存储在栈上（性能高）
 - 引用数据类型在被创建时，首先在栈上给其引用（句柄）分配一块内存，而对象的具体信息存储在堆内存上，然后由栈上面的引用指向堆中对象的地址。
-- Kotlin中去掉了原始类型，只有包装类型，编译器在编译代码的时候，会自动优化性能，把对应的包装类型拆箱为原始类型。Kotlin系统类型分为可空类型和不可空类型。
-- Kotlin中引入了可空类型，把有可能为null的值单独用可空类型来表示。这样就在可空引用与不可空引用之间划分出一条明确的、显式的“界线”。
+- Kotlin 中去掉了原始类型，只有包装类型，编译器在编译代码的时候，会自动优化性能，把对应的包装类型拆箱为原始类型。Kotlin 系统类型分为可空类型和不可空类型。
+- Kotlin 中引入了可空类型，把有可能为 null 的值单独用可空类型来表示。这样就在可空引用与不可空引用之间划分出一条明确的、显式的“界线”。
 
 ![image-20230802145712719](image\image-20230802145712719.png)
 
-Kotlin中对应的可空数字类型就相当于Java中的装箱数字类型：
+Kotlin 中对应的可空数字类型就相当于 Java 中的装箱数字类型：
 
 ![image-20230802145822323](image\image-20230802145822323.png)
 
@@ -1339,7 +1337,7 @@ fun main() {
 
 ### 2.7.8 可空类型
 
-或许Java和Android开发者早已厌倦了空指针异常（Null Pointer Exception）。因为其在运行时总会在某个意想不到的地方忽然出现，让开发者感到措手不及。
+或许 Java 和 Android 开发者早已厌倦了空指针异常（Null Pointer Exception）。因为其在运行时总会在某个意想不到的地方忽然出现，让开发者感到措手不及。
 
 Java
 
@@ -1391,8 +1389,8 @@ object OptionalTest {
 
 ### 2.7.9 非空判断
 
-- Kotlin中提供了断言操作符`!!`，使得可空类型对象可以调用成员方法或者属性（但遇见null，就会导致空指针异常）
-- 使用Elvis操作符`?:`来给定一个在null情况下的替代值
+- Kotlin 中提供了断言操作符`!!`，使得可空类型对象可以调用成员方法或者属性（但遇见 null，就会导致空指针异常）
+- 使用 Elvis 操作符`?:`来给定一个在 null 情况下的替代值
 
 ```kotlin
 package Controller
@@ -1419,8 +1417,6 @@ object OptionalTest {
 }
 
 ```
-
-
 
 # 三 类与对象
 
@@ -1548,11 +1544,11 @@ val 对象名 = 类名(参数列表)
 - 实例方法：实例方法是指类中定义的函数，实例方法是属于对象的，只有通过对象才能调用实例方法。
 - 静态方法：静态方法是指类中定义的函数，静态方法是属于类的，只能通过类名调用静态方法。
 
-## 3.2  抽象类
+## 3.2 抽象类
 
-抽象类用来表征问题领域的抽象概念。所有编程语言都提供抽象机制。机器语言是对机器的模仿抽象，汇编语言是对机器语言的高层次抽象，高级语言（Fortran、C、BASIC等）是对汇编的高层次抽象。而我们这里所说的面向对象编程语言是对过程函数的高层次封装。
+抽象类用来表征问题领域的抽象概念。所有编程语言都提供抽象机制。机器语言是对机器的模仿抽象，汇编语言是对机器语言的高层次抽象，高级语言（Fortran、C、BASIC 等）是对汇编的高层次抽象。而我们这里所说的面向对象编程语言是对过程函数的高层次封装。
 
-###  3.2.1 抽象类与接口
+### 3.2.1 抽象类与接口
 
 抽象是相对于具象而言的。例如，设计一个图形编辑软件，问题领域中存在着长方形（Rectangle）、圆形（Circle）、三角形（Triangle）等一些具体概念，它们是具象。但是它们又都属于形状（Shape）这个抽象的概念。
 
@@ -1625,7 +1621,7 @@ fun main() {
 }
 ```
 
-现在我们有了抽象类，但是没有成员。通常，一个类的成员包括属性和函数。抽象类的成员也必须是抽象的，需要使用abstract关键字修饰。下面我们声明一个抽象类Shape，并带有width、heigth、radius属性
+现在我们有了抽象类，但是没有成员。通常，一个类的成员包括属性和函数。抽象类的成员也必须是抽象的，需要使用 abstract 关键字修饰。下面我们声明一个抽象类 Shape，并带有 width、heigth、radius 属性
 
 ```kotlin
 package Class
@@ -1701,11 +1697,11 @@ fun main() {
 
 当子类继承了某个类之后，便可以使用父类中的成员变量，但并不是完全继承父类的所有成员变量。具体的原则如下：
 
-- 能够继承父类的public和protected成员变量
-- 不能继承父类的private成员变量
+- 能够继承父类的 public 和 protected 成员变量
+- 不能继承父类的 private 成员变量
 - 对于父类的包访问权限成员变量，如果子类和父类在同一个包下，则子类能够继承；否则，子类不能继承；
 - 对于子类可以继承的父类成员变量，如果在子类中出现了同名称的成员变量，则会发生隐藏现象，即子类的成员变量会屏蔽掉父类的同名成员变量。
-- 如果要在子类中访问父类中的同名成员变量，需要使用super关键字进行引用。
+- 如果要在子类中访问父类中的同名成员变量，需要使用 super 关键字进行引用。
 
 ### 3.2.2 接口
 
@@ -1946,9 +1942,9 @@ fun main(args: Array<String>) {
 
 ## 3.3 Object 对象
 
-单例模式是一种常用的软件设计模式。例如，Spring中的Bean默认就是单例。通过单例模式可以保证系统中一个类只有一个实例。即一个类只有一个对象实例。
+单例模式是一种常用的软件设计模式。例如，Spring 中的 Bean 默认就是单例。通过单例模式可以保证系统中一个类只有一个实例。即一个类只有一个对象实例。
 
-Kotlin中没有静态属性和方法，但是可以使用关键字object声明一个object单例对象：
+Kotlin 中没有静态属性和方法，但是可以使用关键字 object 声明一个 object 单例对象：
 
 ```kotlin
 package Class
@@ -1973,7 +1969,7 @@ fun main() {
 }
 ```
 
-Kotlin中还提供了伴生对象，用companion object关键字声明，一个类只能有一个伴生对象。
+Kotlin 中还提供了伴生对象，用 companion object 关键字声明，一个类只能有一个伴生对象。
 
 ```kotlin
 package Class
@@ -2006,13 +2002,13 @@ open class Person {
 
 ## 3.4 数据类
 
-数据类就是只存储数据，不包含操作行为的类。Kotlin中的数据类可以为我们节省大量的样板代码（Java中强制我们要去写一堆getter、setter代码，而实际上这些方法都是“不言自明”的），这样最终的代码更易于理解，便于维护。
+数据类就是只存储数据，不包含操作行为的类。Kotlin 中的数据类可以为我们节省大量的样板代码（Java 中强制我们要去写一堆 getter、setter 代码，而实际上这些方法都是“不言自明”的），这样最终的代码更易于理解，便于维护。
 
 数据类有如下限制：
 
 - 主构造函数至少包含一个参数
-- 参数必须标识为val或者var
-- 不能为abstract、open、sealed或者inner；
+- 参数必须标识为 val 或者 var
+- 不能为 abstract、open、sealed 或者 inner；
 - 不能继承其他类（但可以实现接口）。
 
 格式：
@@ -2038,7 +2034,7 @@ fun main(){
 
 ```
 
-Kotlin标准库提供了Pair和Triple数据类，分别表示二元组和三元组对象。它们的定义分别如下：
+Kotlin 标准库提供了 Pair 和 Triple 数据类，分别表示二元组和三元组对象。它们的定义分别如下：
 
 ```kotlin
 public data class Pair<out A, out B>(public val first: A, public val second: B) : Serializable {
@@ -2083,7 +2079,7 @@ fun main(){
 
 ## 3.5 枚举类
 
-Kotlin中使用enum class关键字来声明一个枚举类。
+Kotlin 中使用 enum class 关键字来声明一个枚举类。
 
 相比于字符串常量，使用枚举能够实现类型安全。枚举类有两个内置的属性：name，ordinal
 
@@ -2113,9 +2109,9 @@ fun main() {
 
 ## 3.6 内部类
 
-Kotlin中，类可以嵌套。一个类可以嵌套在其他类中，而且可以嵌套多层。
+Kotlin 中，类可以嵌套。一个类可以嵌套在其他类中，而且可以嵌套多层。
 
-如果一个类Inner想要访问外部类Outer中的成员，可以在这个类前面添加修饰符inner，内部类会带有一个对外部类的对象引用。
+如果一个类 Inner 想要访问外部类 Outer 中的成员，可以在这个类前面添加修饰符 inner，内部类会带有一个对外部类的对象引用。
 
 ```kotlin
 package Class
@@ -2179,7 +2175,7 @@ object AnonymousClass {
 
 ## 4.1 函数的声明
 
-Kotlin中使用fun关键字来声明函数
+Kotlin 中使用 fun 关键字来声明函数
 
 ![image-20230803094343002](image\image-20230803094343002.png)
 
@@ -2206,9 +2202,9 @@ fun main(){
 }
 ```
 
-## 4.2 Lambda表达式
+## 4.2 Lambda 表达式
 
-学过Java的都用该知道
+学过 Java 的都用该知道
 
 ```kotlin
 package Fun
@@ -2233,9 +2229,9 @@ fun main() {
 }
 ```
 
-## 4.3 Kotlin中的特殊函数
+## 4.3 Kotlin 中的特殊函数
 
-本节我们介绍Kotlin中的run()、apply()、let()、also()和with()这5个特殊的函数。
+本节我们介绍 Kotlin 中的 run()、apply()、let()、also()和 with()这 5 个特殊的函数。
 
 ```kotlin
 package Fun
@@ -2349,7 +2345,9 @@ fun testLet() {
     println(result)
 }
 ```
+
 ## 4.4 扩展函数
+
 - 概念：扩展函数是指在不改变原类的基础上，为类添加新的函数。
 - 语法：扩展函数的语法格式如下：
 
@@ -2358,7 +2356,8 @@ fun 类名.方法名(参数列表): 返回值类型 {
     方法体
 }
 ```
-- 案例，下面为String类添加一个扩展函数：
+
+- 案例，下面为 String 类添加一个扩展函数：
 
 ```kotlin
 package Fun
@@ -2377,6 +2376,7 @@ fun main() {
     println("".addExt())
 }
 ```
+
 - 说明：扩展函数的作用域是在当前文件中，如果想要在其他文件中使用扩展函数，需要导入扩展函数所在的文件。
 
 ## 4.5 扩展属性
@@ -2390,7 +2390,7 @@ val 类名.属性名: 属性类型
     set(value) = 属性的set方法
 ```
 
-- 案例，下面为String类添加一个扩展属性：
+- 案例，下面为 String 类添加一个扩展属性：
 
 ```kotlin
 package Fun
@@ -2409,4 +2409,484 @@ fun main() {
     println("".addExt)
 }
 ```
-- 注意：扩展属性不能有幕后字段（backing field），因此扩展属性不能被初始化，只能通过显示提供的getter/setter访问器来定义。
+
+- 注意：扩展属性不能有幕后字段（backing field），因此扩展属性不能被初始化，只能通过显示提供的 getter/setter 访问器来定义。
+
+# 五 集合类
+
+在 Java 类库中有一套相当完整的容器集合类来持有对象。Kotlin 没有去重复造轮子（Scala 则是自己实现了一套集合类框架），而是在 Java 类库的基础上进行了改造和扩展，引入了不可变集合类，同时扩展了大量方便实用的功能，这些功能的 API 都在 kotlin.collections 包下面。
+
+## 5.1 概述
+
+集合类存放的都是对象的引用，而非对象本身，我们通常说的集合中的对象指的是集合中对象的引用（reference)。Kotlin 的集合类分为：可变集合类（Mutable）与不可变集合类（Immutable）。
+
+集合类主要有 3 种：`List（列表）、Set（集）和Map（映射）`，List 容器中的元素以线性方式存储，集合中可以存放重复对象。列表中的元素是有序地排列。
+
+![image-20230803205221891](Kotlin基础知识/images/image-20230803205221891.png)
+
+![image-20230803205504147](Kotlin基础知识/images/image-20230803205504147.png)
+
+## 5.2 不可变集合
+
+List 列表分为只读不可变的 List 和可变 MutableList（可写入、删除数据）
+
+![image-20230803210050017](Kotlin基础知识/images/image-20230803210050017.png)
+
+Set 集也分为不可变 Set 和可变 MutableSet（可写入、删除数据）
+
+![image-20230803210155286](Kotlin基础知识/images/image-20230803210155286.png)
+
+Kotlin 中的 Map 与 List、Set 一样，Map 也分为只读 Map 和可变 MutableMap（可写入、删除数据）。Map 没有继承于 Collection 接口
+
+![image-20230803210231376](Kotlin基础知识/images/image-20230803210231376.png)
+
+## 5.3 创建集合
+
+Kotlin 中分别使用 listOf()、setOf()、mapOf()函数创建不可变的 List 列表容器、Set 集容器、Map 映射容器；使用 mutableListOf()、mutableSetOf()、mutableMapOf()函数来创建可变的 MutableList 列表容器、MutableSet 集容器、MutableMap 映射容器
+
+![image-20230803210325545](Kotlin基础知识/images/image-20230803210325545.png)
+
+![image-20230803210348500](Kotlin基础知识/images/image-20230803210348500.png)
+
+### 5.3.1 List 集合
+
+```kotlin
+package Fun
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/3 21:04
+ * @version: 1.0
+ */
+class ListTest {
+    // 1. 创建一个不可变集合
+    val list = listOf("apple", "banana", "orange", "pear", "grape")
+    // 2. 创建一个可变集合
+    val mutableList = mutableListOf("apple", "banana", "orange", "pear", "grape")
+    // 3. 创建一个空集合
+    val emptyList = emptyList<String>()
+    // 4. 创建一个单元素集合
+}
+```
+
+etOf()、mapOf()分析同理，下面我们来分析集合的方法
+
+- 集合遍历
+
+```kotlin
+
+    fun traverseList() {
+        // 1.1 for循环遍历
+        for (fruit in list) {
+            println(fruit)
+        }
+        // 1.2 forEach遍历
+        list.forEach { fruit ->
+            println(fruit)
+        }
+        // 1.3 forEachIndexed遍历
+        list.forEachIndexed { index, fruit ->
+            println("$index : $fruit")
+        }
+        // 1.4 迭代器遍历
+        val iterator = list.iterator()
+        while (iterator.hasNext()) {
+            println(iterator.next())
+        }
+    }
+```
+
+- 转换方法
+
+```kotlin
+ // 2. 集合转换
+    fun transformList() {
+        // 2.1 map转换
+        val newList = list.map { fruit ->
+            fruit.toUpperCase()
+        }
+        println(newList)
+        // 2.2 mapIndexed转换
+        val newList2 = list.mapIndexed { index, fruit ->
+            "$index : $fruit"
+        }
+        println(newList2)
+        // 2.3 mapNotNull转换
+        val newList3 = list.mapNotNull { fruit ->
+            if (fruit.length > 5) {
+                fruit.toUpperCase()
+            } else {
+                null
+            }
+        }
+        println(newList3)
+        // 2.4 flatMap转换
+        val newList4 = list.flatMap { fruit ->
+            fruit.toList()
+        }
+        println(newList4)
+        // 2.5 flatMapIndexed转换
+        val newList5 = list.flatMapIndexed { index, fruit ->
+            "$index : $fruit".toList()
+        }
+        println(newList5)
+        // 2.6 zip转换
+        val newList6 = list.zip(listOf("苹果", "香蕉", "橘子", "梨", "葡萄"))
+        println(newList6)
+        // 2.7 zipWithNext转换
+        val newList7 = list.zipWithNext()
+        println(newList7)
+    }
+
+```
+
+- 过滤函数
+
+```kotlin
+// 7.6　过滤函数
+
+    fun Filter(){
+        // 7.6.1　过滤函数
+        list.filter { fruit ->
+            fruit.length > 5
+        }.forEach { fruit ->
+            println(fruit)
+        }
+        // 7.6.2　过滤函数
+        list.filterIndexed { index, fruit ->
+            index > 2 && fruit.length > 5
+        }.forEach { fruit ->
+            println(fruit)
+        }
+
+        list.filterNot { fruit ->
+            fruit.length > 5
+        }.forEach { fruit ->
+            println(fruit)
+        }
+
+        list.filterNotNull().forEach { fruit ->
+            println(fruit)
+        }
+
+        list.filterIndexedTo(mutableList) { index, fruit ->
+            index > 2 && fruit.length > 5
+        }
+
+        list.filterNotTo(mutableList) { fruit ->
+            fruit.length > 5
+        }
+
+        list.filterNotNullTo(mutableList)
+
+    }
+
+```
+
+- 排序函数
+
+```kotlin
+    // 排序函数
+
+    fun Sort(){
+        // 7.7.1　排序函数
+        list.sorted().forEach { fruit ->
+            println(fruit)
+        }
+        // 7.7.2　排序函数
+        list.sortedBy { fruit ->
+            fruit.length
+        }.forEach { fruit ->
+            println(fruit)
+        }
+        // 7.7.3　排序函数
+        list.sortedDescending().forEach { fruit ->
+            println(fruit)
+        }
+        // 7.7.4　排序函数
+        list.sortedByDescending { fruit ->
+            fruit.length
+        }.forEach { fruit ->
+            println(fruit)
+        }
+        // 7.7.5　排序函数
+        list.sortedWith(compareBy { fruit ->
+            fruit.length
+        }).forEach { fruit ->
+            println(fruit)
+        }
+        // 7.7.6　排序函数
+        list.sortedWith(compareByDescending { fruit ->
+            fruit.length
+        }).forEach { fruit ->
+            println(fruit)
+        }
+        // 7.7.7　排序函数
+        list.reversed().forEach { fruit ->
+            println(fruit)
+        }
+        // 7.7.8　排序函数
+        list.asReversed().forEach { fruit ->
+            println(fruit)
+        }
+    }
+```
+
+- 去重函数
+
+```kotlin
+
+    // 去重
+
+    fun distinct() {
+        list.distinct().forEach { fruit ->
+            println(fruit)
+        }
+    }
+```
+
+其他参考：http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html。
+
+# 六 泛型
+
+- 含义：泛型是指在定义类、接口或方法时，不预先指定具体的类型，而在使用时再指定具体类型的一种特性。
+- 作用：泛型的作用是为了在类、接口或方法中使用类型参数，这些类型参数在使用时才能确定。
+- 语法：泛型的语法格式如下：
+
+```kotlin
+class 类名<泛型名1, 泛型名2, ...> {
+    // 类体
+}
+```
+
+```kotlin
+package Fun
+
+/**
+ * @description: 泛型是指在定义类、接口或方法时，不预先指定具体的类型，而在使用时再指定具体类型的一种特性。
+ * @createDate: 2023/8/3 21:04
+ * @version: 1.0
+ */
+
+class Generic<T>(t: T) {
+    var value = t
+}
+
+fun main() {
+    val generic = Generic("shu")
+    println(generic.value)
+}
+```
+
+## 6.1 泛型类
+
+- 概念：泛型类是指在类中定义泛型的类。、
+- 语法：泛型类的语法格式如下：
+
+```kotlin
+class 类名<泛型名1, 泛型名2, ...> {
+    // 类体
+}
+```
+
+- 案例：定义一个泛型类，使用泛型类创建对象。
+
+```kotlin
+
+package Fun
+
+/**
+ * @description: 泛型是指在定义类、接口或方法时，不预先指定具体的类型，而在使用时再指定具体类型的一种特性。
+ * @createDate: 2023/8/3 21:04
+ * @version: 1.0
+ */
+
+class Generic<T>(t: T) {
+    var value = t
+
+    fun getValue(): T {
+        return value
+    }
+
+    fun setValue(value: T) {
+        this.value = value
+    }
+
+}
+
+fun main() {
+    val generic = Generic("shu")
+    println(generic.value)
+    generic.setValue("shu2")
+    println(generic.value)
+}
+```
+
+## 6.2 泛型函数
+
+- 概念：泛型函数是指在函数中定义泛型的函数。
+
+- 语法：泛型函数的语法格式如下：
+
+```kotlin
+fun 函数名<泛型名1, 泛型名2, ...>(参数列表): 返回值类型 {
+    // 函数体
+}
+```
+
+- 案例：定义一个泛型函数，使用泛型函数。
+
+```kotlin
+package Fun
+
+/**
+ * @description: 泛型是指在定义类、接口或方法时，不预先指定具体的类型，而在使用时再指定具体类型的一种特性。
+ * @createDate: 2023/8/3 21:04
+ * @version: 1.0
+ */
+
+class Generic<T>(t: T) {
+    var value = t
+
+    fun getValue(): T {
+        return value
+    }
+
+    fun setValue(value: T) {
+        this.value = value
+    }
+
+}
+
+
+fun <T> getValue(value: T): T {
+    return value
+}
+
+fun main() {
+    val generic = Generic("shu")
+    println(generic.value)
+    generic.setValue("shu2")
+    println(generic.value)
+    println(getValue("shu"))
+}
+```
+
+## 6.3 泛型约束
+
+- 概念：泛型约束是指对泛型的类型上限或下限进行约束。
+- 语法：泛型约束的语法格式如下：
+
+```kotlin
+
+fun <T : 上限> 函数名(参数列表): 返回值类型 {
+    // 函数体
+}
+```
+
+- 上限：指泛型的类型上限，表示泛型必须是指定的类型或者是指定类型的子类。
+- 下限：指泛型的类型下限，表示泛型必须是指定的类型或者是指定类型的父类。
+
+- 案例：定义一个泛型约束的泛型函数，使用泛型约束的泛型函数。
+
+```kotlin
+package Fun
+
+/**
+ * @description: 泛型是指在定义类、接口或方法时，不预先指定具体的类型，而在使用时再指定具体类型的一种特性。
+ * @createDate: 2023/8/3 21:04
+ * @version: 1.0
+ */
+
+class Generic<T>(t: T) {
+    var value = t
+
+    fun getValue(): T {
+        return value
+    }
+
+    fun setValue(value: T) {
+        this.value = value
+    }
+
+}
+
+
+fun <T : Number> getValue(value: T): T {
+    return value
+}
+
+fun main() {
+    val generic = Generic("shu")
+    println(generic.value)
+    generic.setValue("shu2")
+    println(generic.value)
+    println(getValue("shu"))
+}
+```
+
+## 6.4 outT 与 inT
+
+而 Kotlin 抛弃了这个通配符，直接实现了前面所讲的 PECS 的规则。Kotlin 中引入了投射类型 out T 代表生产者对象，投射类型 in T 代表消费者对象，使用投射类型(projected type)out T 和 in T 来实现与类型通配符同样的功能。
+
+- out T：out T 代表生产者对象，只能生产（返回）T 类型的对象，不能消费 T 类型的对象。
+- in T：in T 代表消费者对象，只能消费 T 类型的对象，不能生产 T 类型的对象。
+
+- 案例：定义一个 out T 类型的泛型类，使用 out T 类型的泛型类。
+
+```kotlin
+package Fun
+
+/**
+ * @description: 泛型是指在定义类、接口或方法时，不预先指定具体的类型，而在使用时再指定具体类型的一种特性。
+ * @createDate: 2023/8/3 21:04
+ * @version: 1.0
+ */
+
+class Generic<out T>(t: T) {
+    var value = t
+
+    fun getValue(): T {
+        return value
+    }
+
+}
+
+fun main() {
+    val generic = Generic("shu")
+    println(generic.value)
+    println(generic.getValue())
+}
+```
+
+- 案例：定义一个 in T 类型的泛型类，使用 in T 类型的泛型类。
+
+```kotlin
+
+package Fun
+
+/**
+ * @description: 泛型是指在定义类、接口或方法时，不预先指定具体的类型，而在使用时再指定具体类型的一种特性。
+ * @createDate: 2023/8/3 21:04
+ * @version: 1.0
+ */
+
+class Generic<in T>(t: T) {
+    var value = t
+
+    fun setValue(value: T) {
+        this.value = value
+    }
+
+}
+
+fun main() {
+    val generic = Generic("shu")
+    println(generic.value)
+    generic.setValue("shu2")
+    println(generic.value)
+}
+```
+
+在 Kotlin 中，我们把只能保证读取数据时类型安全的对象叫做生产者，用 out T 标记；把只能保证写入数据安全时类型安全的对象叫做消费者，用 in T 标记。可以这么记：out T 等价于? extends T；in T 等价于? super T。
