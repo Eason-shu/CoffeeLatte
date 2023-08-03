@@ -20,10 +20,7 @@ const config = {
     locales: ["zh-Hans"],
   },
   scripts: [
-    {
-      src: "https://hm.baidu.com/hm.js?2316b944ed8ed582e97a4d729350b721",
-      async: true,
-    },
+
   ],
   presets: [
     [
@@ -318,10 +315,7 @@ const config = {
         appId: "OZ5VV8CD4F",
         indexName: "lottecoffee",
       },
-      umami: {
-        websiteid: "7efcd733-c232-43db-9f17-10a00c53b152",
-        src: "https://www.lottecoffee.com/umami.js",
-      },
+     
       footer: {
         style: "dark",
         copyright: `<p>Copyright © ${new Date().getFullYear()} 拿铁要加冰  Built with Docusaurus.</p><p><a href="http://beian.miit.gov.cn/" >蜀ICP备2022021919号</a></p>`,
