@@ -19,7 +19,12 @@ const config = {
     defaultLocale: "zh-Hans",
     locales: ["zh-Hans"],
   },
-  scripts: [{ src: "https://hm.baidu.com/hm.js?<id>", async: true }],
+  scripts: [
+    {
+      src: "https://hm.baidu.com/hm.js?2316b944ed8ed582e97a4d729350b721",
+      async: true,
+    },
+  ],
   presets: [
     [
       "classic",
@@ -37,8 +42,8 @@ const config = {
           blogSidebarCount: 7,
           blogSidebarTitle: "近期文章",
           showReadingTime: true,
-          readingTime: ({content, frontMatter, defaultReadingTime}) =>
-            defaultReadingTime({content, options: {wordsPerMinute: 300}}),
+          readingTime: ({ content, frontMatter, defaultReadingTime }) =>
+            defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
           feedOptions: {
             title: "",
             description: "拿铁要加冰 的个人生活和工作记录",
