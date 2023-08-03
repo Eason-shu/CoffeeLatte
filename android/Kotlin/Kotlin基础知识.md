@@ -2054,3 +2054,359 @@ public data class Triple<out A, out B, out C>(
 }
 ```
 
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/2 21:14
+ * @version: 1.0
+ */
+data class LoginUser(val username: String, val password: String)
+fun main(){
+    val loginUser = LoginUser("shu", "123456")
+    println(loginUser)
+
+    // 二元
+    Pair("shu", "123456").let {
+        println(it)
+    }
+
+    // 三元
+    Triple("shu", "123456", "123456").let {
+        println(it)
+    }
+}
+
+```
+
+## 3.5 枚举类
+
+Kotlin中使用enum class关键字来声明一个枚举类。
+
+相比于字符串常量，使用枚举能够实现类型安全。枚举类有两个内置的属性：name，ordinal
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/3 9:31
+ * @version: 1.0
+ */
+enum class Color {
+    RED, GREEN, BLUE, ORANGE, YELLOW, INDIGO, VIOLET
+}
+
+fun main() {
+    println(Color.RED)
+    println(Color.GREEN)
+    println(Color.BLUE)
+    println(Color.ORANGE)
+    println(Color.YELLOW)
+    println(Color.INDIGO)
+    println(Color.VIOLET)
+}
+```
+
+## 3.6 内部类
+
+Kotlin中，类可以嵌套。一个类可以嵌套在其他类中，而且可以嵌套多层。
+
+如果一个类Inner想要访问外部类Outer中的成员，可以在这个类前面添加修饰符inner，内部类会带有一个对外部类的对象引用。
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/3 9:34
+ * @version: 1.0
+ */
+class NestClass {
+    inner class InnerClass {
+        fun getOuterReference(): NestClass = this@NestClass
+    }
+
+    class NestedClass {
+        fun getOuterReference(): NestClass = NestClass()
+    }
+}
+
+fun main() {
+    val nestClass = NestClass()
+    val innerClass = nestClass.InnerClass()
+    val nestedClass = NestClass.NestedClass()
+    println(innerClass.getOuterReference())
+    println(nestedClass.getOuterReference())
+}
+```
+
+匿名内部类就是没有名字的内部类。匿名内部类也可以访问外部类的变量。
+
+```kotlin
+package Class
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/3 9:37
+ * @version: 1.0
+ */
+object AnonymousClass {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        // 匿名类
+        Thread { println("匿名类") }.start()
+
+        // lambda表达式
+        Thread { println("lambda表达式") }.start()
+    }
+}
+
+```
+
+# 四 函数
+
+函数式编程是关于不变性和函数组合的编程范式。函数式编程有如下特征。
+
+- 一等函数支持（first-class function）：函数也是一种数据类型，可以作为参数传入另一个函数中，同时函数也可以返回一个函数。
+- 纯函数（pure function）和不变性（immutable）：纯函数指的是没有副作用的函数（函数不去改变外部的数据状态）。例如，一个编译器就是一个广义上的纯函数。在函数式编程中，倾向于使用纯函数编程。正因为纯函数不会去修改数据，同时又使用不可变的数据，所以程序不会去修改一个已经存在的数据结构，而是根据一定的映射逻辑创建一份新的数据。函数式编程是转换数据而非修改原始数据。
+- 函数的组合（compose function）：在面向对象编程中是通过对象之间发送消息来构建程序逻辑的；而在函数式编程中是通过不同函数的组合来构建程序逻辑的。
+
+## 4.1 函数的声明
+
+Kotlin中使用fun关键字来声明函数
+
+![image-20230803094343002](image\image-20230803094343002.png)
+
+```kotlin
+package Fun
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/3 9:44
+ * @version: 1.0
+ */
+class FunTest {
+
+    fun Test(){
+        println("""fun main(){""")
+    }
+}
+
+fun main(){
+    val funTest = FunTest()
+    funTest.Test()
+    println("""}""")
+}
+```
+
+## 4.2 Lambda表达式
+
+学过Java的都用该知道
+
+```kotlin
+package Fun
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/3 9:46
+ * @version: 1.0
+ */
+class Lambda {
+
+    val sum = { x: Int, y: Int -> x + y }
+
+    val sum2: (Int, Int) -> Int = { x, y -> x + y }
+}
+
+fun main() {
+    val lambda = Lambda()
+    println(lambda.sum(1, 2))
+    println(lambda.sum2(1, 2))
+}
+```
+
+## 4.3 Kotlin中的特殊函数
+
+本节我们介绍Kotlin中的run()、apply()、let()、also()和with()这5个特殊的函数。
+
+```kotlin
+package Fun
+
+import Class.User.age
+import Class.User.eat
+import Class.User.name
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/3 10:11
+ * @version: 1.0
+ */
+class PersonDemo(var name: String, var age: Int) {
+
+    fun eat() {
+        println("吃柠檬")
+    }
+
+    fun work(hour: Int): Int {
+        println("work $hour hour,earn ￥${hour * 60}")
+        return hour * 60
+    }
+}
+
+
+fun main() {
+    testWith()
+    testRun()
+    testApply()
+    testAlso()
+}
+
+// 测试with函数
+// with函数是一个顶层函数，它的定义如下：
+// public inline fun <T, R> with(receiver: T, block: T.() -> R): R = receiver.block()
+// with函数的作用是将某对象作为函数的参数，在函数块内可以通过this指代该对象。返回值为函数块的最后一行或指定return表达式。
+// with()函数是一个内联函数，它把传入的对象作为接受者，在该函数内可以使用this指代该对象来访问其公有的属性和方法。
+// 该函数的返回值为函数块最后一行或指定的return表示式。
+fun testWith() {
+    val person = PersonDemo("张三", 18)
+    val result = with(person) {
+        println("name:$name,age:$age")
+        eat()
+        work(8)
+    }
+    // 最后一行是返回值
+    println(result)
+}
+
+
+// 测试run函数
+// run函数是一个扩展函数，它的定义如下：
+// public inline fun <T, R> T.run(block: T.() -> R): R = block()
+// run函数的作用是将某对象作为函数的参数，在函数块内可以通过this指代该对象。返回值为函数块的最后一行或指定return表达式。
+// run()函数是with()和let()函数的结合体，它可以像with()函数一样直接在函数块中使用this指代该对象，也可以像let()函数一样为对象做统一的判空处理。
+
+fun testRun() {
+    val person = PersonDemo("张三", 18)
+    person.run {
+        println("name:$name,age:$age")
+        eat()
+        work(8)
+    }
+}
+
+// 测试apply函数
+// apply函数是一个扩展函数，它的定义如下：
+// public inline fun <T> T.apply(block: T.() -> Unit): T { block(); return this }
+// apply函数的作用是将某对象作为函数的参数，在函数块内可以通过this指代该对象。返回值为该对象自己。
+// apply()函数和run()函数相似，不同的是，run()函数是以闭包形式返回最后一行代码的值，而apply()函数返回的是传入的对象本身。
+
+fun testApply() {
+    val person = PersonDemo("张三", 18)
+   val result=person.apply {
+        println("name:$name,age:$age")
+        eat()
+        work(8)
+    }
+    println(result)
+}
+
+// 测试also函数
+// also函数是一个扩展函数，它的定义如下：
+// public inline fun <T> T.also(block: (T) -> Unit): T { block(this); return this }
+// also()函数和apply()函数相似，不同的是，also()函数在函数块中使用it指代该对象，而apply()函数在函数块中使用this指代该对象。
+
+fun testAlso() {
+    val person = PersonDemo("张三", 18)
+  val result= person.also {
+        println("name:${it.name},age:${it.age}")
+        it.eat()
+        it.work(8)
+    }
+    println(result)
+}
+
+// 测试let函数
+// let函数是一个扩展函数，它的定义如下：
+// public inline fun <T, R> T.let(block: (T) -> R): R = block(this)
+// let()函数是一个扩展对象函数，它可以对被扩展的对象做统一的判空处理，在函数块内使用it来指代该对象，可以访问对象的公有属性和方法。let()函数的返回值和with()函数一样，为函数块最后一行或指定的return表示式
+
+fun testLet() {
+    val person = PersonDemo("张三", 18)
+    val result = person.let {
+        println("name:${it.name},age:${it.age}")
+        it.eat()
+        it.work(8)
+    }
+    println(result)
+}
+```
+## 4.4 扩展函数
+- 概念：扩展函数是指在不改变原类的基础上，为类添加新的函数。
+- 语法：扩展函数的语法格式如下：
+
+```kotlin
+fun 类名.方法名(参数列表): 返回值类型 {
+    方法体
+}
+```
+- 案例，下面为String类添加一个扩展函数：
+
+```kotlin
+package Fun
+
+/**
+ * @description: 扩展函数是指在不改变原类的基础上，为类添加新的函数。
+ * @createDate: 2023/8/3 10:11
+ * @version: 1.0
+ */
+
+fun String.addExt(): String {
+    return "shu"
+}
+
+fun main() {
+    println("".addExt())
+}
+```
+- 说明：扩展函数的作用域是在当前文件中，如果想要在其他文件中使用扩展函数，需要导入扩展函数所在的文件。
+
+## 4.5 扩展属性
+
+- 概念：扩展属性是指在不改变原类的基础上，为类添加新的属性。
+- 语法：扩展属性的语法格式如下：
+
+```kotlin
+val 类名.属性名: 属性类型
+    get() = 属性的get方法
+    set(value) = 属性的set方法
+```
+
+- 案例，下面为String类添加一个扩展属性：
+
+```kotlin
+package Fun
+
+/**
+ * @description: 扩展属性是指在不改变原类的基础上，为类添加新的属性。
+ * @createDate: 2023/8/3 10:11
+ * @version: 1.0
+ */
+
+val String.addExt: String
+    get() = "shu"
+
+fun main() {
+
+    println("".addExt)
+}
+```
+- 注意：扩展属性不能有幕后字段（backing field），因此扩展属性不能被初始化，只能通过显示提供的getter/setter访问器来定义。
