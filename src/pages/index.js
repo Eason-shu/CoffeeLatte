@@ -123,6 +123,7 @@ export default function Home() {
     <Layout title="" description="拿铁要加冰的博客">
       <Head>
         <meta name="baidu-site-verification" content="codeva-sELXlADyNl" />
+        <meta name="referrer" content="no-referrer"/>
       </Head>
       <main>
         <Hero />
