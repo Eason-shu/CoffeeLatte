@@ -37,6 +37,8 @@ const config = {
           blogSidebarCount: 7,
           blogSidebarTitle: "近期文章",
           showReadingTime: true,
+          readingTime: ({content, frontMatter, defaultReadingTime}) =>
+            defaultReadingTime({content, options: {wordsPerMinute: 300}}),
           feedOptions: {
             title: "",
             description: "拿铁要加冰 的个人生活和工作记录",
