@@ -19,9 +19,7 @@ const config = {
     defaultLocale: "zh-Hans",
     locales: ["zh-Hans"],
   },
-  scripts: [
-
-  ],
+  scripts: [],
   presets: [
     [
       "classic",
@@ -310,14 +308,19 @@ const config = {
           },
         ],
       },
-      algolia: {
-        apiKey: "5d5a02bdf02df700355c8ccd8072fff5d867a155d7c523d58761fd761",
-        appId: "OZ5VV8CD4F",
-        indexName: "lottecoffee",
+      tableOfContents: {
+        minHeadingLevel: 1,
+        maxHeadingLevel: 5,
       },
-     umami:{
-
-     },
+      algolia: {
+        appId: "GV6YN1ODMO",
+        apiKey: "50303937b0e4630bec4a20a14e3b7872",
+        indexName: "kuizuo",
+      },
+      umami: {
+        websiteid: "7efcd733-c232-43db-9f17-10a00c53b152",
+        src: "https://www.lottecoffee.com/umami.js",
+      },
       footer: {
         style: "dark",
         copyright: `<p>Copyright © ${new Date().getFullYear()} 拿铁要加冰  Built with Docusaurus.</p><p><a href="http://beian.miit.gov.cn/" >蜀ICP备2022021919号</a></p>`,
