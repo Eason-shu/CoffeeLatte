@@ -315,7 +315,9 @@ const config = {
         appId: "OZ5VV8CD4F",
         indexName: "lottecoffee",
       },
-     
+     umami:{
+
+     },
       footer: {
         style: "dark",
         copyright: `<p>Copyright © ${new Date().getFullYear()} 拿铁要加冰  Built with Docusaurus.</p><p><a href="http://beian.miit.gov.cn/" >蜀ICP备2022021919号</a></p>`,
