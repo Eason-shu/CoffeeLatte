@@ -2890,3 +2890,336 @@ fun main() {
 ```
 
 在 Kotlin 中，我们把只能保证读取数据时类型安全的对象叫做生产者，用 out T 标记；把只能保证写入数据安全时类型安全的对象叫做消费者，用 in T 标记。可以这么记：out T 等价于? extends T；in T 等价于? super T。
+# 七 IO
+## 7.1 文件读写
+- 概念：文件读写是指将数据从文件中读取出来，或者将数据写入到文件中。
+- 语法：文件读写的语法格式如下：
+
+```kotlin
+// 读取文件
+val file = File("文件路径")
+val bufferedReader = BufferedReader(FileReader(file))
+val text = bufferedReader.readText()
+bufferedReader.close()
+
+// 写入文件
+val file = File("文件路径")
+val bufferedWriter = BufferedWriter(FileWriter(file))
+bufferedWriter.write("写入的内容")
+bufferedWriter.close()
+```
+
+- 案例：读取文件中的内容，将内容写入到另一个文件中。
+
+```kotlin
+package IO
+
+import java.io.File
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/4 9:19
+ * @version: 1.0
+ */
+class FileTest {
+
+    // 读取文件 :readText readLines readBytes bufferedReader
+    // 1: readText 读取文件内容
+    // 2: readLines 读取文件内容，返回List<String>
+    // 3: readBytes 读取文件内容，返回ByteArray
+    // 4: bufferedReader 读取文件内容，返回BufferedReader
+    fun readFile() {
+        val file = File("D:\\config.json")
+        println(file.readText())
+        println(file.readLines())
+        println(file.readBytes())
+        println(file.bufferedReader().readLine())
+    }
+    // 写入文件: writeText appendText appendBytes  bufferedReader
+    fun writeFile() {
+        val file = File("D:\\config01.json")
+        file.writeText("hello world")
+        file.appendText("hello world", Charsets.UTF_8)  // 追加内容
+        file.appendBytes("hello world".toByteArray())
+        file.bufferedReader().readLine()
+
+    }
+
+    // 读取文件夹
+    fun readDir() {
+        val file = File("D:\\")
+        file.walk().forEach {
+            println(it)
+        }
+    }
+
+    // 创建文件夹
+    fun createDir() {
+        val file = File("D:\\test")
+        file.mkdir()
+    }
+
+    // 删除文件夹
+    fun deleteDir() {
+        val file = File("D:\\test")
+        file.delete()
+    }
+
+    // 重命名文件夹
+    fun renameDir() {
+        val file = File("D:\\test")
+        file.renameTo(File("D:\\test01"))
+    }
+
+    // 递归复制
+    fun copyDir() {
+        val file = File("D:\\test")
+        file.copyRecursively(File("D:\\test01"))
+    }
+
+    // 递归删除
+    fun deleteDirRecursively() {
+        val file = File("D:\\test")
+        file.deleteRecursively()
+    }
+
+    // 文件是否存在
+    fun isExist() {
+        val file = File("D:\\test")
+        file.exists()
+    }
+
+    // 文件是否可读
+    fun isReadable() {
+        val file = File("D:\\test")
+        file.canRead()
+    }
+
+    // 文件是否可写
+
+    fun isWritable() {
+        val file = File("D:\\test")
+        file.canWrite()
+    }
+
+    // 文件是否可执行
+
+    fun isExecutable() {
+        val file = File("D:\\test")
+        file.canExecute()
+    }
+
+    // 文件大小
+
+    fun fileSize() {
+        val file = File("D:\\test")
+        file.length()
+    }
+
+    // 文件最后修改时间
+
+    fun fileLastModified() {
+        val file = File("D:\\test")
+        file.lastModified()
+    }
+
+    // 文件名
+
+    fun fileName() {
+        val file = File("D:\\test")
+        file.name
+    }
+
+    // 文件路径
+
+    fun filePath() {
+        val file = File("D:\\test")
+        file.path
+    }
+
+    // 文件绝对路径
+
+    fun fileAbsolutePath() {
+        val file = File("D:\\test")
+        file.absolutePath
+    }
+
+    // 文件父目录
+
+    fun fileParent() {
+        val file = File("D:\\test")
+        file.parent
+    }
+
+}
+
+fun main() {
+//    FileTest().readFile()
+//    FileTest().writeFile()
+    FileTest().readDir()
+
+}
+```
+## 7.2 网络Io读取
+- 概念：网络Io读取是指从网络中读取数据。
+- 语法：网络Io读取的语法格式如下：
+
+```kotlin
+val url = URL("https://www.baidu.com")
+val bufferedReader = BufferedReader(InputStreamReader(url.openStream()))
+val text = bufferedReader.readText()
+bufferedReader.close()
+```
+
+- 案例：从网络中读取数据。
+
+```kotlin
+package IO
+
+import java.io.File
+import java.net.URL
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/4 9:35
+ * @version: 1.0
+ */
+class NetWorkIo {
+    // 网络IO
+    fun NetWorkIoTest(URL: String) {
+        val url = URL(URL)
+        val connection = url.openConnection()
+        val stream = connection.getInputStream()
+        val text = stream.bufferedReader().readText()
+        println(text)
+        // 写入文件中
+        val file = File("D:\\test.html")
+        file.writeText(text)
+
+    }
+
+    // 图片下载
+    fun downloadImage(URL: String) {
+        val url = URL(URL)
+        val connection = url.openConnection()
+        val stream = connection.getInputStream()
+        val file = File("D:\\test.jpg")
+        file.writeBytes(stream.readBytes())
+    }
+
+
+}
+
+fun main() {
+    val netWorkIo = NetWorkIo()
+    netWorkIo.NetWorkIoTest("https://www.baidu.com")
+    netWorkIo.downloadImage("https://www.baidu.com/img/bd_logo1.png")
+}
+```
+## 7.3 正则表达式
+- 概念：正则表达式是指用来匹配字符串的一种工具。
+- 语法：正则表达式的语法格式如下：
+
+```kotlin
+val regex = Regex("正则表达式")
+val matchResult = regex.find("字符串")
+```
+
+- 案例：使用正则表达式匹配字符串。
+
+```kotlin
+package IO
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/4 9:40
+ * @version: 1.0
+ */
+class RegexTest {
+    // 正则表达式
+    fun regexTest() {
+        val regex = Regex("[0-9]+")
+        val matchResult = regex.find("hello1234567world")
+        println(matchResult?.value)
+        val matchResults = regex.findAll("hello1234567world")
+        matchResults.forEach {
+            println(it.value)
+        }
+        println(regex.replace("hello1234567world", "world"))
+        println(regex.replaceFirst("hello1234567world", "world"))
+
+
+    }
+}
+
+fun main() {
+    val regexTest = RegexTest()
+    regexTest.regexTest()
+}
+```
+## 7.4 线程
+- 概念：线程是指程序中执行的一个任务。
+- 语法：线程的语法格式如下：
+
+```kotlin
+// 创建线程
+val thread = Thread {
+    // 线程体
+}
+// 启动线程
+thread.start()
+```
+
+- 案例：创建线程，启动线程。
+
+```kotlin
+package Thread
+
+/**
+ * @description:
+ * @author: shu
+ * @createDate: 2023/8/4 9:42
+ * @version: 1.0
+ */
+class Thread {
+
+    // 创建线程
+    fun createThread() {
+        val thread = Thread {
+            println("hello world")
+        }
+        thread.start()
+    }
+    // Runnable
+    fun runnable() {
+        val runnable = Runnable {
+            println("hello world")
+        }
+        val thread = Thread(runnable)
+        thread.start()
+    }
+
+    // 同步方法
+   @Synchronized fun synchronizedTest() {
+        val thread = Thread()
+            println("hello world")
+
+    }
+
+    // 可变字段
+    @Volatile var flag = false
+
+
+}
+
+fun main() {
+    val thread = Thread()
+    thread.createThread()
+    thread.runnable()
+}
+
+```
+
