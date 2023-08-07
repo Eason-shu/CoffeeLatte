@@ -125,6 +125,19 @@ const config = {
         breadcrumbs: true,
       },
     ],
+    // -----------------------------------------------------Idea--------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Idea",
+        path: "java/Idea",
+        routeBasePath: "Idea",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
     // -----------------------------------------------------Angular------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -247,6 +260,10 @@ const config = {
               {
                 label: "3️⃣ Spring",
                 to: "/Spring",
+              },
+              {
+                label: "4️⃣ Idea",
+                to: "/Idea",
               },
             ],
           },
