@@ -267,7 +267,7 @@ const config = {
               },
               {
                 label: "5️⃣ 算法",
-                link: "https://www.hello-algo.com/chapter_preface/",
+                href: "https://www.hello-algo.com/chapter_preface/",
               },
             ],
           },
