@@ -265,6 +265,10 @@ const config = {
                 label: "4️⃣ Idea",
                 to: "/Idea",
               },
+              {
+                label: "5️⃣ 算法",
+                link: "https://www.hello-algo.com/chapter_preface/",
+              },
             ],
           },
           {
