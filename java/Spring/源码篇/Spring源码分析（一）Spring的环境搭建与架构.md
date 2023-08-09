@@ -139,5 +139,5 @@ allprojects{
 - 进入Idea 进行依赖的下载，知道入下图才是源码构建成功
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1680180856740-c93db187-9af3-4244-aeea-1be1230d9b13.png#averageHue=%2386795e&clientId=ub30f95e9-d85a-4&from=paste&height=824&id=u7dda073c&originHeight=1030&originWidth=1920&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=163236&status=done&style=none&taskId=ub6ea3c2a-9aff-44c8-900b-1f07dcdb0a6&title=&width=1536)
-到了这我们基本的源码分析环境就搭建完毕了，下面我们来分析源码，从源码中吸收优秀的思想以及设计
+到了这我们基本的源码分析环境就搭建完毕了，下面我们来分析源码，从源码中吸收优秀的思想以及设计，后面我的建议可以用平常的Maven环境来进行源码的分析
 
