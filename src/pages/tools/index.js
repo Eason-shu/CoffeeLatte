@@ -1,167 +1,308 @@
 import Layout from "@theme/Layout";
 import React from "react";
-import { Carousel, initTE } from "tw-elements";
 
 export default function APP() {
-
-  React.useEffect(() => {
-    initTE({ Carousel });
-  }, []);
-
-
 
   return (
     <Layout title="开发工具">
       <div className="tailwind">
-        <div
-          id="carouselExampleCaptions"
-          class="relative"
-          data-te-carousel-init
-          data-te-carousel-slide
-        >
-          <div
-            class="absolute inset-x-0 bottom-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
-            data-te-carousel-indicators
-          >
-            <button
-              type="button"
-              data-te-target="#carouselExampleCaptions"
-              data-te-slide-to="0"
-              data-te-carousel-active
-              class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-te-target="#carouselExampleCaptions"
-              data-te-slide-to="1"
-              class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-te-target="#carouselExampleCaptions"
-              data-te-slide-to="2"
-              class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
-              aria-label="Slide 3"
-            ></button>
+        <div class="flex justify-center items-center">
+          <div class="2xl:mx-auto 2xl:container lg:px-20 lg:py-16 md:py-12 md:px-6 py-9 px-4 w-96 sm:w-auto">
+            <div role="main" class="flex flex-col items-center justify-center">
+              <h1 class="text-4xl font-semibold leading-9 text-center text-gray-800 dark:text-gray-50">
+                This Week Blogs
+              </h1>
+              <p class="text-base leading-normal text-center text-gray-600 dark:text-white mt-4 lg:w-1/2 md:w-10/12 w-11/12">
+                If you're looking for random paragraphs, you've come to the
+                right place. When a random word or a random sentence isn't quite
+                enough
+              </p>
+            </div>
+            <div class="lg:flex items-stretch md:mt-12 mt-8">
+              <div class="lg:w-1/2">
+                <div class="sm:flex items-center justify-between xl:gap-x-8 gap-x-6">
+                  <div class="sm:w-1/2 relative">
+                    <div>
+                      <p class="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0">
+                        12 April 2021
+                      </p>
+                      <div class="absolute bottom-0 left-0 p-6">
+                        <h2 class="text-xl font-semibold 5 text-white">
+                          The Decorated Ways
+                        </h2>
+                        <p class="text-base leading-4 text-white mt-2">
+                          Dive into minimalism
+                        </p>
+                        <a
+                          href="javascript:void(0)"
+                          class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                        >
+                          <p class="pr-2 text-sm font-medium leading-none">
+                            Read More
+                          </p>
+                          <svg
+                            class="fill-stroke"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M5.75 12.5L10.25 8L5.75 3.5"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                    <img
+                      src="https://i.ibb.co/DYxtCJq/img-1.png"
+                      class="w-full"
+                      alt="chair"
+                    />
+                  </div>
+                  <div class="sm:w-1/2 sm:mt-0 mt-4 relative">
+                    <div>
+                      <p class="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0">
+                        12 April 2021
+                      </p>
+                      <div class="absolute bottom-0 left-0 p-6">
+                        <h2 class="text-xl font-semibold 5 text-white">
+                          The Decorated Ways
+                        </h2>
+                        <p class="text-base leading-4 text-white mt-2">
+                          Dive into minimalism
+                        </p>
+                        <a
+                          href="javascript:void(0)"
+                          class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                        >
+                          <p class="pr-2 text-sm font-medium leading-none">
+                            Read More
+                          </p>
+                          <svg
+                            class="fill-stroke"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M5.75 12.5L10.25 8L5.75 3.5"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                    <img
+                      src="https://i.ibb.co/3C5HvxC/img-2.png"
+                      class="w-full"
+                      alt="wall design"
+                    />
+                  </div>
+                </div>
+                <div class="relative">
+                  <div>
+                    <p class="md:p-10 p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0">
+                      12 April 2021
+                    </p>
+                    <div class="absolute bottom-0 left-0 md:p-10 p-6">
+                      <h2 class="text-xl font-semibold 5 text-white">
+                        The Decorated Ways
+                      </h2>
+                      <p class="text-base leading-4 text-white mt-2">
+                        Dive into minimalism
+                      </p>
+                      <a
+                        href="javascript:void(0)"
+                        class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                      >
+                        <p class="pr-2 text-sm font-medium leading-none">
+                          Read More
+                        </p>
+                        <svg
+                          class="fill-stroke"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M5.75 12.5L10.25 8L5.75 3.5"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <img
+                    src="https://i.ibb.co/Ms4qyXp/img-3.png"
+                    alt="sitting place"
+                    class="w-full mt-8 md:mt-6 hidden sm:block"
+                  />
+                  <img
+                    class="w-full mt-4 sm:hidden"
+                    src="https://i.ibb.co/6XYbN7f/Rectangle-29.png"
+                    alt="sitting place"
+                  />
+                </div>
+              </div>
+              <div class="lg:w-1/2 xl:ml-8 lg:ml-4 lg:mt-0 md:mt-6 mt-4 lg:flex flex-col justify-between">
+                <div class="relative">
+                  <div>
+                    <p class="md:p-10 p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0">
+                      12 April 2021
+                    </p>
+                    <div class="absolute bottom-0 left-0 md:p-10 p-6">
+                      <h2 class="text-xl font-semibold 5 text-white">
+                        The Decorated Ways
+                      </h2>
+                      <p class="text-base leading-4 text-white mt-2">
+                        Dive into minimalism
+                      </p>
+                      <a
+                        href="javascript:void(0)"
+                        class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                      >
+                        <p class="pr-2 text-sm font-medium leading-none">
+                          Read More
+                        </p>
+                        <svg
+                          class="fill-stroke"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M5.75 12.5L10.25 8L5.75 3.5"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <img
+                    src="https://i.ibb.co/6Wfjf2w/img-4.png"
+                    alt="sitting place"
+                    class="w-full sm:block hidden"
+                  />
+                  <img
+                    class="w-full sm:hidden"
+                    src="https://i.ibb.co/dpXStJk/Rectangle-29.png"
+                    alt="sitting place"
+                  />
+                </div>
+                <div class="sm:flex items-center justify-between xl:gap-x-8 gap-x-6 md:mt-6 mt-4">
+                  <div class="relative w-full">
+                    <div>
+                      <p class="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0">
+                        12 April 2021
+                      </p>
+                      <div class="absolute bottom-0 left-0 p-6">
+                        <h2 class="text-xl font-semibold 5 text-white">
+                          The Decorated Ways
+                        </h2>
+                        <p class="text-base leading-4 text-white mt-2">
+                          Dive into minimalism
+                        </p>
+                        <a
+                          href="javascript:void(0)"
+                          class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                        >
+                          <p class="pr-2 text-sm font-medium leading-none">
+                            Read More
+                          </p>
+                          <svg
+                            class="fill-stroke"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M5.75 12.5L10.25 8L5.75 3.5"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                    <img
+                      src="https://i.ibb.co/3yvZBpm/img-5.png"
+                      class="w-full"
+                      alt="chair"
+                    />
+                  </div>
+                  <div class="relative w-full sm:mt-0 mt-4">
+                    <div>
+                      <p class="p-6 text-xs font-medium leading-3 text-white absolute top-0 right-0">
+                        12 April 2021
+                      </p>
+                      <div class="absolute bottom-0 left-0 p-6">
+                        <h2 class="text-xl font-semibold 5 text-white">
+                          The Decorated Ways
+                        </h2>
+                        <p class="text-base leading-4 text-white mt-2">
+                          Dive into minimalism
+                        </p>
+                        <a
+                          href="javascript:void(0)"
+                          class="focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline"
+                        >
+                          <p class="pr-2 text-sm font-medium leading-none">
+                            Read More
+                          </p>
+                          <svg
+                            class="fill-stroke"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M5.75 12.5L10.25 8L5.75 3.5"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                    <img
+                      src="https://i.ibb.co/gDdnJb5/img-6.png"
+                      class="w-full"
+                      alt="wall design"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
-            <div
-              class="relative float-left -mr-[100%] hidden w-full !transform-none opacity-0 transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
-              data-te-carousel-fade
-              data-te-carousel-item
-              data-te-carousel-active
-            >
-              <video class="w-full" autoplay loop muted>
-                <source
-                  src="https://tecdn.b-cdn.net/img/video/Lines.mp4"
-                  type="video/mp4"
-                />
-              </video>
-              <div
-                class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed"
-                style={{'background-color': 'rgba(50, 123, 233, 0.1)'}}
-              >
-                <div class="carousel-caption absolute hidden text-center md:block">
-                  <h3 class="text-2xl">Light primary mask</h3>
-                </div>
-              </div>
-            </div>
-            <div
-              class="relative float-left -mr-[100%] hidden w-full !transform-none opacity-0 transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
-              data-te-carousel-fade
-              data-te-carousel-item
-            >
-              <video class="w-full" autoplay loop muted>
-                <source
-                  src="https://tecdn.b-cdn.net/img/video/animation-intro.mp4"
-                  type="video/mp4"
-                />
-              </video>
-              <div
-                class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed"
-                style={{'background-color': 'rgba(135, 50, 233, 0.1)'}}
-              >
-                <div class="carousel-caption absolute hidden text-center md:block">
-                  <h3 class="text-2xl">Light purple mask</h3>
-                </div>
-              </div>
-            </div>
-            <div
-              class="relative float-left -mr-[100%] hidden w-full !transform-none opacity-0 transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none"
-              data-te-carousel-fade
-              data-te-carousel-item
-            >
-              <video class="w-full" autoplay loop muted>
-                <source
-                  src="https://tecdn.b-cdn.net/img/video/Nature-Sunset.mp4"
-                  type="video/mp4"
-                />
-              </video>
-              <div
-                class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed"
-                style={{'background-color': 'rgba(50, 233, 90, 0.1)'}}
-              >
-                <div class="carousel-caption absolute hidden text-center md:block">
-                  <h3 class="text-2xl">Light green mask</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button
-            class="absolute bottom-0 left-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
-            type="button"
-            data-te-target="#carouselExampleCaptions"
-            data-te-slide="prev"
-          >
-            <span class="inline-block h-8 w-8">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="h-6 w-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>
-            </span>
-            <span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-              Previous
-            </span>
-          </button>
-          <button
-            class="absolute bottom-0 right-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
-            type="button"
-            data-te-target="#carouselExampleCaptions"
-            data-te-slide="next"
-          >
-            <span class="inline-block h-8 w-8">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="h-6 w-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                />
-              </svg>
-            </span>
-            <span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-              Next
-            </span>
-          </button>
         </div>
       </div>
     </Layout>
