@@ -1,6 +1,6 @@
 ---
 
-title: Spring源码分析-资源的定义
+title: Spring源码分析（二）资源加载利器Resource接口
 sidebar_position: 2
 keywords:
   - Spring
@@ -1582,6 +1582,8 @@ public class ServletContextResource extends AbstractFileResolvingResource implem
 ```
 # 三 ResourceLoader接口
 
+## 3.1 ResourceLoader接口
+
 -  ResourceLoader 接口应该由可以返回(即加载) Resource 实例的对象实现。
 - 所有应用程序上下文都实现 ResourceLoader 接口。
 - 在Spring Framework中，所有的应用程序上下文（Application Context）都实现了ResourceLoader接口，因此它们都具有加载资源的能力。这意味着您可以使用任何应用程序上下文来获取Resource实例，无论是标准的ApplicationContext还是其他特定类型的应用程序上下文，都可以用来加载不同类型的资源。
@@ -1647,6 +1649,8 @@ Resource template = ctx.getResource("https://myhost.com/resource/path/myTemplate
 
 # 四 ResourcePatternResolver接口
 
+## 4.1 ResourcePatternResolver接口
+
 - Spring Framework 中的 ResourcePatternResolver 接口是 Spring 提供的用于解析资源模式的接口。该接口继承自 Spring 的 ResourceLoader 接口，并在此基础上添加了对资源模式解析的能力。
 - ResourcePatternResolver 接口定义了一系列方法，用于解析匹配指定资源模式的资源。其中最常用的方法是 `getResources(String locationPattern)`，该方法接收一个资源模式字符串作为参数，返回匹配该模式的所有资源的数组。
 
@@ -1674,6 +1678,9 @@ public class ResourcePatternResolverExample {
 
 ```
 # 五 **ResourceLoaderAware 接口**
+
+## 5.1 ResourceLoaderAware 接口
+
 ResourceLoader 是 Spring 提供的一个用于加载资源的接口，它可以加载类路径中的资源、文件系统中的资源以及其他外部资源，通过实现 ResourceLoaderAware 接口，可以方便地获取 ResourceLoader 实例，并在类中使用它加载所需的资源。
 当实现 ResourceLoaderAware 接口的类被实例化并由 Spring 容器管理时，Spring 将会自动调用该方法，并将相应的 ResourceLoader 实例作为参数传入，在该方法中，您可以将 ResourceLoader 实例存储在类的成员变量中，以便在需要加载资源的地方使用它。
 ```java
@@ -1698,7 +1705,6 @@ public class MyResourceLoaderAwareBean implements ResourceLoaderAware {
 
 ```
 其他的知识参考官网的知识，这里的知识都来自官网，综上我们看到Spring框架的精妙之处，把资源抽象成一个接口，不同的实现，从而达到了资源的不同的加载，到这我们也分析完成了案例的第一步资源的加载，下一篇文章来分析IOC的基本实现
-
 
 
 
