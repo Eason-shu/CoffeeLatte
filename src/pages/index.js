@@ -124,7 +124,7 @@ export default function Home() {
       <Head>
         <meta name="baidu-site-verification" content="codeva-sELXlADyNl" />
         <meta name="referrer" content="no-referrer"/>
-  
+
       </Head>
       <main>
         <Hero />
