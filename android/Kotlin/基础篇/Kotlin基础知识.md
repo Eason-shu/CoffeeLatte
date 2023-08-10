@@ -1,6 +1,6 @@
 ---
 title: Kotlin基础知识
-sidebar_position: 2
+sidebar_position: 1
 keywords:
   - Android
   - Kotlin
