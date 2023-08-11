@@ -322,7 +322,7 @@ const config = {
                 to: "/roadmap",
               },
               {
-                label: "工具",
+                label: "摄影",
                 to: "tools",
               },
             ],
