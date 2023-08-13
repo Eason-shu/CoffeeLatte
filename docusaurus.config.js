@@ -216,6 +216,20 @@ const config = {
         breadcrumbs: false,
       },
     ],
+    // -------------------------------------------------摄影-----------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "photography",
+        path: "hobby/photography",
+        routeBasePath: "photography",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
+
     "docusaurus-plugin-umami",
     "./src/plugin/postcss-tailwind-loader.js",
   ],
@@ -315,16 +329,26 @@ const config = {
           },
           {
             position: "right",
+            label: "🎮 爱好",
+            items: [
+              {
+                label: "摄影",
+                to: "/photography",
+              },
+            ],
+          },
+          {
+            position: "right",
             label: "👨‍💻 职业",
             items: [
               {
                 label: "求职之路",
                 to: "/roadmap",
               },
-              {
-                label: "摄影",
-                to: "tools",
-              },
+              // {
+              //   label: "摄影",
+              //   to: "tools",
+              // },
             ],
           },
         ],
