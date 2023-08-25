@@ -101,7 +101,7 @@ protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate d
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1681882532555-ea01d60e-0437-411f-a133-960a54597d98.png#averageHue=%234c5a4c&clientId=ud2aaa960-e53e-4&from=paste&height=569&id=u262deb54&originHeight=711&originWidth=1822&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=210218&status=done&style=none&taskId=u2f63aad8-433e-4f2b-99c5-414b4b0f755&title=&width=1457.6)
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1681882575381-a1a6c2f4-f3e5-493f-8fff-4916f0bd300f.png#averageHue=%234c584c&clientId=ud2aaa960-e53e-4&from=paste&height=653&id=u9cc5cc9e&originHeight=816&originWidth=1858&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=237301&status=done&style=none&taskId=u5331cbe2-891f-466d-9861-42c9d14538d&title=&width=1486.4)
 
-- 该方法用来遍历 root 节点下的子节点，比如说 root 节点为<beans>节点，则遍历它所包含的<bean>、<alias>等节点
+- 该方法用来遍历 root 节点下的子节点，比如说 root 节点为`<beans>`节点，则遍历它所包含的`<bean>`、`<alias>`等节点
 - 如果根节点或者子节点采用默认命名空间的话，则调用 parseDefaultElement() 进行默认标签解析
 - 否则调用 delegate.parseCustomElement() 方法进行自定义解析
 - 下面我们先来分析默认标签的解析
@@ -325,11 +325,11 @@ private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate deleg
 #### 1.3.1.1 AbstractBeanDefinition的创建
 
 - **BeanDefinition是一个接口，在Spring中存在三种实现：RootBeanDefinition、ChildBeanDefinition以及GenericBeanDefinition。**
-- 三种实现均继承了AbstractBeanDefiniton，其中BeanDefinition是配置文件<bean>元素标签在容器中的内部表示形式
-- <bean>元素标签拥有class、scope、lazy-init等配置属性，BeanDefinition则提供了相应的beanClass、scope、lazyInit属性，BeanDefinition和<bean>中的属性是一一对应的。
-- 其中RootBeanDefinition是最常用的实现类，它对应一般性的<bean>元素标签，GenericBeanDefinition是自2.5版本以后新加入的bean文件配置属性定义类，是一站式服务类。
-- 在配置文件中可以定义父<bean>和子<bean>，父<bean>用RootBeanDefinition表示，而子<bean>用ChildBeanDefiniton表示，而没有父<bean>的<bean>就使用RootBeanDefinition表示。
-- Spring通过BeanDefinition将配置文件中的<bean>配置信息转换为容器的内部表示，并将这些BeanDefiniton注册到BeanDefinitonRegistry中。
+- 三种实现均继承了AbstractBeanDefiniton，其中BeanDefinition是配置文件`<bean>`元素标签在容器中的内部表示形式
+- `<bean>`元素标签拥有class、scope、lazy-init等配置属性，BeanDefinition则提供了相应的beanClass、scope、lazyInit属性，BeanDefinition和`<bean>`中的属性是一一对应的。
+- 其中RootBeanDefinition是最常用的实现类，它对应一般性的`<bean>`元素标签，GenericBeanDefinition是自2.5版本以后新加入的bean文件配置属性定义类，是一站式服务类。
+- 在配置文件中可以定义父`<bean>`和子`<bean>`，父`<bean>`用RootBeanDefinition表示，而子`<bean>`用ChildBeanDefiniton表示，而没有父`<bean>`的`<bean>`就使用RootBeanDefinition表示。
+- Spring通过BeanDefinition将配置文件中的`<bean>`配置信息转换为容器的内部表示，并将这些BeanDefiniton注册到BeanDefinitonRegistry中。
 - Spring容器的BeanDefinitionRegistry就像是Spring配置信息的内存数据库，主要是以map的形式保存，后续操作直接从BeanDefinition Registry中读取配置信息。
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1681384541704-312b949d-a4f1-486d-bffb-1153408d99af.png#averageHue=%23fcfcf9&clientId=u5e16b653-d8f0-4&from=paste&height=343&id=u82c4309d&originHeight=429&originWidth=718&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=99502&status=done&style=none&taskId=ub91ff538-c58b-48d2-8000-7994bc3c47b&title=&width=574.4)
@@ -378,7 +378,7 @@ private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate deleg
 #### 1.3.1.2 解析bean的各种属性
 参考官网：[核心技术](https://springdoc.cn/spring/core.html#beans-introduction)
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1681885578912-9e022b45-69ce-457b-bc4d-9e9cb1d28055.png#averageHue=%23fefefe&clientId=ud2aaa960-e53e-4&from=paste&height=469&id=ubb0957e2&originHeight=586&originWidth=1317&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=39408&status=done&style=none&taskId=u31171c96-8ada-4565-81a0-fecf46cf3db&title=&width=1053.6)
-一个Spring IoC容器管理着一个或多个Bean。这些Bean是用你提供给容器的配置元数据创建的（例如，以XML <bean/> 定义的形式）。
+一个Spring IoC容器管理着一个或多个Bean。这些Bean是用你提供给容器的配置元数据创建的（例如，以XML `<bean/>` 定义的形式）。
 在容器本身中，这些Bean定义被表示为 BeanDefinition 对象，它包含（除其他信息外）以下元数据。
 
 - 一个全路径类名：通常，被定义的Bean的实际实现类。
