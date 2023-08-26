@@ -1,6 +1,6 @@
 ---
 
-title: Spring源码分析（三）Spring源码分析（三）容器的基本实现
+title: Spring源码分析（三）容器的基本实现
 sidebar_position: 3
 keywords:
   - Spring
