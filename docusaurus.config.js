@@ -138,6 +138,19 @@ const config = {
         breadcrumbs: false,
       },
     ],
+    // -----------------------------------------------------Redis--------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Redis",
+        path: "java/Redis",
+        routeBasePath: "Redis",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
     // -----------------------------------------------------Angular------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -276,11 +289,15 @@ const config = {
                 to: "/Spring",
               },
               {
-                label: "4️⃣ Idea",
+                label: "4️⃣ Redis",
+                to: "/Redis",
+              },
+              {
+                label: "5️⃣ Idea",
                 to: "/Idea",
               },
               {
-                label: "5️⃣ 算法",
+                label: "6️⃣ 算法",
                 href: "https://www.hello-algo.com/chapter_preface/",
               },
             ],
