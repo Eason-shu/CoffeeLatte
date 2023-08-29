@@ -772,8 +772,8 @@ protected String originalBeanName(String name) {
 }
 ```
 
-- <x> 处，AbstractBeanFactory#transformedBeanName(String name) 方法，是对 name 进行转换，获取真正的 beanName。参考前面转换对应的Bean
-- <y> 处，如果 name 是以 "&" 开头的，则加上 "&"  ，因为在AbstractBeanFactory#transformedBeanName(String name) 方法中把  "&"  去掉，这边需要补上
+-  x 处，AbstractBeanFactory#transformedBeanName(String name) 方法，是对 name 进行转换，获取真正的 beanName。参考前面转换对应的Bean
+- y 处，如果 name 是以 "&" 开头的，则加上 "&"  ，因为在AbstractBeanFactory#transformedBeanName(String name) 方法中把  "&"  去掉，这边需要补上
 
 委托父容器加载 Bean 的逻辑
 **AbstractBeanFactory**
