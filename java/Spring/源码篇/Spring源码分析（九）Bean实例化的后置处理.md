@@ -704,7 +704,7 @@ InjectionMetadatapublic void checkConfigMembers(RootBeanDefinition beanDefinitio
 
 一个类中可能会有很多个方法、属性被标注了@Autowired注解, 那么每一个被标注的方法、属性都用一个
 InjectedElement表示, 而所有这些InjectedElement均被放入到一个Collections中, 这个集合则存在于
-InjectionMetadata中, 即InjectionMetadata中的Collection<InjectedElement> injectedElements存储
+InjectionMetadata中, 即InjectionMetadata中的Collection InjectedElement injectedElements存储
 了所有需要被注入的信息, 里面有一个targetClass属性则是存储了这些方法、属性所在的类Class对象
 ```java
 public class InjectionMetadata {
