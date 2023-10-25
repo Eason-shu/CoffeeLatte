@@ -7,7 +7,7 @@ const { to } = require("react-spring");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "拿铁要加冰 | Java开发工程师", // 标题 | Title
+  title: "LotteCoffee", // 标题 | Title
   staticDirectories: ["public", "static"], // 静态文件夹 | Static directory
   tagline: "活到老，学到老，作为程序员的自我修养，哈哈哈哈哈", // 标语 | Tagline
   url: "https://www.lottecoffee.com", // 站点地址 | Your website URL
@@ -33,7 +33,7 @@ const config = {
         },
         blog: {
           blogTitle: "",
-          blogDescription: "拿铁要加冰 的个人生活和工作记录",
+          blogDescription: "LotteCoffee 的个人生活和工作记录",
           blogSidebarCount: 7,
           blogSidebarTitle: "近期文章",
           showReadingTime: true,
@@ -41,9 +41,9 @@ const config = {
             defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
           feedOptions: {
             title: "",
-            description: "拿铁要加冰 的个人生活和工作记录",
+            description: "LotteCoffee 的个人生活和工作记录",
             type: "all",
-            copyright: `Copyright © ${new Date().getFullYear()} 拿铁要加冰, Inc.`,
+            copyright: `Copyright © ${new Date().getFullYear()} LotteCoffee, Inc.`,
           },
         },
         theme: {
