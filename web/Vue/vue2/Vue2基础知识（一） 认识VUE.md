@@ -466,12 +466,12 @@ Vue 实例：[https://v2.cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D
 - **预期**：Array | Object | number | string | Iterable (2.6 新增)
 - **用法**：基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 alias in expression，为当前遍历的元素提供别名：
 
-| ```vue
+```vue
 <div v-for="item in items">
    {{ item.text }}
 </div>
 ```
- |
+ 
 | --- |
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1697704478845-e9738d1c-4a52-4cb6-992d-ed26aa608b70.png#averageHue=%23eeedec&clientId=ua8dfa591-4c93-4&from=paste&height=436&id=u51099491&originHeight=545&originWidth=1275&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=136115&status=done&style=none&taskId=u43c2d851-9668-41a8-aeeb-30bab617c72&title=&width=1020)
