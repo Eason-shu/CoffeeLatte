@@ -259,13 +259,13 @@ const config = {
       metadata: [
         {
           name: "lottecoffee",
-          content: "拿铁要加冰 的个人生活和工作记录，欢迎大家一起学习！",
+          content: "LotteCoffee 的个人生活和工作记录，欢迎大家一起学习！",
         },
       ],
       navbar: {
-        title: "拿铁要加冰",
+        title: "LotteCoffee",
         logo: {
-          alt: "拿铁要加冰 | Java开发工程师",
+          alt: "LotteCoffee",
           src: "img/logo.jpg",
           srcDark: "img/logo.jpg",
         },
@@ -385,7 +385,7 @@ const config = {
       },
       footer: {
         style: "dark",
-        copyright: `<p>Copyright © ${new Date().getFullYear()} 拿铁要加冰  Built with Docusaurus.</p><p><a href="http://beian.miit.gov.cn/" >蜀ICP备2022021919号</a></p>`,
+        copyright: `<p>Copyright © ${new Date().getFullYear()} LotteCoffee  Built with Docusaurus.</p><p><a href="http://beian.miit.gov.cn/" >蜀ICP备2022021919号</a></p>`,
       },
       prism: {
         theme: lightCodeTheme,
