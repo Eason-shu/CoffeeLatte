@@ -460,13 +460,15 @@ Vue 实例：[https://v2.cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D
 <!-- XLink -->
 <svg><a :xlink:special="foo"></a></svg>
 ```
+
 ### 2.5.4  v-for
 
 - **预期**：Array | Object | number | string | Iterable (2.6 新增)
 - **用法**：基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 alias in expression，为当前遍历的元素提供别名：
+
 | ```vue
 <div v-for="item in items">
-                             {{ item.text }}
+   {{ item.text }}
 </div>
 ```
  |

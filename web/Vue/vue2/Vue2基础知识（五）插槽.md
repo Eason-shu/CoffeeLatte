@@ -132,8 +132,10 @@ export default {
 ```
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1698027239299-d98d704f-0867-4595-824d-30661bdfeeae.png#averageHue=%23fdfcfb&clientId=u1265b008-bd14-4&from=paste&height=706&id=u4b7e0523&originHeight=883&originWidth=1920&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=35231&status=done&style=none&taskId=ue610bc9e-9d7c-43c0-b418-be4c78e74cf&title=&width=1536)
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1698027252117-494f1391-1d8e-4736-b2e9-8e9f00c61fe2.png#averageHue=%23fbfafa&clientId=u1265b008-bd14-4&from=paste&height=416&id=u43f52076&originHeight=520&originWidth=1318&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=104629&status=done&style=none&taskId=ue8dd90fb-3e21-4497-b6a8-9228b91ecad&title=&width=1054.4)
+
 ## 1.3 具名插槽
-<slot> 元素有一个特殊的 **attribute：name**。通过该属性可以将内容放在指定的插槽里。
+
+slot 元素有一个特殊的 **attribute：name**。通过该属性可以将内容放在指定的插槽里。
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1698027437618-f73ef04c-7a46-46ea-a27c-1d678e1fd152.png#averageHue=%23acaaaa&clientId=u1265b008-bd14-4&from=paste&height=517&id=ua3b40e85&originHeight=646&originWidth=1183&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=154917&status=done&style=none&taskId=ucbab1176-4669-4e56-a1f4-59c1dbf83c8&title=&width=946.4)
 ```vue
 <template>
@@ -186,8 +188,8 @@ export default {
     </NameSlots>
 ```
 
-- 如果一个<slot>不带name属性的话，那么它的name默认为default
-在向具名插槽提供内容的时候，我们可以在<template>元素上使用v-slot指令，并以参数的形式提供其名称
+- 如果一个slot不带name属性的话，那么它的name默认为default
+在向具名插槽提供内容的时候，我们可以在template元素上使用v-slot指令，并以参数的形式提供其名称
 - 简化写法：
 ```vue
  <NameSlots title="美食">
