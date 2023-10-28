@@ -527,13 +527,14 @@ Vue 实例：[https://v2.cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1697704689008-34cd63dd-eb4b-4dcf-8b38-32c4d641d500.png#averageHue=%23cac5c2&clientId=ua8dfa591-4c93-4&from=paste&height=452&id=ueeb97d51&originHeight=565&originWidth=1217&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=112494&status=done&style=none&taskId=ud8dc8158-5eef-44d8-8ff9-af3d8a2d594&title=&width=973.6)
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1697704699701-62e36ea2-b6ae-44c5-9054-375441986566.png#averageHue=%23d0cbc8&clientId=ua8dfa591-4c93-4&from=paste&height=454&id=u3bbf8026&originHeight=567&originWidth=1217&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=99526&status=done&style=none&taskId=u3a9caaf8-9165-49d8-99fd-ae46eccad15&title=&width=973.6)
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1697704717457-425e821a-4068-4e06-8426-beb52ba2f1c1.png#averageHue=%23eeecec&clientId=ua8dfa591-4c93-4&from=paste&height=422&id=u9b46e91e&originHeight=528&originWidth=1169&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=80787&status=done&style=none&taskId=u49a64d16-a47f-4061-ad38-3cd2ed0e573&title=&width=935.2)
+
 ### 2.5.5 v-model
 
 - **预期**：随表单控件类型不同而不同。
 - **限制**：
-   - <input>
-   - <select>
-   - <textarea>
+   - input
+   - select
+   - textarea
    - components
 - **修饰符**：
    - [.lazy](https://v2.cn.vuejs.org/v2/guide/forms.html#lazy) - 取代 input 监听 change 事件
@@ -603,7 +604,7 @@ Vue 实例：[https://v2.cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D
 
  ```vue
 <!-- 在“change”时而非“input”时更新 -->
-<input v-model.lazy="msg">
+<input v-model.lazy="msg"/>
 如果想自动将用户的输入值转为数值类型，可以给 v-model 添加 number 修饰符：
 <input v-model.number="age" type="number">
  ```
