@@ -542,6 +542,7 @@ Vue 实例：[https://v2.cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D
 - **用法**：在表单控件或者组件上创建双向绑定
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1697704771965-5cd3241e-2748-4c8f-81aa-86166d9cd98a.png#averageHue=%23efeded&clientId=ua8dfa591-4c93-4&from=paste&height=470&id=ub9ebfdf7&originHeight=587&originWidth=1239&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=120712&status=done&style=none&taskId=u8e20ec81-9909-492f-b4e6-9e605c4b294&title=&width=991.2)
+
 ```vue
 <!DOCTYPE html>
 <html lang="en">
@@ -603,11 +604,7 @@ Vue 实例：[https://v2.cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D
  ```vue
 <!-- 在“change”时而非“input”时更新 -->
 <input v-model.lazy="msg">
-
-**number **
 如果想自动将用户的输入值转为数值类型，可以给 v-model 添加 number 修饰符：
-
-| ```vue
 <input v-model.number="age" type="number">
  ```
 
@@ -704,10 +701,6 @@ Vue 实例：[https://v2.cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D
 
 </html>
 ```
-
-
-
-
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1697705553062-85167538-824e-4ada-9041-bf2dd45ba936.png#averageHue=%23f5f4f4&clientId=ua8dfa591-4c93-4&from=paste&height=628&id=u43f09993&originHeight=785&originWidth=1838&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=50153&status=done&style=none&taskId=u0cde0ff8-5247-46af-ad24-961b9832c42&title=&width=1470.4)
 ## 2.7 扩展
