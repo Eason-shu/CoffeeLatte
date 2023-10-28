@@ -130,6 +130,7 @@ Vue.js 是轻量级的开发框架，很适合开发小规模灵活的 Web 应�
 ```
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1697698448144-1f946d6e-1698-45b4-80d3-096b62621cc9.png#averageHue=%23fdfdfd&clientId=ua8dfa591-4c93-4&from=paste&height=333&id=uf19928a8&originHeight=416&originWidth=1377&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=7094&status=done&style=none&taskId=u7148e477-1a6e-4f8d-922b-1b1124d5664&title=&width=1101.6)
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1697698472419-f096a810-761a-4b84-ab80-6fce7af4dfe3.png#averageHue=%23cfcecd&clientId=ua8dfa591-4c93-4&from=paste&height=517&id=ubdfcc734&originHeight=646&originWidth=1275&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=175256&status=done&style=none&taskId=u34ac302c-3024-498b-bde0-c9f09ddd56f&title=&width=1020)
+
 ## 2.3 Vue 实例
 每个 Vue 应用都是通过用 Vue 函数创建一个新的 **Vue 实例**开始的：
 ```vue
@@ -471,8 +472,6 @@ Vue 实例：[https://v2.cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D
    {{ item.text }}
 </div>
 ```
- 
-| --- |
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1697704478845-e9738d1c-4a52-4cb6-992d-ed26aa608b70.png#averageHue=%23eeedec&clientId=ua8dfa591-4c93-4&from=paste&height=436&id=u51099491&originHeight=545&originWidth=1275&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=136115&status=done&style=none&taskId=u43c2d851-9668-41a8-aeeb-30bab617c72&title=&width=1020)
 ```vue
@@ -601,35 +600,26 @@ Vue 实例：[https://v2.cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D
 **lazy **
 在默认情况下，v-model 在每次 input 事件触发后将输入框的值与数据进行同步 (除了[上述](https://v2.cn.vuejs.org/v2/guide/forms.html#vmodel-ime-tip)输入法组合文字时)。你可以添加 lazy 修饰符，从而转为在 change 事件_之后_进行同步：
 
-| ```vue
+ ```vue
 <!-- 在“change”时而非“input”时更新 -->
 <input v-model.lazy="msg">
-```
- |
-| --- |
 
 **number **
 如果想自动将用户的输入值转为数值类型，可以给 v-model 添加 number 修饰符：
 
 | ```vue
 <input v-model.number="age" type="number">
-```
- |
-| --- |
+ ```
 
 这通常很有用，因为即使在 type="number" 时，HTML 输入元素的值也总会返回字符串。如果这个值无法被 parseFloat() 解析，则会返回原始的值。
 **trim **
 如果要自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符：
 
-| ```vue
-<input v-model.trim="msg">
-```
- |
-| --- |
-
-其他的请参考官方文档，或者自己使用时查询文档
 ## 2.6 案例
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1697705425081-d29bb8d5-6f7b-4f2b-9039-6da91b1a1ea3.png#averageHue=%23f9f7f7&clientId=ua8dfa591-4c93-4&from=paste&height=446&id=udda0bff7&originHeight=558&originWidth=1251&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=135329&status=done&style=none&taskId=uaa554e7b-aaac-49b8-982e-ad747aaeef1&title=&width=1000.8)
+
+```vue
+
 ```vue
 <!DOCTYPE html>
 <html lang="en">
@@ -714,6 +704,11 @@ Vue 实例：[https://v2.cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D
 
 </html>
 ```
+
+
+
+
+
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1697705553062-85167538-824e-4ada-9041-bf2dd45ba936.png#averageHue=%23f5f4f4&clientId=ua8dfa591-4c93-4&from=paste&height=628&id=u43f09993&originHeight=785&originWidth=1838&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=50153&status=done&style=none&taskId=u0cde0ff8-5247-46af-ad24-961b9832c42&title=&width=1470.4)
 ## 2.7 扩展
 ### 2.7.1 数据代理
