@@ -1,6 +1,6 @@
 ---
 slug: /
-title: 微服务
+title: 微服务总体概述
 sidebar_position: 1
 keywords:
   - 微服务
@@ -37,13 +37,17 @@ last_update:
 
 ![](https://cdn.nlark.com/yuque/0/2023/webp/12426173/1699267041269-809aaeb0-afcd-4d85-8ea4-59943c07f3f2.webp#averageHue=%23fafafa&clientId=u151de32d-a8a3-4&from=paste&id=uc9ba8f35&originHeight=231&originWidth=679&originalType=url&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&taskId=ufa8db355-9e7c-400a-a059-1531d774ab4&title=)
 
-> 优点
+:::info
+  优点
+:::
 
 1. 简单易懂：单体服务架构相对简单，易于理解和上手，开发人员可以更快地构建和部署整个应用程序。
 2. 快速开发：由于所有功能模块都在同一个应用程序中，开发人员可以更方便地进行代码编写、测试和集成，加快开发速度。
 3. 低成本：相对于其他架构模式，单体服务架构的开发和维护成本相对较低，因为它不需要处理分布式系统和服务间通信的复杂性
 
-> 缺点
+   :::warning
+   缺点
+   :::
 
 1. 难以扩展：随着应用程序规模和流量的增长，单体服务架构变得难以扩展。增加处理能力可能需要垂直扩展整个应用，增加硬件成本。
 2. 单一故障点：在单体服务架构中，整个应用程序是一个单一的实体，当一个模块出现问题时，可能会导致整个系统崩溃，降低了系统的健壮性和可靠性。
@@ -57,13 +61,17 @@ last_update:
 
 ![](https://cdn.nlark.com/yuque/0/2023/webp/12426173/1699267004043-c574052d-7bfc-42c2-b6d9-e0e79d0c2c3f.webp#averageHue=%23c6cfaf&clientId=u151de32d-a8a3-4&from=paste&id=u236e0ed1&originHeight=220&originWidth=715&originalType=url&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&taskId=ud18bca5f-6094-4059-9b53-d3d55240523&title=)
 
-> 优点
+:::info
+  优点
+:::
 
 1. 可重用性：SOA鼓励将功能划分为独立的服务，这些服务可以在不同的应用程序中被重复使用，这种重用性可以减少开发时间和工作量，并促进系统的灵活性和可维护性。
 2. 松散耦合：SOA通过标准化接口和协议来实现服务间的通信，服务之间解耦合度高，这样，当一个服务发生变化时，其他服务不会受到影响，从而提高了系统的可靠性和稳定性。
 3. 系统集成：SOA支持异构系统之间的集成，通过定义和实现标准化的接口，不同的应用程序和服务可以相互通信和协作，实现系统间的无缝集成。
 
-> 缺点
+   :::warning
+   缺点
+   :::
 
 1. 额外的开发和管理工作：实施SOA需要额外的开发和管理工作，这包括定义服务接口、制定规范、版本管理等，这些工作增加了开发团队的负担，可能导致项目开发时间延长。
 2. 性能影响：由于SOA服务间需要通过网络进行通信，因此性能和响应时间可能受到一定的影响，网络延迟和通信开销可能会增加系统的负载和响应时间，特别是在高并发和大规模的情况下。
@@ -77,7 +85,9 @@ last_update:
 
 ![](https://cdn.nlark.com/yuque/0/2023/webp/12426173/1699267355406-02319c1b-1fcc-47d8-8732-5acc91a9f995.webp#averageHue=%23ced9ae&clientId=u151de32d-a8a3-4&from=paste&id=u2a59ce61&originHeight=1056&originWidth=1440&originalType=url&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&taskId=uf266618c-a2f3-4932-ba63-b596081887d&title=)
 
-> 优点
+:::info
+  优点
+:::
 
 1. 高度可扩展性：微服务架构允许每个服务独立地扩展，使得系统能够更好地应对变化的负载需求。只需要对特定的服务进行扩展，而不需要整体扩展应用程序。
 2. 独立部署：每个微服务都可以独立地进行开发、测试和部署。这使得团队能够在不影响其他服务的情况下进行快速迭代和发布，提高开发效率。
