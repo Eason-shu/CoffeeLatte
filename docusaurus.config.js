@@ -4,7 +4,6 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const { to } = require("react-spring");
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "LotteCoffee", // 标题 | Title
@@ -38,7 +37,7 @@ const config = {
           blogSidebarTitle: "近期文章",
           showReadingTime: true,
           readingTime: ({ content, frontMatter, defaultReadingTime }) =>
-            defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
+          defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
           feedOptions: {
             title: "",
             description: "LotteCoffee 的个人生活和工作记录",
@@ -119,6 +118,19 @@ const config = {
         id: "Spring",
         path: "java/Spring",
         routeBasePath: "Spring",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
+     // -----------------------------------------------------微服务--------------------------------
+     [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "微服务",
+        path: "java/微服务",
+        routeBasePath: "微服务",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
@@ -300,6 +312,10 @@ const config = {
                 label: "6️⃣ 算法",
                 href: "https://www.hello-algo.com/chapter_preface/",
               },
+              {
+                label: "7️⃣ 微服务",
+                to: "/微服务",
+              },
             ],
           },
           {
@@ -352,20 +368,6 @@ const config = {
                 label: "摄影",
                 to: "/photography",
               },
-            ],
-          },
-          {
-            position: "right",
-            label: "👨‍💻 职业",
-            items: [
-              {
-                label: "求职之路",
-                to: "/roadmap",
-              },
-              // {
-              //   label: "摄影",
-              //   to: "tools",
-              // },
             ],
           },
         ],
