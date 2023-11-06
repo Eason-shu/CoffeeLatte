@@ -128,9 +128,9 @@ const config = {
      [
       "@docusaurus/plugin-content-docs",
       {
-        id: "微服务",
+        id: "Microservices",
         path: "java/微服务",
-        routeBasePath: "微服务",
+        routeBasePath: "Microservices",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
@@ -314,7 +314,7 @@ const config = {
               },
               {
                 label: "7️⃣ 微服务",
-                to: "/微服务",
+                to: "/Microservices",
               },
             ],
           },
