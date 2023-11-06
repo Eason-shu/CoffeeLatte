@@ -72,19 +72,6 @@ const config = {
         lib: "https://cdn.jsdelivr.net/npm/docusaurus-plugin-drawio/viewer.min.js",
       },
     ],
-    // -----------------------------------------------------------------------------------
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "roadmap",
-        path: "work/roadmap",
-        routeBasePath: "roadmap",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: false,
-      },
-    ],
     // -----------------------------------------------------Base--------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -261,13 +248,13 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // announcementBar: {
-      //   id: "support_us",
-      //   content: `🎉🎉🎉 Kotlin教程已上线！欢迎大家学习！🎉🎉🎉`,
-      //   backgroundColor: "#fafbfc", // Defaults to `#fff`.
-      //   textColor: "#091E42", // Defaults to `#000`.
-      //   isCloseable: false, // Defaults to `true`.
-      // },
+      announcementBar: {
+        id: "support_us",
+        content: `🎉🎉🎉 微服务教程已上线！欢迎大家学习！🎉🎉🎉`,
+        backgroundColor: "#fafbfc", // Defaults to `#fff`.
+        textColor: "#091E42", // Defaults to `#000`.
+        isCloseable: false, // Defaults to `true`.
+      },
       metadata: [
         {
           name: "lottecoffee",
