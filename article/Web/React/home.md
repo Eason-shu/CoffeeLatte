@@ -1,6 +1,6 @@
 ---
 slug: /
-title: Home
+title: React
 sidebar_position: 1
 keywords:
   - React

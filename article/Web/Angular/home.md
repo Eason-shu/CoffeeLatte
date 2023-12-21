@@ -1,6 +1,6 @@
 ---
 slug: /
-title: Home
+title: Angualr
 sidebar_position: 1
 keywords:
   - Angular

@@ -1,0 +1,173 @@
+---
+title: TCP 模型详解
+sidebar_position: 4
+keywords:
+  - 微服务
+  - NIO
+tags:
+  - Java
+  - Netty
+  - 微服务
+  - 学习笔记
+last_update:
+  date: 2023-12-21
+  author: EasonShu
+---
+
+
+参考教程：[计算机网络](https://www.bilibili.com/video/BV1c4411d7jb/?spm_id_from=333.337.search-card.all.click&vd_source=4cf5c44f75ce2d58b02f9fa10ca5a338) 
+**网络的基本结构**
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1683092713698-3ddb7170-8e03-4807-95d0-6153117e0aa4.png#averageHue=%238ba955&clientId=uc51bb2dd-3b49-4&from=paste&id=uf3b25601&originHeight=1587&originWidth=1120&originalType=url&ratio=1.25&rotation=0&showTitle=false&size=471413&status=done&style=none&taskId=u897ba76a-39b0-4426-8749-207a374851a&title=)
+# 一 TCP协议详解
+TCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层协议，常用于互联网协议套件中的应用层协议（例如 HTTP、FTP 等）。
+TCP 协议采用了分层的设计，分别包括应用层、传输层、网络层和数据链路层。其中，TCP 协议属于传输层协议。
+TCP 协议主要包括以下几个方面：
+
+1. 面向连接：在传输数据前，TCP 协议会先建立连接，然后才进行数据传输，传输完成后再断开连接。这种方式可以保证数据传输的可靠性，但会增加一定的延迟和开销。
+2. 可靠性：TCP 协议采用了各种机制来保证数据传输的可靠性，例如数据确认、超时重传、流量控制等。
+3. 基于字节流：TCP 协议传输的是一个个字节流，没有消息边界，因此需要通过应用层协议来解决消息的分割和组装问题。
+4. 拥塞控制：TCP 协议会根据网络状况来动态地调整数据传输的速率，防止网络拥塞和数据丢失。
+5. 三次握手和四次挥手：TCP 协议建立连接时采用了三次握手的方式，断开连接时采用了四次挥手的方式，以保证数据的可靠传输和连接的正常关闭。
+6. TCP 标志位：TCP 协议中有一些标志位，用于控制数据传输的行为，例如 SYN、ACK、FIN 等。
+
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1683093085309-61a8b3e5-ed58-49ae-85bd-f04a10008231.png#averageHue=%23fcfefc&clientId=uc51bb2dd-3b49-4&from=paste&id=u46de900f&originHeight=656&originWidth=1611&originalType=url&ratio=1.25&rotation=0&showTitle=false&size=248184&status=done&style=none&taskId=u89aca8ab-3220-42e8-a66a-f83b7a80ea5&title=)
+> 功能
+
+1. 对应用层报文进行**分**段和重组；
+2. 面向应用层实现**复**用与分解；
+3. 实现端到端的**流**量控制；
+4. **拥**塞控制；
+5. 传输层**寻**址；
+6. 对收到的报文进行**差错**检测（首部和数据部分都检错）；
+7. 实现进程间的端到端**可靠**数据传输控制。
+> 特点
+
+- TCP是面向连接的协议；
+- TCP是面向字节流的协议；
+- TCP的一个连接有两端，即点对点通信；
+- TCP提供可靠的传输服务；
+- TCP协议提供全双工通信（每条TCP连接只能一对一）；
+## 1.1 TCP 报文结构
+最大报文段长度：报文段中封装的**应用层数据**的最大长度。
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1683093200422-dae66836-2fe9-4c61-9b71-5db1b2f4d585.png#averageHue=%23f6fcfd&clientId=uc51bb2dd-3b49-4&from=paste&id=uf270546e&originHeight=575&originWidth=1614&originalType=url&ratio=1.25&rotation=0&showTitle=false&size=187328&status=done&style=none&taskId=u427edc82-f0e2-431b-a605-f0a9fdbca3b&title=)
+
+1. 源端口号（16 位）：指发送端口号。
+2. 目的端口号（16 位）：指接收端口号。
+3. 序列号（32 位）：指发送的第一个字节的序列号。用于排序和重组收到的数据。
+4. 确认号（32 位）：指期望收到的下一个字节的序列号。用于确认已经成功接收到的数据。
+5. 数据偏移（4 位）：指 TCP 报文头部的长度，以 4 字节为单位。最大长度为 15，因此 TCP 报文头部的最大长度为 60 字节。
+6. 保留位（6 位）：预留，必须为 0。
+7. 控制位（6 位）：用于控制 TCP 协议的行为，包括 SYN、ACK、FIN、RST、URG、PSH 等标志。
+8. 窗口大小（16 位）：指接收方可用于缓存数据的字节数，用于流量控制。
+9. 校验和（16 位）：用于校验 TCP 报文的完整性。
+10. 紧急指针（16 位）：用于指示紧急数据的位置，仅在 URG 控制位被设置时有效。
+11. 选项（可变长度）：可选的 TCP 报文选项，包括最大报文长度、时间戳等。
+
+我们来个案例来理解一下：
+```java
+Source Port: 1234 (0x04D2)
+Destination Port: 80 (0x0050)
+Sequence Number: 2486259810 (0x9443FB7A)
+Acknowledgment Number: 1450201933 (0x567B5D5D)
+Data Offset: 5 (0x50)
+Flags: 0x18 (PSH, ACK)
+Window Size: 65535 (0xFFFF)
+Checksum: 0x836A
+Urgent Pointer: 0
+
+Data:
+POST /login HTTP/1.1
+Host: example.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 23
+username=johndoe&password=secret
+
+```
+
+- 源端口号：1234
+- 目的端口号：80
+- 序列号：2486259810
+- 确认号：1450201933
+- 数据偏移：5
+- 控制位：PSH, ACK (表示推送数据，并确认已经收到的数据)
+- 窗口大小：65535
+- 校验和：0x836A
+- 紧急指针：0
+
+报文数据部分包括一个 HTTP POST 请求，用于向 example.com 发送登录信息，这个请求包括 HTTP 头部和表单数据。
+**TCP首部**
+
+- **序号字段：TCP的序号是对每个应用层数据的每个字节**进行编号
+- **确认序号字段**：期望从对方接收数据的字节序号，即该序号对应的字节尚未收到。用ack_seq标识；
+- TCP段的首部长度最短是**20**B ，最长为60字节。但是长度必须为4B的整数倍
+
+**TCP标记**
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1683093322704-63563d01-e57e-4b1f-bf1c-415e7fc6cc79.png#averageHue=%23fbfefb&clientId=uc51bb2dd-3b49-4&from=paste&id=u5da00238&originHeight=693&originWidth=1630&originalType=url&ratio=1.25&rotation=0&showTitle=false&size=366164&status=done&style=none&taskId=ub552586a-5284-4a87-b211-d252e297978&title=)
+## 1.2 TCP的可靠性
+
+1. 序列号和确认应答机制：TCP 在传输数据时，使用序列号和确认应答机制来保证数据的可靠传输。发送方将每个数据段标记一个唯一的序列号，接收方通过发送确认应答来表示已经成功接收到该数据段。如果发送方没有收到确认应答，则会重新发送数据段，直到接收方成功接收为止。
+2. 超时重传机制：为了保证数据能够及时传输，TCP 协议还采用了超时重传机制。发送方在发送数据时会设置一个定时器，如果在规定的时间内没有收到接收方的确认应答，则会重新发送该数据段。
+3. 流量控制机制：为了防止发送方发送过多的数据导致接收方无法处理，TCP 还采用了流量控制机制。接收方会在每个确认应答中通知发送方自己当前可以接收的数据量，从而控制发送方的发送速度。
+4. 拥塞控制机制：TCP 还采用了拥塞控制机制，用于避免网络拥塞导致数据丢失和延迟。拥塞控制机制根据网络的拥塞程度动态调整发送方的发送速度，从而保证网络的稳定性和数据的可靠传输。
+### 1.2.1 序列号与确认应答
+
+- TCP 报文段中包含了序列号和确认应答号字段。TCP 使用序列号对发送的每个字节进行编号，从而将字节流转换成一个连续的数据流。同时，TCP 还使用确认应答机制来保证数据的可靠传输。接收方会在每个确认应答中发送确认应答号，表示已经成功接收到该数据段中的数据。
+- 通过序列号和确认应答机制，TCP 可以保证数据在传输过程中的可靠性。发送方将每个数据段标记一个唯一的序列号，接收方通过发送确认应答来表示已经成功接收到该数据段。如果发送方没有收到确认应答，则会重新发送数据段，直到接收方成功接收为止。
+### 1.2.2 超时重传机制
+TCP 协议还采用了超时重传机制。发送方在发送数据时会设置一个定时器，如果在规定的时间内没有收到接收方的确认应答，则会重新发送该数据段。通过超时重传机制，TCP 可以保证即使在网络出现问题的情况下，数据仍能够被可靠地传输。
+### 1.2.3 流量控制机制
+
+- 为了防止发送方发送过多的数据导致接收方无法处理，TCP 还采用了流量控制机制。接收方会在每个确认应答中通知发送方自己当前可以接收的数据量，从而控制发送方的发送速度。
+- TCP 流量控制机制的核心在于接收方向发送方发送窗口大小信息，该信息表示接收方当前还可以接收多少字节的数据。发送方会根据接收方返回的窗口大小来调整发送速度，从而避免发送方发送过多的数据导致网络拥塞和数据丢失。
+### 1.2.4 拥塞控制机制
+
+- TCP 协议还采用了拥塞控制机制，用于避免网络拥塞导致数据丢失和延迟。拥塞控制机制根据网络的拥塞程度动态调整发送方的发送速度，从而保证网络的稳定性和数据的可靠传输。
+- TCP 拥塞控制机制的核心在于采用了四种算法：慢启动、拥塞避免、快速恢复和快速重传。其中，慢启动算法用于初始建立连接时，将发送方的发送速度逐渐加速，拥塞避免算法用于控制发送方的发送速度，当网络拥塞时，TCP 会自动将发送速度降低，快速恢复算法用于快速恢复拥塞窗口的大小，从而加速数据传输，快速重传算法用于快速重传丢失的数据包，避免等待超时重传导致的网络拥塞。
+## 1.3 TCP的三次握手
+参考文章：[我终于搞懂了TCP的三次握手和四次挥手](https://blog.csdn.net/weixin_45393094/article/details/104965561?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168324948916800197046659%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168324948916800197046659&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-104965561-null-null.142^v86^insert_down1,239^v2^insert_chatgpt&utm_term=%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3&spm=1018.2226.3001.4187)
+面试题：为啥需要三次握手？
+
+1. **第一次握手**：客户发送请求，此时服务器知道客户能发；
+2. **第二次握手**：服务器发送确认，此时客户知道服务器能发能收；
+3. **第三次握手**：客户发送确认，此时服务器知道客户能收。
+### 1.3.1 建立连接
+
+- 第一次：客户向服务器发送连接请求段，建立连接请求控制段（SYN=1），表示传输的报文段的第一个数据字节的序列号是x，此序列号代表整个报文段的序号（seq=x）；客户端进入 SYN_SEND （同步发送状态）；
+- 第二次：服务器发回确认报文段，同意建立新连接的确认段（SYN=1），确认序号字段有效（ACK=1），服务器告诉客户端报文段序号是y（seq=y），表示服务器已经收到客户端序号为x的报文段，准备接受客户端序列号为x+1的报文段（ack_seq=x+1）；服务器由LISTEN进入SYN_RCVD （同步收到状态）;
+- 第三次:客户端对服务器的同一连接进行确认.确认序号字段有效(ACK=1),客户端此次的报文段的序列号是x+1(seq=x+1),客户期望接受服务器序列号为y+1的报文段(ack_seq=y+1);当客户发送ack时，客户端进入ESTABLISHED 状态;当服务收到客户发送的ack后，也进入ESTABLISHED状态;第三次握手可携带数据;
+
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1683251261207-05220a20-506e-45d6-b058-a63c166fc2e2.png#averageHue=%23f4f4f4&clientId=u5261bb5f-3a36-4&from=paste&id=u548daa7f&originHeight=610&originWidth=734&originalType=url&ratio=1.25&rotation=0&showTitle=false&size=77924&status=done&style=none&taskId=ub6bc40ca-6328-455e-a158-62888bd89fe&title=)
+TCP 三次握手是在建立 TCP 连接时必须要进行的步骤。它的过程就像两个人打招呼一样：
+
+- 第一次握手：发送方向接收方发送一个“你好”（SYN）的信息，并告诉接收方自己的初始序列号（ISN）。
+- 第二次握手：接收方收到信息后向发送方发送一个“你好，我收到了”（SYN+ACK）的信息，同时告诉发送方自己的初始序列号（ISN）和确认序列号（ACK）。
+- 第三次握手：发送方再次向接收方发送一个确认信息“好的，我收到了”（ACK），表示接收方的确认信息已经收到。
+
+通过这三次握手，发送方和接收方之间建立了一个可靠的连接，并且确认了彼此的身份和初始序列号。这样在后续的数据传输过程中，双方就可以相互确认数据是否传输成功，从而保证数据的可靠性。
+
+## 1.4 TCP四次挥手
+**释放连接**
+
+- 第一次：客户向服务器发送释放连接报文段，发送端数据发送完毕，请求释放连接（FIN=1），传输的第一个数据字节的序号是x（seq=x）；客户端状态由ESTABLISHED进入FIN_WAIT_1（终止等待1状态）；
+- 第二次：服务器向客户发送确认段，确认字号段有效（ACK=1），服务器传输的数据序号是y（seq=y），服务器期望接收客户数据序号为x+1（ack_seq=x+1）;服务器状态由ESTABLISHED进入CLOSE_WAIT（关闭等待）； 客户端收到ACK段后，由FIN_WAIT_1进入FIN_WAIT_2；
+- 第三次:服务器向客户发送释放连接报文段，请求释放连接（FIN=1），确认字号段有效（ACK=1），表示服务器期望接收客户数据序号为x+1（ack_seq=x+1）;表示自己传输的第一个字节序号是y+1（seq=y+1）；服务器状态由CLOSE_WAIT 进入 LAST_ACK （最后确认状态）；
+- 第四次：客户向服务器发送确认段，确认字号段有效（ACK=1），表示客户传输的数据序号是x+1（seq=x+1），表示客户期望接收服务器数据序号为y+1+1（ack_seq=y+1+1）；客户端状态由FIN_WAIT_2进入TIME_WAIT，等待2MSL时间，进入CLOSED状态；服务器在收到最后一次ACK后，由LAST_ACK进入CLOSED；
+
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1683251289171-e71dd1ef-bbee-4c89-8fd2-faeb1eb7bf73.png#averageHue=%23f5f5f5&clientId=u5261bb5f-3a36-4&from=paste&id=u0f10d71a&originHeight=638&originWidth=665&originalType=url&ratio=1.25&rotation=0&showTitle=false&size=63098&status=done&style=none&taskId=ueda99689-7844-41e2-8ce6-0efd9f6c573&title=)
+TCP 四次挥手是在关闭 TCP 连接时必须要进行的步骤。它的过程就像两个人告别一样：
+
+- 第一次挥手：发送方向接收方发送一个“我要关闭连接了”（FIN）的信息，表示数据发送完毕，但是还可以接收数据。
+- 第二次挥手：接收方收到信息后向发送方发送一个“好的，我知道了”（ACK）的确认信息。
+- 第三次挥手：接收方向发送方发送一个“我也要关闭连接了”（FIN）的信息，表示自己也没有数据要发送了。
+- 第四次挥手：发送方收到信息后向接收方发送一个“好的，我知道了”（ACK）的确认信息，表示自己也知道对方已经关闭了连接。
+
+通过这四次挥手，双方分别关闭了自己的发送和接收通道，并确认对方的关闭请求，最终彻底关闭了 TCP 连接。这样可以避免数据的丢失和重复传输，保证数据的完整性和可靠性。
+![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1683095400329-884f2528-d563-47e9-82ad-0ff0968b2b17.png#averageHue=%23f9f7f7&clientId=uc51bb2dd-3b49-4&from=paste&id=u8bc762b2&originHeight=746&originWidth=1617&originalType=url&ratio=1.25&rotation=0&showTitle=false&size=292314&status=done&style=none&taskId=u68a07df7-dcdd-4003-9658-c8037173ee2&title=)
+为什么需要等待2MSL?
+
+- 最后一个报文没有确认；
+- 确保发送方的ACK可以到达接收方；
+- 2MSL时间内没有收到，则接收方会重发；
+- 确保当前连接的所有报文都已经过期。
+
+
