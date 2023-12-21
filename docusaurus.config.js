@@ -2,7 +2,7 @@
  * @Author: shu 3138066125@qq.com
  * @Date: 2023-08-01 17:30:54
  * @LastEditors: shu 3138066125@qq.com
- * @LastEditTime: 2023-12-21 14:48:37
+ * @LastEditTime: 2023-12-21 17:43:40
  * @FilePath: \CoffeeLatte\docusaurus.config.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -244,13 +244,13 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      announcementBar: {
-        id: "support_us",
-        content: `🎉🎉🎉 Netty服务已上线！欢迎大家学习！🎉🎉🎉`,
-        backgroundColor: "#fafbfc", // Defaults to `#fff`.
-        textColor: "#091E42", // Defaults to `#000`.
-        isCloseable: false, // Defaults to `true`.
-      },
+      // announcementBar: {
+      //   id: "support_us",
+      //   content: `🎉🎉🎉 Netty服务已上线！欢迎大家学习！🎉🎉🎉`,
+      //   backgroundColor: "#fafbfc", // Defaults to `#fff`.
+      //   textColor: "#091E42", // Defaults to `#000`.
+      //   isCloseable: false, // Defaults to `true`.
+      // },
       metadata: [
         {
           name: "lottecoffee",
