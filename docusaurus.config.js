@@ -1,3 +1,11 @@
+/*
+ * @Author: shu 3138066125@qq.com
+ * @Date: 2023-08-01 17:30:54
+ * @LastEditors: shu 3138066125@qq.com
+ * @LastEditTime: 2023-12-21 14:01:27
+ * @FilePath: \CoffeeLatte\docusaurus.config.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 /**
  * Code Theme
  */
@@ -8,7 +16,7 @@ const { to } = require("react-spring");
 const config = {
   title: "LotteCoffee", // 标题 | Title
   staticDirectories: ["public", "static"], // 静态文件夹 | Static directory
-  tagline: "活到老，学到老，作为程序员的自我修养，哈哈哈哈哈", // 标语 | Tagline
+  tagline: "把戏把戏要过手", // 标语 | Tagline
   url: "https://www.lottecoffee.com", // 站点地址 | Your website URL
   baseUrl: "/", // 站点根目录 | Base URL for your project */
   favicon: "img/favicon.ico", // 站点图标 | Favicon
@@ -37,7 +45,7 @@ const config = {
           blogSidebarTitle: "近期文章",
           showReadingTime: true,
           readingTime: ({ content, frontMatter, defaultReadingTime }) =>
-          defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
+            defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
           feedOptions: {
             title: "",
             description: "LotteCoffee 的个人生活和工作记录",
@@ -72,12 +80,12 @@ const config = {
         lib: "https://cdn.jsdelivr.net/npm/docusaurus-plugin-drawio/viewer.min.js",
       },
     ],
-    // -----------------------------------------------------Base--------------------------------
+    // -----------------------------------------------------Java基础--------------------------------
     [
       "@docusaurus/plugin-content-docs",
       {
         id: "Base",
-        path: "java/Base",
+        path: "article/Java/Base",
         routeBasePath: "Base",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
@@ -90,7 +98,7 @@ const config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "Mybatis",
-        path: "java/Mybatis",
+        path: "article/Java/Mybatis",
         routeBasePath: "Mybatis",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
@@ -103,7 +111,7 @@ const config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "Spring",
-        path: "java/Spring",
+        path: "article/Java/Spring",
         routeBasePath: "Spring",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
@@ -111,38 +119,12 @@ const config = {
         breadcrumbs: true,
       },
     ],
-     // -----------------------------------------------------微服务--------------------------------
-     [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "Microservices",
-        path: "java/微服务",
-        routeBasePath: "Microservices",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: true,
-      },
-    ],
-    // -----------------------------------------------------Idea--------------------------------
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "Idea",
-        path: "java/Idea",
-        routeBasePath: "Idea",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: false,
-      },
-    ],
     // -----------------------------------------------------Redis--------------------------------
     [
       "@docusaurus/plugin-content-docs",
       {
         id: "Redis",
-        path: "java/Redis",
+        path: "article/Java/Redis",
         routeBasePath: "Redis",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
@@ -150,12 +132,25 @@ const config = {
         breadcrumbs: false,
       },
     ],
+      // -----------------------------------------------------Netty--------------------------------
+      [
+        "@docusaurus/plugin-content-docs",
+        {
+          id: "Netty",
+          path: "article/Server/Netty",
+          routeBasePath: "Netty",
+          sidebarPath: require.resolve("./sidebars.js"),
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
+          breadcrumbs: true,
+        },
+      ],
     // -----------------------------------------------------Angular------------------------------
     [
       "@docusaurus/plugin-content-docs",
       {
         id: "Angular",
-        path: "web/Angular",
+        path: "article/Web/Angular",
         routeBasePath: "Angular",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
@@ -168,7 +163,7 @@ const config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "Vue",
-        path: "web/Vue",
+        path: "article/Web/Vue",
         routeBasePath: "Vue",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
@@ -181,7 +176,7 @@ const config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "React",
-        path: "web/React",
+        path: "article/Web/React",
         routeBasePath: "React",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
@@ -194,7 +189,7 @@ const config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "power_base",
-        path: "power/Power_Base",
+        path: "article/Power/Power_Base",
         routeBasePath: "power_base",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
@@ -207,7 +202,7 @@ const config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "power_protocol",
-        path: "power/Power_Protocol",
+        path: "article/Power/Power_Protocol",
         routeBasePath: "power_protocol",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
@@ -220,7 +215,7 @@ const config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "Kotlin",
-        path: "android/Kotlin",
+        path: "article/Android/Kotlin",
         routeBasePath: "Kotlin",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
@@ -233,7 +228,7 @@ const config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "photography",
-        path: "hobby/photography",
+        path: "article/Other",
         routeBasePath: "photography",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
@@ -250,7 +245,7 @@ const config = {
     ({
       announcementBar: {
         id: "support_us",
-        content: `🎉🎉🎉 微服务教程已上线！欢迎大家学习！🎉🎉🎉`,
+        content: `🎉🎉🎉 Netty服务已上线！欢迎大家学习！🎉🎉🎉`,
         backgroundColor: "#fafbfc", // Defaults to `#fff`.
         textColor: "#091E42", // Defaults to `#000`.
         isCloseable: false, // Defaults to `true`.
@@ -265,8 +260,8 @@ const config = {
         title: "LotteCoffee",
         logo: {
           alt: "LotteCoffee",
-          src: "img/logo.jpg",
-          srcDark: "img/logo.jpg",
+          src: "img/logo.svg",
+          srcDark: "img/logo.svg",
         },
         hideOnScroll: true,
         items: [
@@ -292,18 +287,20 @@ const config = {
                 to: "/Redis",
               },
               {
-                label: "5️⃣ Idea",
-                to: "/Idea",
-              },
-              {
-                label: "6️⃣ 算法",
+                label: "5️⃣ 算法",
                 href: "https://www.hello-algo.com/chapter_preface/",
               },
-              {
-                label: "7️⃣ 微服务",
-                to: "/Microservices",
-              },
             ],
+          },
+          {
+            position: "right",
+            label: "🗻 微服务",
+            items: [
+              {
+                label: "🌲 Netty",
+                to: "/Netty",
+              }
+            ]
           },
           {
             position: "right",
@@ -349,7 +346,7 @@ const config = {
           },
           {
             position: "right",
-            label: "🎮 爱好",
+            label: "🍃 爱好",
             items: [
               {
                 label: "摄影",

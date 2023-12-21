@@ -23,3 +23,5 @@ Vue 是一个基于 TypeScript 的开发平台，用于构建 Web 应用。Angul
 
 
 ![Vue2知识点总结](images/Vue2知识点总结.png)
+
+![image-20231115162614654](C:/Users/SHU/Desktop/image-20231115162614654.png)
