@@ -1,6 +1,6 @@
 ---
 slug: /
-title: home
+title: Kotlin 
 sidebar_position: 1
 keywords:
   - Android

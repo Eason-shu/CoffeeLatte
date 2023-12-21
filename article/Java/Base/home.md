@@ -1,6 +1,6 @@
 ---
 slug: /
-title: Home
+title: Java 
 sidebar_position: 1
 keywords:
   - Java

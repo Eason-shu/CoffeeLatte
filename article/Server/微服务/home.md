@@ -1,6 +1,6 @@
 ---
 slug: /
-title: 微服务总体概述
+title: 微服务
 sidebar_position: 1
 keywords:
   - 微服务

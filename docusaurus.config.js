@@ -2,7 +2,7 @@
  * @Author: shu 3138066125@qq.com
  * @Date: 2023-08-01 17:30:54
  * @LastEditors: shu 3138066125@qq.com
- * @LastEditTime: 2023-12-21 17:43:40
+ * @LastEditTime: 2023-12-21 18:56:24
  * @FilePath: \CoffeeLatte\docusaurus.config.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -272,23 +272,23 @@ const config = {
             position: "right",
             items: [
               {
-                label: "1️⃣ Java基础",
+                label: "🔋 Java基础",
                 to: "/Base",
               },
               {
-                label: "2️⃣ Mybatis",
+                label: "🥁 Mybatis",
                 to: "/Mybatis",
               },
               {
-                label: "3️⃣ Spring",
+                label: "📽 Spring",
                 to: "/Spring",
               },
               {
-                label: "4️⃣ Redis",
+                label: "🚧 Redis",
                 to: "/Redis",
               },
               {
-                label: "5️⃣ 算法",
+                label: "🛫 算法",
                 href: "https://www.hello-algo.com/chapter_preface/",
               },
             ],
@@ -308,15 +308,15 @@ const config = {
             label: "🌄 WEB",
             items: [
               {
-                label: "1️⃣ Angular",
+                label: "🔫 Angular",
                 to: "/Angular",
               },
               {
-                label: "2️⃣ Vue",
+                label: "🎱 Vue",
                 to: "/Vue",
               },
               {
-                label: "3️⃣ React",
+                label: "🎰 React",
                 to: "/React",
               },
             ],
@@ -326,7 +326,7 @@ const config = {
             label: "📱 Android",
             items: [
               {
-                label: "1️⃣ Kotlin",
+                label: "🛸 Kotlin",
                 to: "/Kotlin",
               },
             ],
@@ -336,11 +336,11 @@ const config = {
             label: "⚡ 业务知识",
             items: [
               {
-                label: "基本理论知识",
+                label: "⛵ 基本理论知识",
                 to: "/power_base",
               },
               {
-                label: "协议文档",
+                label: "🛑 协议文档",
                 to: "/power_protocol",
               },
             ],
@@ -350,7 +350,7 @@ const config = {
             label: "🍃 爱好",
             items: [
               {
-                label: "摄影",
+                label: "📷 摄影",
                 to: "/photography",
               },
             ],

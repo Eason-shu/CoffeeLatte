@@ -1,6 +1,6 @@
 ---
 slug: /
-title: Home
+title: 电力协议
 sidebar_position: 1
 keywords:
   - 电力

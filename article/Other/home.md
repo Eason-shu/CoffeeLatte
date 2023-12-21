@@ -1,6 +1,6 @@
 ---
 slug: /
-title: 说明
+title: 摄影
 sidebar_position: 1
 keywords:
   - 摄影

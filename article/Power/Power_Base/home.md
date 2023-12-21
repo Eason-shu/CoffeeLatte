@@ -1,6 +1,6 @@
 ---
 slug: /
-title: Power_base
+title: 电力知识
 sidebar_position: 1
 keywords:
   - 电力
