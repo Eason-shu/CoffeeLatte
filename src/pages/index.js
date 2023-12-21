@@ -130,7 +130,7 @@ export default function Home() {
         <Hero />
         {/* <VedioFeatures /> */}
         {/* <MyHero /> */}
-        <HomepageFeatures />
+        {/* <HomepageFeatures /> */}
       </main>
     </Layout>
   );
