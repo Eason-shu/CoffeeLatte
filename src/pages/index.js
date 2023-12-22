@@ -6,6 +6,7 @@ import Head from "@docusaurus/Head";
 import Translate from "@docusaurus/Translate";
 import { useTrail, animated } from "react-spring";
 import HeroMain from "./img/hero_main.svg";
+import Article from "../components/article"
 
 
 const svgList = [
@@ -126,6 +127,7 @@ export default function Home() {
       </Head>
       <main>
         <Hero />
+        {/* <Article/> */}
         {/* <VedioFeatures /> */}
         {/* <MyHero /> */}
         {/* <HomepageFeatures /> */}
