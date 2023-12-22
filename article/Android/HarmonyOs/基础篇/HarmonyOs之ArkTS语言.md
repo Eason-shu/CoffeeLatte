@@ -1,6 +1,6 @@
 ---
 title: HarmonyOs (三) ArkTS语言
-sidebar_position: 3
+sidebar_position: 4
 keywords:
   - HarmonyOs
 tags:

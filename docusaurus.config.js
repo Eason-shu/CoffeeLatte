@@ -210,19 +210,6 @@ const config = {
         breadcrumbs: true,
       },
     ],
-    // -------------------------------------------------Kotlin------------------------------------
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "Kotlin",
-        path: "article/Android/Kotlin",
-        routeBasePath: "Kotlin",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: false,
-      },
-    ],
     // HarmonyOs
     [
       "@docusaurus/plugin-content-docs",
@@ -230,6 +217,19 @@ const config = {
         id: "HarmonyOs",
         path: "article/Android/HarmonyOs",
         routeBasePath: "HarmonyOs",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
+    // -------------------------------------------------Kotlin------------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Kotlin",
+        path: "article/Android/Kotlin",
+        routeBasePath: "Kotlin",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,

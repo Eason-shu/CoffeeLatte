@@ -1,6 +1,6 @@
 ---
 title: HarmonyOs (一) 认识HarmonyOs
-sidebar_position: 1
+sidebar_position: 2
 keywords:
   - HarmonyOs
 tags:
@@ -10,7 +10,6 @@ last_update:
   date: 2023-10-21
   author: EasonShu
 ---
-
 
 参考资料：
 
@@ -106,6 +105,4 @@ last_update:
 - ** 用户手动流转：系统在用户手动点击流转图标后，被动为用户提供可选择交互的设备信息，并在用户完成设备选择后回调通知应用开始流转，将用户所选另一个设备的设备信息提供给应用。**
 
 ![](https://cdn.nlark.com/yuque/0/2023/png/12426173/1701062242670-0ae9cf39-897d-414e-88b1-dade7135fdcc.png#averageHue=%238f908e&clientId=u2cd6ee3c-7655-4&from=paste&id=u20ffbe50&originHeight=612&originWidth=1566&originalType=url&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&taskId=u498b1009-af78-46d8-a7e6-7f056132028&title=)
-
----
 
