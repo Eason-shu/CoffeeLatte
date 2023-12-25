@@ -67,7 +67,7 @@ function Hero() {
         <animated.div style={animatedTexts[0]} className={styles.hero_text}>
           <Translate description="hero greet">Hello! 我是</Translate>
           <span className={styles.intro__name}>
-            <Translate description="my name">拿铁要加冰</Translate>
+            <Translate description="my name">Coffee, 一个Java入门者</Translate>
           </span>
         </animated.div>
         <animated.p style={animatedTexts[1]}>
