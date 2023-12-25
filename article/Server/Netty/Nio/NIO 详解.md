@@ -48,7 +48,10 @@ last_update:
 
 
 
-## 一 Buffer（缓冲区）- 数组块
+# 一 Buffer（缓冲区）- 数组块
+
+## 1.1 Buffer 详解
+
 缓冲区本质上是一个可以写入数据的内存块（类似数组），然后可以再次读取。此内存块包含在NIO Buffer对象中，该对象提供了一组方法，可以更轻松的使用内存块。
 相对于直接操作数组，Buffer API提供了更加容易的操作和管理，其进行数据的操作分为写入和读取，主要步骤如下：
 
@@ -165,7 +168,7 @@ public class BufferDemo {
 
 ```
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1703126834880-2708578f-769e-4112-81fb-01998a32528f.png#averageHue=%23212327&clientId=ue7b2a21e-8f71-4&from=paste&height=306&id=u64a9a7ff&originHeight=382&originWidth=1822&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=78717&status=done&style=none&taskId=uaef1daea-70b1-4224-85da-ed397d458f4&title=&width=1457.6)
-## 二 ByteBuffer堆外内存
+## 1.2 ByteBuffer堆外内存
 ByteBuffer为性能关键型代码提供了直接内存（direct，堆外）和非直接内存（heap，堆）两种实现。堆外内存实现将内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理，而不是虚拟机，这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响，提供运行的速度。
 堆外内存的获取方式：ByteBuffer byteBuffer = ByteBuffer.allocateDirect(noBytes)
 堆外内存的好处：
@@ -213,13 +216,13 @@ public class DirectBuffer {
 
 ```
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1703127613577-0aeae5e3-8012-4188-8095-38fc4e2289c0.png#averageHue=%23222326&clientId=ue7b2a21e-8f71-4&from=paste&height=277&id=uc6a2e310&originHeight=346&originWidth=1841&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=38718&status=done&style=none&taskId=ub4bcd0d5-0163-4986-91d8-94513f8e566&title=&width=1472.8)
-## 三 通道
-### 3.1 Channel（通道）
+# 二 通道
+## 2.1 Channel（通道）
 Channel用于源节点与目标节点之间的连接，Channel类似于传统的IO Stream，Channel本身不能直接访问数据，Channel只能与Buffer进行交互。
 Channel的API涵盖了TCP/UDP网络和文件IO，常用的类有FileChannel，DatagramChannel，SocketChannel，ServerSocketChannel
 标准IO Stream通常是单向的（InputStream/OutputStream），而Channel是一个双向的通道，可以在一个通道内进行读取和写入，可以非阻塞的读取和写入通道，而且通道始终读取和写入缓冲区（即Channel必须配合Buffer进行使用）。
 ![](https://cdn.nlark.com/yuque/0/2023/png/12426173/1703127002192-c1ce6932-26b3-4126-b268-4bd3a12254f2.png#averageHue=%2354b98c&clientId=ue7b2a21e-8f71-4&from=paste&id=u87719926&originHeight=308&originWidth=1158&originalType=url&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&taskId=ucc305463-36e0-4fcf-acca-4f5812552a7&title=)
-### 3.2 SocketChannel
+## 2.2 SocketChannel
 SocketChannel用于建立TCP网络连接，类似java.net.Socket。有两种创建SocketChannel的形式，一个是客户端主动发起和服务器的连接，还有一个就是服务端获取的新连接。SocketChannel中有两个重要的方法，一个是write()写方法，write()写方法有可能在尚未写入内容的时候就返回了，需要在循环中调用write()方法。还有一个就是read()读方法，read()方法可能直接返回根本不读取任何数据，可以根据返回的int值判断读取了多少字节。
 核心代码代码示例片段：
 ```java
@@ -235,7 +238,7 @@ int readBytes = socketChannel.read(requestBuffer);
 // 关闭连接
 socketChannel.close();
 ```
-### 3.3 ServerSocketChannel
+## 2.3 ServerSocketChannel
 ServerSocketChannel可以监听新建的TCP连接通道，类似ServerSocket。ServerSocketChannel的核心方法accept()方法，如果通道处于非阻塞模式，那么如果没有挂起的连接，该方法将立即返回null，实际使用中必须检查返回的SocketChannel是否为null。
 核心代码示例片段:
 ```java
@@ -253,7 +256,10 @@ while (true) {
   }
 }
 ```
-# 四 Selector选择器
+# 三 Selector选择器
+
+## 3.1 Selector
+
 Selector的英文含义是“选择器”，不过根据我们详细介绍的Selector的岗位职责，您可以把它称之为“轮询代理器”、“事件订阅器”、“channel容器管理机”都行。
 
 Selector也是Java NIO核心组件，可以检查一个或多个NIO通道，并确定哪些通道已经准备好进行读取或写入。实现单个线程可以管理多个通道，从而管理多个网络连接。
@@ -411,14 +417,15 @@ public class NioSever {
 
 - ServerSocketChannel只关注Accect事件的连接
 - SocketChannel只关注读写事件
-# 五 NIO与BIO的比较
+# 四 NIO与BIO的比较
+
+## 4.1 比较
+
 ![](https://cdn.nlark.com/yuque/0/2023/png/12426173/1703127917277-c20de11e-33e8-4120-9c64-7c8f205a13ec.png#averageHue=%23f2f2f2&clientId=ue7b2a21e-8f71-4&from=paste&id=u8e3fec34&originHeight=443&originWidth=1137&originalType=url&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&taskId=ua7c04eef-c7f8-4858-af6f-e4c9c35bd4d&title=)
-# 六 select、poll、epoll详解
+# 五 select、poll、epoll详解
 目前支持I/O多路复用的系统调用有select，pselect，poll，epoll。与多进程和多线程技术相比，I/O多路复用技术的最大优势是系统开销小，系统不必创建进程/线程，也不必维护这些进程/线程，从而大大减小了系统的开销。
 I/O多路复用就是通过一种机制，一个进程可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。但select，poll，epoll本质上都是同步I/O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的，而异步I/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间
-## 6.1 select
-
-
+## 5.1 select
 
 ```cpp
 int select (int n, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval timeout);
@@ -451,7 +458,7 @@ select 函数监视的文件描述符分3类，分别是writefds、readfds、和
 ![](https://cdn.nlark.com/yuque/0/2023/png/12426173/1703128746892-e4b95c1a-0049-479e-aeb0-ea0ab8c3bcc5.png#averageHue=%232b2c24&clientId=ua27bdcca-2c18-4&from=paste&id=ua104dd74&originHeight=86&originWidth=684&originalType=url&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&taskId=u20fd3c9c-bbff-4552-bcb0-fdf69f1a1e7&title=)
 
 - [3] 被监控的fds集合中，只要有一个有数据可读，整个socket集合就会被遍历一次调用sk的poll函数收集可读事件：由于当初的需求是朴素，仅仅关心是否有数据可读这样一个事件，当事件通知来的时候，由于数据的到来是异步的，我们不知道事件来的时候，有多少个被监控的socket有数据可读了，于是，只能挨个遍历每个socket来收集可读事件了。
-## 6.2 poll
+## 5.2 poll
 poll的实现和select非常相似，只是描述fd集合的方式不同。针对select遗留的三个问题中（问题(2)是fd限制问题，问题(1)和(3)则是性能问题），poll只是使用pollfd结构而不是select的fd_set结构，这就解决了select的问题(2)fds集合大小1024限制问题。但poll和select同样存在一个性能缺点就是包含大量文件描述符的数组被整体复制于用户态和内核的地址空间之间，而不论这些文件描述符是否就绪，它的开销随着文件描述符数量的增加而线性增大。
 
 ```cpp
@@ -481,7 +488,7 @@ int poll(struct pollfd *fds, unsigned long nfds, int timeout);
 - 大于0：表示检测的集合中已就绪的文件描述符的总个数
 
 下面是poll的函数原型，poll改变了fds集合的描述方式，使用了pollfd结构而不是select的fd_set结构，使得poll支持的fds集合限制远大于select的1024。poll虽然解决了fds集合大小1024的限制问题，从实现来看。很明显它并没优化大量描述符数组被整体复制于用户态和内核态的地址空间之间，以及个别描述符就绪触发整体描述符集合的遍历的低效问题。poll随着监控的socket集合的增加性能线性下降，使得poll也并不适合用于大并发场景。
-## 6.3 epoll
+## 5.3 epoll
 在linux的网络编程中，很长的时间都在使用select来做事件触发。在linux新的内核中，有了一种替换它的机制，就是epoll。相比于select，epoll最大的好处在于它不会随着监听fd数目的增长而降低效率。如前面我们所说，在内核中的select实现中，它是采用轮询来处理的，轮询的fd数目越多，自然耗时越多。并且，在linux/posix_types.h头文件有这样的声明：
 #define __FD_SETSIZE 1024
 表示select最多同时监听1024个fd，当然，可以通过修改头文件再重编译内核来扩大这个数目，但这似乎并不治本。
@@ -542,7 +549,7 @@ int epoll_wait(int epfd, struct epoll_event * events, int maxevents, int timeout
 3. 如果返回-1，表示失败
 
 
-## 6.4 epoll的边缘触发与水平触发
+## 5.4 epoll的边缘触发与水平触发
 **水平触发(LT)**
 关注点是数据是否有无，只要读缓冲区不为空，写缓冲区不满，那么epoll_wait就会一直返回就绪，水平触发是epoll的默认工作方式。
 **边缘触发(ET)**
@@ -550,7 +557,8 @@ int epoll_wait(int epfd, struct epoll_event * events, int maxevents, int timeout
 这里的数据变化并不单纯指缓冲区从有数据变为没有数据，或者从没有数据变为有数据，还包括了数据变多或者变少。即当buffer长度有变化时，就会触发。
 假设epoll被设置为了边缘触发，当客户端写入了100个字符，由于缓冲区从0变为了100，于是服务端epoll_wait触发一次就绪，服务端读取了2个字节后不再读取。这个时候再去调用epoll_wait会发现不会就绪，只有当客户端再次写入数据后，才会触发就绪。
 这就导致如果使用ET模式，那就必须保证要「一次性把数据读取&写入完」，否则会导致数据长期无法读取/写入。
-## **6.5 epoll 为什么比select、poll更高效？**
+
+## **5.5 epoll 为什么比select、poll更高效？**
 
 - epoll 采用红黑树管理文件描述符
 从上图可以看出，epoll使用红黑树管理文件描述符，红黑树插入和删除的都是时间复杂度 O(logN)，不会随着文件描述符数量增加而改变。
