@@ -48,7 +48,7 @@ last_update:
 
 
 
-# 一 Buffer（缓冲区）- 数组块
+## 一 Buffer（缓冲区）- 数组块
 缓冲区本质上是一个可以写入数据的内存块（类似数组），然后可以再次读取。此内存块包含在NIO Buffer对象中，该对象提供了一组方法，可以更轻松的使用内存块。
 相对于直接操作数组，Buffer API提供了更加容易的操作和管理，其进行数据的操作分为写入和读取，主要步骤如下：
 
@@ -165,7 +165,7 @@ public class BufferDemo {
 
 ```
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1703126834880-2708578f-769e-4112-81fb-01998a32528f.png#averageHue=%23212327&clientId=ue7b2a21e-8f71-4&from=paste&height=306&id=u64a9a7ff&originHeight=382&originWidth=1822&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=78717&status=done&style=none&taskId=uaef1daea-70b1-4224-85da-ed397d458f4&title=&width=1457.6)
-# 二 ByteBuffer堆外内存
+## 二 ByteBuffer堆外内存
 ByteBuffer为性能关键型代码提供了直接内存（direct，堆外）和非直接内存（heap，堆）两种实现。堆外内存实现将内存对象分配在Java虚拟机的堆以外的内存，这些内存直接受操作系统管理，而不是虚拟机，这样做的结果就是能够在一定程度上减少垃圾回收对应用程序造成的影响，提供运行的速度。
 堆外内存的获取方式：ByteBuffer byteBuffer = ByteBuffer.allocateDirect(noBytes)
 堆外内存的好处：
@@ -213,7 +213,7 @@ public class DirectBuffer {
 
 ```
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/12426173/1703127613577-0aeae5e3-8012-4188-8095-38fc4e2289c0.png#averageHue=%23222326&clientId=ue7b2a21e-8f71-4&from=paste&height=277&id=uc6a2e310&originHeight=346&originWidth=1841&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=38718&status=done&style=none&taskId=ub4bcd0d5-0163-4986-91d8-94513f8e566&title=&width=1472.8)
-# 三 通道
+## 三 通道
 ### 3.1 Channel（通道）
 Channel用于源节点与目标节点之间的连接，Channel类似于传统的IO Stream，Channel本身不能直接访问数据，Channel只能与Buffer进行交互。
 Channel的API涵盖了TCP/UDP网络和文件IO，常用的类有FileChannel，DatagramChannel，SocketChannel，ServerSocketChannel
