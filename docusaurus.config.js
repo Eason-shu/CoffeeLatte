@@ -222,6 +222,18 @@ const config = {
         breadcrumbs: true,
       },
     ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Android",
+        path: "article/Android/Android",
+        routeBasePath: "Android",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
     // HarmonyOs
     [
       "@docusaurus/plugin-content-docs",
@@ -354,6 +366,10 @@ const config = {
             position: "right",
             label: "📱 Android",
             items: [
+              {
+                label: "💘 Android",
+                to: "/Android",
+              },
               {
                 label: "🛸 Kotlin",
                 to: "/Kotlin",

@@ -1,16 +1,13 @@
 ---
-slug: /
-title: Android 
+title: Gradle安装与配置
 sidebar_position: 1
 keywords:
-  - Android
-  - Kotlin
+  - 工具
 tags:
-  - Android
-  - Kotlin
+  - 工具
   - 学习笔记
 last_update:
-  date: 2023-07-31
+  date: 2023-10-21
   author: EasonShu
 ---
 
