@@ -1,6 +1,6 @@
 ---
 title: nvm 多版本控制Node 
-sidebar_position: 1
+sidebar_position: 2
 keywords:
   - Angular
   - Node

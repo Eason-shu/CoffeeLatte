@@ -187,9 +187,9 @@ const config = {
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "Tools",
-        path: "article/Web/Tools",
-        routeBasePath: "Tools",
+        id: "Tool",
+        path: "article/Web/Tool",
+        routeBasePath: "Tool",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
@@ -346,7 +346,7 @@ const config = {
               },
               {
                 label: "🤡 扩展工具",
-                to: "/Tools",
+                to: "/Tool",
               },
             ],
           },

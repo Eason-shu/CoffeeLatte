@@ -1,11 +1,11 @@
 ---
 slug: /
-title: 前端扩展工具
+title: 扩展
 sidebar_position: 1
 keywords:
-  - 工具
+  - React
 tags:
-  - 工具
+  - React
   - 学习笔记
   - 基础
   - 前端
@@ -13,8 +13,6 @@ last_update:
   date: 2023-07-01
   author: EasonShu
 ---
-
-
 
 
 
