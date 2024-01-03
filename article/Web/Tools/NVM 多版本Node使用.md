@@ -84,14 +84,14 @@ nvm use 版本号
 
 ## 1.4 常用命令
 
-- nvm install <version>：安装指定版本的Node.js。例如，nvm install 14.17.0将安装Node.js 14.17.0版本。
-- nvm use <version>：切换到指定版本的Node.js。例如，nvm use 14.17.0将切换到Node.js 14.17.0版本。
+- nvm install version：安装指定版本的Node.js。例如，nvm install 14.17.0将安装Node.js 14.17.0版本。
+- nvm use version：切换到指定版本的Node.js。例如，nvm use 14.17.0将切换到Node.js 14.17.0版本。
 - nvm ls：列出已安装的所有Node.js版本。
 - nvm ls-remote：列出远程可用的所有Node.js版本。
 - nvm current：显示当前正在使用的Node.js版本。
-- nvm alias <name> <version>：为指定的版本创建一个别名。例如，nvm alias default 14.17.0将为Node.js 14.17.0版本创建一个名为"default"的别名。
-- nvm unalias <name>：删除指定的版本别名。例如，nvm unalias default将删除名为"default"的别名。
-- nvm uninstall <version>：卸载指定的Node.js版本。例如，nvm uninstall 14.17.0将卸载Node.js 14.17.0版本。
+- nvm alias name version：为指定的版本创建一个别名。例如，nvm alias default 14.17.0将为Node.js 14.17.0版本创建一个名为"default"的别名。
+- nvm unalias name：删除指定的版本别名。例如，nvm unalias default将删除名为"default"的别名。
+- nvm uninstall version：卸载指定的Node.js版本。例如，nvm uninstall 14.17.0将卸载Node.js 14.17.0版本。
   
 
 ## 1.5 卸载
