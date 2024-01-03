@@ -184,6 +184,18 @@ const config = {
         breadcrumbs: true,
       },
     ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Tool",
+        path: "article/Web/Tool",
+        routeBasePath: "Tool",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
     // --------------------------------------------------Power-Base-------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -331,6 +343,10 @@ const config = {
               {
                 label: "🎰 React",
                 to: "/React",
+              },
+              {
+                label: "🤡 扩展工具",
+                to: "/Tool",
               },
             ],
           },
