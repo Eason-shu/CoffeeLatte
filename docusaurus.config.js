@@ -132,6 +132,19 @@ const config = {
         breadcrumbs: false,
       },
     ],
+     // -----------------------------------------------------RPC--------------------------------
+     [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "RPC",
+        path: "article/Server/RPC",
+        routeBasePath: "RPC",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
     // -----------------------------------------------------Netty--------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -334,6 +347,10 @@ const config = {
             position: "right",
             label: "🗻 微服务",
             items: [
+              {
+                label: "🌲 RPC",
+                to: "/RPC",
+              },
               {
                 label: "🌲 Netty",
                 to: "/Netty",

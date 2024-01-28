@@ -1,6 +1,6 @@
 ---
 title: Thrift（二）网络服务模型
-sidebar_position: 1
+sidebar_position: 2
 keywords:
   - 微服务
   - 源码分析
@@ -12,7 +12,7 @@ tags:
   - RPC
   - 学习笔记
 last_update:
-  date: 2023-11-6
+  date: 2022-11-6
   author: EasonShu
 ---
 

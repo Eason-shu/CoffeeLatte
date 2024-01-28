@@ -12,7 +12,7 @@ tags:
   - RPC
   - 学习笔记
 last_update:
-  date: 2023-11-6
+  date: 2022-11-6
   author: EasonShu
 ---
 
@@ -50,33 +50,20 @@ Thrift**软件栈**分层**从下向上**分别为：**传输层**(Transport Lay
 - **服务层**(Server Layer)：整合上述组件，提供具体的**网络线程/IO服务模型**，形成最终的服务。
 ## 1.5 特点
 ### (一) 开发速度快
-
 通过编写RPC接口Thrift IDL文件，利用**编译生成器**自动生成**服务端骨架**(Skeletons)和**客户端桩**(Stubs)。从而省去开发者**自定义**和**维护接口编解码**、**消息传输**、**服务器多线程模型**等基础工作。
-
 - 服务端：只需要按照**服务骨架**即**接口**，编写好具体的**业务处理程序**(Handler)即**实现类**即可。
 - 客户端：只需要拷贝IDL定义好的**客户端桩**和**服务对象**，然后就像调用本地对象的方法一样调用远端服务。
-### 
-
-(二) 接口维护简单
-
+### (二) 接口维护简单
 通过维护Thrift格式的IDL（**接口描述语言**）文件（注意写好注释），即可作为给Client使用的接口文档使用，也**自动生成**接口代码，始终保持代码和文档的一致性。且Thrift协议可灵活支持**接口**的**可扩展性**。
-### 
-(三) 学习成本低
-
+### (三) 学习成本低
 因为其来自Google Protobuf开发团队，所以其IDL文件风格类似Google Protobuf，且更加**易读易懂**；特别是RPC**服务接口**的风格就像写一个**面向对象**的Class一样简单。
 初学者只需参照：[thrift.apache.org/](https://link.zhihu.com/?target=https%3A//link.juejin.cn/%3Ftarget%3Dhttp%253A%252F%252Fthrift.apache.org%252F)，一个多小时就可以理解Thrift IDL文件的语法使用。
-### 
-(四) 多语言/跨语言支持
-
+### (四) 多语言/跨语言支持
 Thrift支持C++、 Java、Python、PHP、Ruby、Erlang、Perl、Haskell、C#、Cocoa、JavaScript、Node.js、Smalltalk等多种语言，即可生成上述语言的**服务器端**和**客户端程序**。
 对于我们经常使用的Java、PHP、Python、C++支持良好，虽然对iOS环境的Objective-C(Cocoa)支持稍逊，但也完全满足我们的使用要求。
-### 
-(五) 稳定/广泛使用
-
+### (五) 稳定/广泛使用
 Thrift在很多开源项目中已经被验证是**稳定**和**高效**的，例如Cassandra、Hadoop、HBase等；国外在Facebook中有广泛使用，国内包括百度、美团小米、和饿了么等公司。
-
 ![](https://cdn.nlark.com/yuque/0/2024/webp/12426173/1706372611138-cc5112c9-e5ea-45e3-8d60-e3804f1d4065.webp#averageHue=%23faf7f5&clientId=u47c2d215-c7bd-4&from=paste&id=sZuvJ&originHeight=485&originWidth=707&originalType=url&ratio=1.2000000476837158&rotation=0&showTitle=false&status=done&style=none&taskId=u8f3e2e7f-e6b5-49cf-8cf2-03f9b914eef&title=)
-## 
 
 # 二 环境搭建
 ## 2.1 下载环境搭建
