@@ -80,6 +80,19 @@ const config = {
         lib: "https://cdn.jsdelivr.net/npm/docusaurus-plugin-drawio/viewer.min.js",
       },
     ],
+    // -----------------------------------------------------计算机基础--------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Computer",
+        path: "article/Basics/Computer",
+        routeBasePath: "Computer",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
     // -----------------------------------------------------Java基础--------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -225,6 +238,18 @@ const config = {
     [
       "@docusaurus/plugin-content-docs",
       {
+        id: "Zookeeper",
+        path: "article/Server/Zookeeper",
+        routeBasePath: "Zookeeper",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
         id: "Android",
         path: "article/Android/Android",
         routeBasePath: "Android",
@@ -283,7 +308,7 @@ const config = {
     ({
       // announcementBar: {
       //   id: "support_us",
-      //   content: `🎉🎉🎉 Netty服务已上线！欢迎大家学习！🎉🎉🎉`,
+      //   content: `🎉🎉🎉 Zookeeper服务已上线！欢迎大家学习！🎉🎉🎉`,
       //   backgroundColor: "#fafbfc", // Defaults to `#fff`.
       //   textColor: "#091E42", // Defaults to `#000`.
       //   isCloseable: false, // Defaults to `true`.
@@ -304,6 +329,16 @@ const config = {
         hideOnScroll: true,
         items: [
           { to: "/blog", label: "🔝 博客", position: "right" },
+          {
+            label: "💻 计算机",
+            position: "right",
+            items: [
+              {
+                label: "👀 计算机基础",
+                to: "/Computer",
+              },
+            ],
+          },
           {
             label: "🚀 Java",
             position: "right",
@@ -337,6 +372,10 @@ const config = {
               {
                 label: "🌲 Netty",
                 to: "/Netty",
+              },
+              {
+                label: "🗻 Zookeeper",
+                to: "/Zookeeper",
               }
             ]
           },
