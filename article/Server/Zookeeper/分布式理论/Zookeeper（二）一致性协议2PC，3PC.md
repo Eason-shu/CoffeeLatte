@@ -1,5 +1,5 @@
 ---
-title: Zookeeper（二）Zookeeper（二）一致性协议2PC，3PC
+title: Zookeeper（二）一致性协议2PC，3PC
 sidebar_position: 3
 keywords:
   - 微服务
@@ -14,7 +14,6 @@ last_update:
   date: 2024-02-17
   author: EasonShu
 ---
-
 - 官网：[Apache ZooKeeper](http://zookeeper.apache.org)
 
 ## 1.1 2PC协议
@@ -127,4 +126,3 @@ last_update:
 
 - 三阶段提交协议的优点：相较于二阶段提交协议，三阶段提交协议最大的优点就是降低了参与者的阻塞范围，并且能够在出现单点故障后继续达成一致。
 - 三阶段提交协议的缺点：三阶段提交协议在去除阻塞的同时也引入了新的问题，那就是在参与者接收到preCommit消息后，如果网络出现分区，此时协调者所在的节点和参与者无法进行正常的网络通信，在这种情况下，该参与者依然会进行事务的提交，这必然出现数据的不一致性。
-
