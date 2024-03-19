@@ -6,9 +6,6 @@
  * @FilePath: \CoffeeLatte\docusaurus.config.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-/**
- * Code Theme
- */
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const { to } = require("react-spring");
@@ -383,7 +380,7 @@ const config = {
             label: "🗻 微服务",
             items: [
               {
-                label: "🌲 RPC",
+                label: "🗼 RPC",
                 to: "/RPC",
               },
               {
