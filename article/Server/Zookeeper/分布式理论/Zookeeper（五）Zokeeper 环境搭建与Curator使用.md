@@ -1,5 +1,5 @@
 ---
-title: Zookeeper（五）Zo环境搭建与Curator使用
+title: Zookeeper（五）环境搭建与Curator使用
 sidebar_position: 6
 keywords:
   - 微服务
