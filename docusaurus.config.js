@@ -77,19 +77,6 @@ const config = {
         lib: "https://cdn.jsdelivr.net/npm/docusaurus-plugin-drawio/viewer.min.js",
       },
     ],
-    // -----------------------------------------------------计算机基础--------------------------------
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "Computer",
-        path: "article/Basics/Computer",
-        routeBasePath: "Computer",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: true,
-      },
-    ],
     // -----------------------------------------------------Java基础--------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -340,16 +327,6 @@ const config = {
         items: [
           { to: "/blog", label: "🔝 博客", position: "right" },
           {
-            label: "💻 计算机",
-            position: "right",
-            items: [
-              {
-                label: "👀 计算机基础",
-                to: "/Computer",
-              },
-            ],
-          },
-          {
             label: "🚀 Java",
             position: "right",
             items: [
@@ -420,33 +397,29 @@ const config = {
             label: "📱 Android",
             items: [
               {
-                label: "💘 Android",
-                to: "/Android",
-              },
-              {
                 label: "🛸 Kotlin",
                 to: "/Kotlin",
               },
               {
-                label: "🎐 HarmonyOs",
-                to: "/HarmonyOs",
+                label: "💘 Android",
+                to: "/Android",
               },
             ],
           },
-          {
-            position: "right",
-            label: "⚡ 业务知识",
-            items: [
-              {
-                label: "⛵ 基本理论知识",
-                to: "/power_base",
-              },
-              {
-                label: "🛑 协议文档",
-                to: "/power_protocol",
-              },
-            ],
-          },
+          // {
+          //   position: "right",
+          //   label: "⚡ 业务知识",
+          //   items: [
+          //     {
+          //       label: "⛵ 基本理论知识",
+          //       to: "/power_base",
+          //     },
+          //     {
+          //       label: "🛑 协议文档",
+          //       to: "/power_protocol",
+          //     },
+          //   ],
+          // },
           {
             position: "right",
             label: "🍃 爱好",
