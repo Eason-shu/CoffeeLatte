@@ -34,27 +34,22 @@
   --ifm-heading-font-family: "Raleway", "PingFang SC", "Microsoft Yahei",
     sans-serif;
   /* --content-font-family: "Raleway", "Kai", "楷体", "Kaiti", serif; */
-
   --ifm-navbar-shadow: 0px 4px 28px rgba(0, 0, 0, 0.1);
   --ifm-toc-border-color: #f7f7f7;
   --text-color: #2b333e;
-  /* --ifm-heading-color: hsl(200deg, 20%, 20%); */
-
+  --ifm-heading-color: hsl(200deg, 20%, 20%);
   --ifm-menu-color: #0d203a;
-
   /* 搜索框 */
   --search-local-modal-background: hsl(0deg, 0%, 100%);
   --search-local-modal-shadow: 0px 0px 48px hsl(0deg, 0%, 0%, 0.12);
-
   /* 进度条背景 */
   --progress-bar-background-color: #f3f3f3;
-
   /* 卡片背景 */
   --card-background: #ffffff;
-
   /* 选中未选中 */
   --btn-selected: var(--ifm-color-primary);
   --btn-unselected: #cecece;
+
 }
 
 .docusaurus-highlight-code-line {
@@ -76,9 +71,7 @@ html {
       hsl(0deg 0% 95%));
   --blog-item-shadow: 20px 20px 60px #ced1d6, -20px -20px 60px #ffffff;
   --ifm-heading-color: #000000;
-
   -webkit-font-smoothing: unset;
-
   /* 文字颜色 */
   color: hsl(214deg 37% 25%);
 }
@@ -89,7 +82,7 @@ html h3,
 html h4,
 html h5,
 html h6 {
-  --ifm-heading-color: hsl(214deg, 78%, 17%);
+  --ifm-heading-color: hsl(20, 92%, 46%);
 }
 
 html[data-theme="dark"] {
@@ -104,16 +97,14 @@ html[data-theme="dark"] {
   --blog-item-background-color: linear-gradient(145deg, #041a31, #000000);
   --blog-item-shadow: 20px 20px 60px #253748, -20px -20px 60px #253748;
   --ifm-heading-color: #ffffff;
-
   --ifm-menu-color: #eceef1;
-
   color: hsl(214deg, 15%, 85%);
+
 
   /* 搜索 */
   /* 搜索框 */
   --search-local-modal-background: var(--ifm-background-color);
   --search-local-modal-shadow: 0px 0px 48px hsl(0deg, 100%, 100%, 0.12);
-
   /* 进度条背景 */
   --progress-bar-background-color: #3e3e3e;
   /* 卡片背景 */
@@ -129,16 +120,7 @@ html[data-theme="dark"] h6 {
   --ifm-heading-color: hsl(214deg, 100%, 96%);
 }
 
-/* 小空调自定义样式 */
-#airConditioning {
-  padding-left: 30px;
-  border-left: 0.5px solid var(--ifm-color-emphasis-300);
-  float: right;
-  margin-top: -630px;
-  height: 651px;
-  overflow: hidden;
-  zoom: 80%;
-}
+
 
 /* tg comments */
 #comments-app-27ZP8kvt-1 {
@@ -303,12 +285,7 @@ div[class^='announcementBar_'] {
 }
 
 
-
-/* 行内代码 */
-pre code {
-  word-wrap: break-word;
-  padding: 2px 4px;
-  border-radius: 4px;
-  margin: 0 2px;
-  word-break: break-all;
+strong {
+  color: #136ef7;
+  font-weight: bold;
 }

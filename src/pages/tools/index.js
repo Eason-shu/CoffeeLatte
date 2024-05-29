@@ -8,7 +8,7 @@ export default function APP() {
 
   }, []);
   return (
-    <Layout title="开发工具">
+    <Layout title="开发工具" >
       <div className="tailwind">
 
       </div>
