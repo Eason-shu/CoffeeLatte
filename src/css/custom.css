@@ -12,10 +12,10 @@
 
 /* tailWind支持 */
 .tailwind {
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
-    @tailwind screens;
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+  @tailwind screens;
 }
 
 :root {
@@ -169,6 +169,7 @@ hr {
   width: 90%;
   color: rgb(201, 120, 120);
 }
+
 blockquote {
   transition: all 0.5s ease-in-out;
   /* background: var(--ifm-color-primary-lighter); */
@@ -181,6 +182,7 @@ blockquote {
   margin: 10px 0;
   border-radius: 5px;
 }
+
 blockquote:hover {
   /* border-left: 2px solid var(--ifm-color-primary); */
   border-image-source: linear-gradient(to left, #8f41e9, var(--ifm-color-primary));
@@ -197,19 +199,21 @@ code {
   font-family: 'Noto Sans';
 }
 
-.markdown > h2 {
+.markdown>h2 {
   border-left: var(--ifm-color-primary-dark) 3px solid;
   padding-left: 10px;
   line-height: 100%;
   border-left: var(--ifm-color-primary-dark) 7px solid;
   border-radius: 1px;
 }
-.markdown > h3 {
+
+.markdown>h3 {
   padding-left: 10px;
   line-height: 100%;
   border-left: var(--ifm-color-primary-darker) 4px solid;
   border-radius: 1px;
 }
+
 .markdown img {
   display: block;
   margin: 1rem auto;
@@ -226,6 +230,7 @@ img-annotation {
 p {
   margin: 15px 0 15px 10px;
 }
+
 /* 徽章居左 */
 .Badges {
   display: inline-block !important;
@@ -234,13 +239,11 @@ p {
 
 /* 公告栏 */
 div[class^='announcementBar_'] {
-  background: repeating-linear-gradient(
-    35deg,
-    var(--site-announcement-bar-stripe-color1),
-    var(--site-announcement-bar-stripe-color1) 20px,
-    var(--site-announcement-bar-stripe-color2) 10px,
-    var(--site-announcement-bar-stripe-color2) 40px
-  );
+  background: repeating-linear-gradient(35deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px);
   font-weight: 700;
 }
 
@@ -249,31 +252,34 @@ div[class^='announcementBar_'] {
   -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.3);
   border-radius: 10px;
 }
+
 /* 滚动条滑块 */
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);
 }
+
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(255, 0, 0, 0.4);
 }
+
 /* .dropdown__menu{
   min-width: 7rem!important;
 } */
 
-.margin-vert--lg > .container > .row {
-  flex-direction: column-reverse!important;
+.margin-vert--lg>.container>.row {
+  flex-direction: column-reverse !important;
 }
 
-.margin-vert--lg > .container > .row > div > h3{
+.margin-vert--lg>.container>.row>div>h3 {
   font-size: 1.8rem;
 }
 
-.margin-vert--lg > .container > .row > div > ul > li{
+.margin-vert--lg>.container>.row>div>ul>li {
   line-height: 2.0rem;
   letter-spacing: 0.1rem;
-  width: 49vw!important;
+  width: 49vw !important;
 }
 
 ::-webkit-scrollbar {
@@ -298,3 +304,11 @@ div[class^='announcementBar_'] {
 
 
 
+/* 行内代码 */
+pre code {
+  word-wrap: break-word;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin: 0 2px;
+  word-break: break-all;
+}
