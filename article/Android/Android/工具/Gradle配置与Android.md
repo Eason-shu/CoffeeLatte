@@ -1,5 +1,5 @@
 ---
-title: Gradle安装与配置
+title: Gradle配置与Android
 sidebar_position: 1
 keywords:
   - 工具
@@ -10,10 +10,10 @@ last_update:
   date: 2023-10-21
   author: EasonShu
 ---
-
 ## 1.1 AndroidStudio 与Gradle 对应关系
 
 下表列出了各个 Android Gradle 插件版本所需的 Gradle 版本：
+
 
 | 插件版本 | 所需的最低 Gradle 版本 |
 | -------- | ---------------------- |
@@ -32,12 +32,11 @@ last_update:
 
 ![image-20240103233906399](images/image-20240103233906399.png)
 
-##  1.3 Gradle 的安装与配置
+## 1.3 Gradle 的安装与配置
 
 ### 1.3.1 安装
 
 - 下载地址：https://gradle.org/releases/
-
 - 解压到指定位置
 
 ![image-20240103234241801](images/image-20240103234241801.png)
@@ -66,7 +65,7 @@ GRADLE_USER_HOME：位置
 
 - 配置国内镜像加速服务
 
- [init.d](D:\environment\gradle-6.5\init.d) 目录下新建 [init.gradle](D:\environment\gradle-6.5\init.d\init.gradle) 文件
+[init.d](D:\environment\gradle-6.5\init.d) 目录下新建 [init.gradle](D:\environment\gradle-6.5\init.d\init.gradle) 文件
 
 ```
 allprojects {
@@ -90,6 +89,3 @@ allprojects {
 ### 1.3.2 Android 配置
 
 ![image-20240103234838049](images/image-20240103234838049.png)
-
-
-
