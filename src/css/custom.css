@@ -130,7 +130,7 @@ html[data-theme="dark"] h6 {
 }
 
 /* 小空调自定义样式 */
-/* #airConditioning {
+#airConditioning {
   padding-left: 30px;
   border-left: 0.5px solid var(--ifm-color-emphasis-300);
   float: right;
@@ -138,7 +138,7 @@ html[data-theme="dark"] h6 {
   height: 651px;
   overflow: hidden;
   zoom: 80%;
-} */
+}
 
 /* tg comments */
 #comments-app-27ZP8kvt-1 {
@@ -295,3 +295,6 @@ div[class^='announcementBar_'] {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
   background-color: #b3b3b3;
 }
+
+
+

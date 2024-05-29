@@ -48,6 +48,10 @@ GRADLE_HOME： 位置
 
 ![image-20240103234359259](images/image-20240103234359259.png)
 
+Path: 环境变量
+
+![image-20240529102318799](images/image-20240529102318799.png)
+
 - 配置仓库地址
 
 先建一个仓库存储地址： [repository](D:\environment\gradle-6.5\repository)
@@ -86,4 +90,6 @@ allprojects {
 ### 1.3.2 Android 配置
 
 ![image-20240103234838049](images/image-20240103234838049.png)
+
+
 
