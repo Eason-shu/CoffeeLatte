@@ -10,7 +10,7 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital@1&family=Poppins:wght@500&display=swap"); */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
-/* tailWindæ¯æ */
+/* tailWind支持 */
 .tailwind {
     @tailwind base;
     @tailwind components;
@@ -33,7 +33,7 @@
     "Liberation Mono", monospace; */
   --ifm-heading-font-family: "Raleway", "PingFang SC", "Microsoft Yahei",
     sans-serif;
-  /* --content-font-family: "Raleway", "Kai", "æ¥·ä½", "Kaiti", serif; */
+  /* --content-font-family: "Raleway", "Kai", "楷体", "Kaiti", serif; */
 
   --ifm-navbar-shadow: 0px 4px 28px rgba(0, 0, 0, 0.1);
   --ifm-toc-border-color: #f7f7f7;
@@ -42,17 +42,17 @@
 
   --ifm-menu-color: #0d203a;
 
-  /* æç´¢æ¡ */
+  /* 搜索框 */
   --search-local-modal-background: hsl(0deg, 0%, 100%);
   --search-local-modal-shadow: 0px 0px 48px hsl(0deg, 0%, 0%, 0.12);
 
-  /* è¿åº¦æ¡èæ¯ */
+  /* 进度条背景 */
   --progress-bar-background-color: #f3f3f3;
 
-  /* å¡çèæ¯ */
+  /* 卡片背景 */
   --card-background: #ffffff;
 
-  /* éä¸­æªéä¸­ */
+  /* 选中未选中 */
   --btn-selected: var(--ifm-color-primary);
   --btn-unselected: #cecece;
 }
@@ -79,7 +79,7 @@ html {
 
   -webkit-font-smoothing: unset;
 
-  /* æå­é¢è² */
+  /* 文字颜色 */
   color: hsl(214deg 37% 25%);
 }
 
@@ -109,14 +109,14 @@ html[data-theme="dark"] {
 
   color: hsl(214deg, 15%, 85%);
 
-  /* æç´¢ */
-  /* æç´¢æ¡ */
+  /* 搜索 */
+  /* 搜索框 */
   --search-local-modal-background: var(--ifm-background-color);
   --search-local-modal-shadow: 0px 0px 48px hsl(0deg, 100%, 100%, 0.12);
 
-  /* è¿åº¦æ¡èæ¯ */
+  /* 进度条背景 */
   --progress-bar-background-color: #3e3e3e;
-  /* å¡çèæ¯ */
+  /* 卡片背景 */
   --card-background: #0c0c0c;
 }
 
@@ -129,7 +129,7 @@ html[data-theme="dark"] h6 {
   --ifm-heading-color: hsl(214deg, 100%, 96%);
 }
 
-/* å°ç©ºè°èªå®ä¹æ ·å¼ */
+/* 小空调自定义样式 */
 /* #airConditioning {
   padding-left: 30px;
   border-left: 0.5px solid var(--ifm-color-emphasis-300);
@@ -226,13 +226,13 @@ img-annotation {
 p {
   margin: 15px 0 15px 10px;
 }
-/* å¾½ç« å±å·¦ */
+/* 徽章居左 */
 .Badges {
   display: inline-block !important;
   margin: 0.5rem 0.3rem !important;
 }
 
-/* å¬åæ  */
+/* 公告栏 */
 div[class^='announcementBar_'] {
   background: repeating-linear-gradient(
     35deg,
@@ -244,12 +244,12 @@ div[class^='announcementBar_'] {
   font-weight: 700;
 }
 
-/* æ»å¨æ§½ */
+/* 滚动槽 */
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.3);
   border-radius: 10px;
 }
-/* æ»å¨æ¡æ»å */
+/* 滚动条滑块 */
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.1);
