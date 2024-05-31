@@ -1,5 +1,25 @@
 @charset "UTF-8";
 /* import "local.google.fonts.css";*/
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital@1&family=Poppins:wght@500&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital@1&family=Poppins:wght@500&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+/* tailWindæ¯æ */
+.tailwind {
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+    @tailwind screens;
+}
+
 /* 最顶层设计 */
 :root {
   --ifm-color-primary: #0086f1;
