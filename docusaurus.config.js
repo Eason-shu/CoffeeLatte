@@ -206,19 +206,6 @@ const config = {
         breadcrumbs: true,
       },
     ],
-    // --------------------------------------------------Power-Base-------------------------------
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "power_base",
-        path: "article/Power/Power_Base",
-        routeBasePath: "power_base",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: true,
-      },
-    ],
     // -------------------------------------------------power-protocol------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -303,13 +290,13 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      announcementBar: {
-        id: "support_us",
-        content: `🎉🎉🎉 Zookeeper服务已上线！欢迎大家学习！🎉🎉🎉`,
-        backgroundColor: "#fafbfc", // Defaults to `#fff`.
-        textColor: "#091E42", // Defaults to `#000`.
-        isCloseable: false, // Defaults to `true`.
-      },
+      // announcementBar: {
+      //   id: "support_us",
+      //   content: `🎉🎉🎉 Zookeeper服务已上线！欢迎大家学习！🎉🎉🎉`,
+      //   backgroundColor: "#fafbfc", // Defaults to `#fff`.
+      //   textColor: "#091E42", // Defaults to `#000`.
+      //   isCloseable: false, // Defaults to `true`.
+      // },
       metadata: [
         {
           name: "lottecoffee",
@@ -406,27 +393,16 @@ const config = {
               },
             ],
           },
-          // {
-          //   position: "right",
-          //   label: "⚡ 业务知识",
-          //   items: [
-          //     {
-          //       label: "⛵ 基本理论知识",
-          //       to: "/power_base",
-          //     },
-          //     {
-          //       label: "🛑 协议文档",
-          //       to: "/power_protocol",
-          //     },
-          //   ],
-          // },
           {
             position: "right",
-            label: "🍃 爱好",
+            label: "🍃 其他",
             items: [
               {
                 label: "📷 摄影",
                 to: "/photography",
+              }, {
+                label: "⛵ 协议文档",
+                to: "/power_protocol",
               },
             ],
           },

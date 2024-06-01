@@ -4,8 +4,8 @@
 # 依赖安装
 npm install or  yarn install
 # 启动
-npm run start
+npm run start or yarn start
 # 打包
-npm run build
+npm run build or yarn build
 ```
 
