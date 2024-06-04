@@ -276,7 +276,7 @@ Box(
 - Modifier.offset(offset: Density.() -> IntOffset)
      偏移，单位px，可以结合动画进行元素的偏移处理；
 
-- Modifier.offsetPx(x: State<Float> = mutableStateOf(0f), y: State<Float> = mutableStateOf(0f))
+- Modifier.offsetPx(x: State`<Float>` = mutableStateOf(0f), y: State`<Float>` = mutableStateOf(0f))
 
 - 带有状态的偏移量【已废弃】，请使用上一个函数；
 
@@ -284,4 +284,4 @@ Box(
 
 - Modifier.absoluteOffset(offset: Density.() -> IntOffset)
 
-- Modifier.absoluteOffsetPx(x: State<Float> = mutableStateOf(0f), y: State<Float> = mutableStateOf(0f))
+- Modifier.absoluteOffsetPx(x: State<`Float`> = mutableStateOf(0f), y: State<`Float`> = mutableStateOf(0f))
