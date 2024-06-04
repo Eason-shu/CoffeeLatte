@@ -10,11 +10,14 @@ last_update:
   date: 2024-05-21
   author: EasonShu
 ---
+
 在开始用 Jetpack Compose 来编写软件之前，我们需要
 
 ### 1. 一台可以联网的电脑
+
 ### 2. **安装或更新到** [最新版的 Android Studio](https://developer.android.com/studio)
-### 3. 选择创建 **Empty Activity** 
+
+### 3. 选择创建 **Empty Activity**
 
 ![image.png](images/image_1-a649d78d2a0dbb781917e931bdadd413-17174956983972.webp)
 
@@ -32,8 +35,7 @@ last_update:
 distributionUrl=https\://services.gradle.org/distributions/gradle-7.2-bin.zip
 ```
 
-<Tabs groupId="gradle">
-<TabItem value="groovy" label="build.gradle">
+
 
 ```groovy
 buildscript {
@@ -52,8 +54,7 @@ buildscript {
 }
 ```
 
-</TabItem>
-<TabItem value="kts" label="build.gradle.kts">
+
 
 ```kotlin
 buildscript {
@@ -73,13 +74,10 @@ buildscript {
 }
 ```
 
-</TabItem>
-</Tabs>
 
 ### 5. 配置 Gradle（可忽略）
 
 您需要将应用的最低 API 级别设置为 21 或更高级别，并在应用的 build.gradle 文件中启用 Jetpack Compose，如下所示。
-
 
 ```groovy title="build.gradle"
 plugins {
@@ -162,32 +160,41 @@ android {
     }
 }
 ```
+
 :::
 
-#### 使用 BOM 
+#### 使用 BOM
+
 自 Jetpack Compose 1.3.0 起，Google 提供了 Compose BOM（Bill of Materials）用于快速指定版本。
 > BOM 是一个 Maven 模块，它声明一组库和版本的对应关系，将能极大地简化你在 Gradle 依赖块中定义 Compose 库版本的方式。您现在只需要定义一个 BOM 版本，就可以同时指定所有的 Compose 库版本，而不是分别定义每个版本(当库版本开始不同时，这可能会变得很麻烦并且容易出错)。每当 Compose 有一个新的稳定版本时，我们都将发布一个新的 BOM 版本，因此从稳定版本迁移到新的稳定版本将会十分轻松
 
 具体来说，当你在 `build.gradle` 中引入 `BOM` 后
+
 ```groovy
 // Import the Compose BOM
 implementation platform('androidx.compose:compose-bom:2022.11.00')
 ```
+
 再引入其它 Compose 相关的库就不需要手动指定版本号了，它们会由 `BOM` 指定
+
 ```groovy
 implementation "androidx.compose.ui:ui"
 implementation "androidx.compose.material:material"
 implementation "androidx.compose.ui:ui-tooling-preview"
 ```
+
 `BOM` 指定的版本都是稳定版，你也可以选择覆写部分版本到 `alpha` 版本，如下：
+
 ```groovy
 // Override Material Design 3 library version with a pre-release version
 implementation 'androidx.compose.material3:material3:1.1.0-alpha01'
 ```
+
 需要注意的是，这样可能会使部分其它的 Compose 库也升级为对应的 `alpha` 版本，以确保兼容性。  
 `BOM` 和 库版本 的映射可以在 [Quick start  |  Jetpack Compose  |  Android Developers](https://developer.android.com/jetpack/compose/setup#bom-version-mapping) 找到，
 
 ### 6. 编写第一个 **Compose** 程序
+
 现在，如果一切都正常，我们可以看到，**MainActivity.kt** 上显示以下代码
 
 ``` kotlin
@@ -223,6 +230,7 @@ fun DefaultPreview() {
 您可以尝试编译运行此项目，以确保各类环境已安装成功。在此基础上，您也可以尝试修改 `①`处字符串 "Android" 为其他值，在 debug 模式及较新的 Android Studio 版本下，您将看到修改实时显示到应用程序上——这是 Android Studio 提供的 `字面量编辑` 支持。您可以之后参阅 [官方文档](https://developer.android.com/jetpack/compose/tooling#live-edit-literals) 以了解更多。
 
 现在，我们将 MainActivity.kt 修改成以下：
+
 ``` kotlin
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -234,14 +242,12 @@ class MainActivity : ComponentActivity() {
 }
 ```
 
-
-
 ### 7. 目录结构了解
 
 ![image-20240604204214725](images/image-20240604204214725.png)
 
 - 对比，java Android项目来说，没有布局文件目录，代替的是声明式布局
-- App的主题配置，颜色配置代替的也是编码，保留了文件自由目录 
+- App的主题配置，颜色配置代替的也是编码，保留了文件自由目录
 
 ### 8 一个登录页面案例
 
@@ -539,4 +545,3 @@ fun LoginButton(onClick: () -> Unit) {
 ![image-20240604210030581](images/image-20240604210030581.png)
 
 - 总结来说：第一次使用我们可以按照原来的思路进行布局，只是我们需要认识新的属性与样式写法
-
