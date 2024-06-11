@@ -13,6 +13,13 @@ last_update:
 
 在开始用 Jetpack Compose 来编写软件之前，我们需要
 
+Jetpack Compose（简称Compose）是Android新一代UI开发框架，致力于帮助开发者用更少的代码和更直观的API完成Native UI开发。相对于传统的UI开发方式，Compose具有以下几个方面的优势：
+
+- 先进的开发范式：Compose采用声明式的开发范式，开发者只需要聚焦在对UI界面的描述上，当需要渲染的数据发生变化时，框架将自动完成UI刷新。
+- 直观易用的API：基于Kotlin DSL打造的API紧贴函数式编程思想，相对于传统的视图开发方式，代码效率更高，实现同样的功能只需要以前一半的代码量。
+-  良好的兼容性：Compose代码与基于Android View系统的传统代码可以共存，用户可以按照喜欢的节奏将既有代码逐步过渡到Compose。
+- 广泛的适用性：Compose最低兼容到API 21，支持市面上绝大多数手机设备的使用；Jetpack以及各种常用三方库也都第一时间与Compose进行了适配。
+
 ### 1. 一台可以联网的电脑
 
 ### 2. **安装或更新到** [最新版的 Android Studio](https://developer.android.com/studio)

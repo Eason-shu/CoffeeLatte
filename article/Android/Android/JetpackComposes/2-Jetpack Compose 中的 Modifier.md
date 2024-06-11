@@ -11,8 +11,9 @@ last_update:
   author: EasonShu
 ---
 
-
 # Jetpack Compose 中的 Modifier
+
+在传统开发中，使用XML文件来描述组件的样式，而Jetpack Compose设计了一个精妙的东西，它叫作Modifier。
 
 Jetpack Compose 是 Android 中用于构建用户界面的现代化工具包。其中，Modifier 是一个非常重要的概念，它允许我们对 UI 组件进行各种样式和布局的调整。在本篇博客中，我们将深入了解 Modifier，以及如何在 Compose 中使用它。
 
@@ -55,7 +56,7 @@ Modifier 是一种修饰符，它允许我们在 Compose 中对 UI 进行各种�
 
 ### 1.1 添加背景色
 
-- background:只能颜色，不能图片
+- background:backgroud修饰符用来为被修饰组件添加背景色。背景色支持设置color的纯色背景，也可以使用brush设置渐变色背景。Brush是Compose提供的用来创建线性渐变色的工具。
 
 ```kotlin
 Box(
@@ -68,6 +69,8 @@ Box(
 ```
 
 ### 1.2 填充最大宽度，高度
+
+- 有的时候想要让组件在高度或者宽度上填满父空间，此时可以使用fillMaxXXX系列方法：
 
 - fillMaxWidth：填充最大宽度
 - fillMaxHeight:填充最大宽度
@@ -83,9 +86,11 @@ Box(
         ) {}
 ```
 
+![image-20240607103237885](images/image-20240607103237885.png)
+
 ### 1.3  设置大小
 
-- size: 大小
+- size: 先来介绍最常用的size修饰符，它用来设置被修饰组件的大小。
 
 ```kotlin
 Box(
@@ -113,7 +118,7 @@ Box(
 
 ### 1.5 内边距
 
-- 使用 `padding` 方法可以为 UI 组件添加内边距
+- 使用 `padding` 方法可以为 UI 组件添加内边距。padding用来为被修饰组件增加间隙。可以在border前后各插入一个padding，区分对外和对内的间距
 
 ```kotlin
 Box(
@@ -126,9 +131,11 @@ Box(
 }
 ```
 
+![image-20240607103330185](images/image-20240607103330185.png)
+
 ### 1.6 外边距
 
-- 使用 `offset` 方法可以将 UI 组件移动到指定的位置。
+- 使用 `offset` 方法可以将 UI 组件移动到指定的位置。：offset修饰符用来移动被修饰组件的位置，我们在使用时只分别传入水平方向与垂直方向的偏移量即可。
 
 ```kotlin
 Box(
@@ -272,16 +279,27 @@ Box(
 
 - Modifier.offset(x: Dp = 0.dp, y: Dp = 0.dp)
      水平和竖直方向上的偏移，单位dp，值可以为正也可以为负，无需考虑国际化的问题。
-
 - Modifier.offset(offset: Density.() -> IntOffset)
      偏移，单位px，可以结合动画进行元素的偏移处理；
-
 - Modifier.offsetPx(x: State`<Float>` = mutableStateOf(0f), y: State`<Float>` = mutableStateOf(0f))
-
 - 带有状态的偏移量【已废弃】，请使用上一个函数；
-
 - Modifier.absoluteOffset(x: Dp = 0.dp, y: Dp = 0.dp)
-
 - Modifier.absoluteOffset(offset: Density.() -> IntOffset)
-
 - Modifier.absoluteOffsetPx(x: State<`Float`> = mutableStateOf(0f), y: State<`Float`> = mutableStateOf(0f))
+
+## 1.3 作用域限定Modifier修饰符
+
+Compose充分发挥了Kotlin的语法特性，让某些Modifier修饰符只能在特定作用域中使用，有利于类型安全地调用它们。所谓的`作用域`，在Kotlin中就是一个带有Receiver的代码块。例如Box组件参数中的conent就是一个Reciever类型为BoxScope的代码块，因此其子组件都处于BoxScope作用域中
+
+### 1.3.1 matchParentSize
+
+- matchParentSize是只能在BoxScope中使用的作用域限定修饰符。当使用matchParentSize设置尺寸时，可以保证当前组件的尺寸与父组件相同。而父组件默认的是wrapContent，会根据UserInfo的尺寸确定自身的尺寸。
+
+### 1.3.2 weight
+
+- 在RowScope与ColumnScope中，可以使用专属的weight修饰符来设置尺寸。与size修饰符不同的是，weight修饰符允许组件通过百分比设置尺寸，也就是允许组件可以自适应适配各种屏幕尺寸的移动终端设备。
+
+![image-20240607104128953](images/image-20240607104128953.png)
+
+
+
