@@ -1,4 +1,7 @@
 @charset "UTF-8";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 :root {
   --ifm-color-primary: #0086f1;
   --ifm-color-primary-dark: #05a1ec;

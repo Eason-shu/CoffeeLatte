@@ -354,8 +354,8 @@ const config = {
               {
                 label: "🗻 Zookeeper",
                 to: "/Zookeeper",
-              }
-            ]
+              },
+            ],
           },
           {
             position: "right",
@@ -400,7 +400,8 @@ const config = {
               {
                 label: "📷 摄影笔记",
                 to: "/photography",
-              }, {
+              },
+              {
                 label: "⛵ 协议文档",
                 to: "/power_protocol",
               },
@@ -423,13 +424,26 @@ const config = {
       },
       footer: {
         style: "dark",
-        copyright: `<p>Copyright © ${new Date().getFullYear()} LotteCoffee  Built with Docusaurus.</p><p><a href="http://beian.miit.gov.cn/" >蜀ICP备2022021919号</a></p>`,
+        copyright: `<p>Copyright © ${new Date().getFullYear()} LotteCoffee  Built with Docusaurus.</p>`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         defaultLanguage: "markdown",
-        additionalLanguages: ["java", "git", "nginx", "http","powershell","kotlin","scala","plsql","python","lua","groovy","typoscript"],
+        additionalLanguages: [
+          "java",
+          "git",
+          "nginx",
+          "http",
+          "powershell",
+          "kotlin",
+          "scala",
+          "plsql",
+          "python",
+          "lua",
+          "groovy",
+          "typoscript",
+        ],
       },
       mermaid: {
         theme: { light: "neutral", dark: "forest" },
@@ -438,7 +452,7 @@ const config = {
   markdown: {
     mermaid: true,
   },
-  themes: ["@docusaurus/theme-mermaid"]
+  themes: ["@docusaurus/theme-mermaid"],
 };
 
 module.exports = config;
