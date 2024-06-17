@@ -290,13 +290,13 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // announcementBar: {
-      //   id: "support_us",
-      //   content: `🎉🎉🎉 Zookeeper服务已上线！欢迎大家学习！🎉🎉🎉`,
-      //   backgroundColor: "#fafbfc", // Defaults to `#fff`.
-      //   textColor: "#091E42", // Defaults to `#000`.
-      //   isCloseable: false, // Defaults to `true`.
-      // },
+      announcementBar: {
+        id: "support_us",
+        content: `🎉🎉🎉 Jetpack Compose已上线！欢迎大家学习！🎉🎉🎉`,
+        backgroundColor: "#fafbfc", // Defaults to `#fff`.
+        textColor: "#091E42", // Defaults to `#000`.
+        isCloseable: false, // Defaults to `true`.
+      },
       metadata: [
         {
           name: "lottecoffee",
