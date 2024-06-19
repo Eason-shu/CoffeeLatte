@@ -516,3 +516,91 @@ fun showQuotesDemo() {
 }
 ```
 
+### 1.1.10  Scaffold脚手架
+
+- Scaffold组件实现了Material Design的布局结构，通过配合其他Material组件可以轻松地构建Material Design风格的界面。
+- Scaffold会自动处理好各自的位置BottomNavigation组件创造了底部导航栏的总体布局，比如高度等，这些都是按照Material Design风格设计的，如果要修改整体的颜色，可以在BottomNavigation的其他参数上修改。
+- BottomNavigationItem组件则创建了具体的导航图标及标签，在BottomNavigationItem组件中可以设置一些其他参数，例如选中或者是未选中时图标的颜色。在上述例子中，我们设置了alwaysShowLabel = false。即只有是选中当前页面时，才会展示标签的文字。
+- 在上面的例子中我们还添加了一个侧边栏，通过Scaffold添加侧边栏非常简单，Scaffold有一个drawerContent参数，只需要传入一个自定义的Composable的content即可。侧边栏做好了后，我们还需要处理下按键事件，因为如果我们不做处理的情况下，按下系统的返回键，应用会直接退出，而此时我们希望是关闭侧边栏。所以Compose提供了用于拦截系统返回键的组件BackHandler。此外，我们通过ScaffoldState可以监听侧边栏是否打开。
+- 具体的逻辑为：我们通过rememberScaffoldState()获取到包含侧边栏状态的ScaffoldState,当侧边栏被打开时，scaffoldState.drawerState.isOpen被更新为true,此时，BackHandler开始监听系统返回键事件，返回键事件被按下时会通过scaffoldState来关闭侧边栏。
+
+```kotlin
+@Composable
+fun MyScaffoldDemo() {
+    var selectedItem by remember {
+        mutableStateOf(0)
+    }
+    val items = listOf(
+        Item("主页", R.drawable.ic_launcher_background),
+        Item("列表", R.drawable.ic_launcher_background),
+        Item("设置", R.drawable.ic_launcher_background)
+    )
+
+    val scaffoldState = rememberScaffoldState()
+    val scope = rememberCoroutineScope()
+    Scaffold(
+        drawerContent = {
+            Text(text = "我是侧边栏")
+        },
+        scaffoldState = scaffoldState,
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "主页")
+                },
+                navigationIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(imageVector = Icons.Filled.Menu,
+                            contentDescription = null);
+                    }
+                })
+        }, bottomBar = {
+            BottomNavigation {
+                items.forEachIndexed { index, item ->
+                    BottomNavigationItem(
+                        selected = selectedItem == index,
+                        onClick = { selectedItem = index },
+                        icon = {
+                            Icon(
+                                painterResource(id = item.icon), null
+                            )
+                        },
+                        alwaysShowLabel = false,
+                        label = {
+                            Text(
+                                text = item.name
+                            )
+                        })
+                }
+            }
+        }) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = "主页界面")
+        }
+        BackHandler(enabled = scaffoldState.drawerState.isOpen) {
+            scope.launch {
+                scaffoldState.drawerState.close()
+            }
+        }
+    }
+
+}
+
+
+data class Item(
+    val name: String,
+    val icon: Int
+)
+```
+
+![image-20240619163138927](images/image-20240619163138927.png)
+
+### 1.1.11 列表
+
+- 很多产品中都有展示一组数据的需求场景，如果数据数量是可以枚举的，则仅需通过Column组件来枚举列出
+- 在Android的传统View中，当我们需要展示大量的数据时，一般都会使用ListView或者是更高级的RecyclerView。
+- 在Compose中我们可以通过Column来实现这一需求，并且还可以让列表实现滚动，懒加载，快速定位到具体位置等功能。非常灵活，下文就是使用Column来实现列表的内容
+
