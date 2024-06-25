@@ -1,24 +1,17 @@
-/*
- * @Author: shu 3138066125@qq.com
- * @Date: 2023-08-01 17:30:54
- * @LastEditors: shu 3138066125@qq.com
- * @LastEditTime: 2023-12-22 09:33:33
- * @FilePath: \CoffeeLatte\docusaurus.config.js
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
+
 const lightCodeTheme = require("prism-react-renderer/themes/vsLight");
 const darkCodeTheme = require("prism-react-renderer/themes/vsDark");
 const { to } = require("react-spring");
-/** @type {import('@docusaurus/types').Config} */
+
 const config = {
-  title: "LotteCoffee", // 标题 | Title
-  staticDirectories: ["public", "static"], // 静态文件夹 | Static directory
-  tagline: "把戏把戏要过手", // 标语 | Tagline
-  url: "https://www.lottecoffee.com", // 站点地址 | Your website URL
-  baseUrl: "/", // 站点根目录 | Base URL for your project */
-  favicon: "img/favicon.ico", // 站点图标 | Favicon
-  organizationName: "lottecoffee", // 拥有这个仓库的 GitHub 用户或组织|Usually your GitHub org/user name.
-  projectName: "www.lottecoffee.com", // 仓库名称 | Usually your repo name.
+  title: "LotteCoffee",
+  staticDirectories: ["public", "static"],
+  tagline: "把戏把戏要过手",
+  url: "https://www.lottecoffee.com",
+  baseUrl: "/",
+  favicon: "img/favicon.ico",
+  organizationName: "lottecoffee",
+  projectName: "www.lottecoffee.com",
   i18n: {
     defaultLocale: "zh-Hans",
     locales: ["zh-Hans"],
@@ -454,5 +447,4 @@ const config = {
   },
   themes: ["@docusaurus/theme-mermaid"],
 };
-
 module.exports = config;
