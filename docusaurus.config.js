@@ -109,19 +109,6 @@ const config = {
         breadcrumbs: true,
       },
     ],
-    // -----------------------------------------------------Redis--------------------------------
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "Redis",
-        path: "article/Java/Redis",
-        routeBasePath: "Redis",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: false,
-      },
-    ],
     // -----------------------------------------------------RPC--------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -321,10 +308,6 @@ const config = {
               {
                 label: "📽 Spring",
                 to: "/Spring",
-              },
-              {
-                label: "🚧 Redis",
-                to: "/Redis",
               },
               {
                 label: "🛫 算法",
