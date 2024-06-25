@@ -439,7 +439,9 @@ public class Driver extends NonRegisteringDriver implements java.sql.Driver {
 - getConnection()：这个方法是提供给JDBC客户端调用的，可以接收一个JDBC URL作为参数，DriverManager类会对所有注册驱动进行遍历，调用Driver实现的connect()方法找到能够识别JDBC URL的驱动实现后，会与数据库建立连接，然后返回Connection对象。
 
 注册方法我们看过了，我们来看看获取数据源连接对象方法
-**DriverManager**
+
+> **DriverManager**
+
 ```java
 private static Connection getConnection(
         String url, java.util.Properties info, Class<?> caller) throws SQLException {
@@ -503,7 +505,9 @@ private static Connection getConnection(
 
 ```
 我们可以从上面看到遍历所有注册的驱动，交给实际上我们注册的驱动来获取数据源连接对象，这里一Mysql为例
-**NonRegisteringDriver**
+
+> **NonRegisteringDriver**
+
 ```java
  @Override
     public java.sql.Connection connect(String url, Properties info) throws SQLException {

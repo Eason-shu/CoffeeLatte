@@ -604,3 +604,53 @@ data class Item(
 - 在Android的传统View中，当我们需要展示大量的数据时，一般都会使用ListView或者是更高级的RecyclerView。
 - 在Compose中我们可以通过Column来实现这一需求，并且还可以让列表实现滚动，懒加载，快速定位到具体位置等功能。非常灵活，下文就是使用Column来实现列表的内容
 
+> 简单列表：实现简单的列表时，我们仅需要通过Column组件枚举列出要展示的项即可，比如可以做一个菜单之类的控件。
+
+```kotlin
+@Composable
+fun SimpleColumn() {
+    Surface(border = BorderStroke(2.dp,Color.Gray),
+        modifier = Modifier
+            .padding(5.dp)
+            .height(80.dp)
+            .width(70.dp)
+    ) {
+        Column {
+            Text(text = "添加好友", style = MaterialTheme.typography.subtitle1)
+            Text(text = "更换背景", style = MaterialTheme.typography.subtitle1)
+            Text(text = "隐私协议", style = MaterialTheme.typography.subtitle1)
+        }
+    }
+}
+```
+
+> LazyColumn: `这里需要注意的是，当展示的内容变多时，我们不能再用Column组件了，因为Column组件会将所有的数据全部加载，这非常的耗内存和性能，这里采用的是LazyColumn组件，这个组件加载数据时是懒加载。即使用到时才加载数据`。
+
+```kotlin
+@Composable
+fun SimpleColumn() {
+    Surface(border = BorderStroke(2.dp,Color.Gray),
+        modifier = Modifier
+            .padding(5.dp)
+            .height(80.dp)
+            .width(70.dp)
+    ) {
+        val scrollState = rememberScrollState()
+        Column(modifier = Modifier.verticalScroll(scrollState)) {
+            Text(text = "添加好友", style = MaterialTheme.typography.subtitle1)
+            Text(text = "更换背景", style = MaterialTheme.typography.subtitle1)
+            Text(text = "隐私协议", style = MaterialTheme.typography.subtitle1)
+            Text(text = "添加好友", style = MaterialTheme.typography.subtitle1)
+            Text(text = "更换背景", style = MaterialTheme.typography.subtitle1)
+            Text(text = "隐私协议", style = MaterialTheme.typography.subtitle1)
+            Text(text = "添加好友", style = MaterialTheme.typography.subtitle1)
+            Text(text = "更换背景", style = MaterialTheme.typography.subtitle1)
+            Text(text = "隐私协议", style = MaterialTheme.typography.subtitle1)
+            Text(text = "添加好友", style = MaterialTheme.typography.subtitle1)
+            Text(text = "更换背景", style = MaterialTheme.typography.subtitle1)
+            Text(text = "隐私协议", style = MaterialTheme.typography.subtitle1)
+        }
+    }
+}
+```
+
