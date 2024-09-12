@@ -1,4 +1,7 @@
 @charset "UTF-8";
+/* @import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities'; */
 :root {
   --ifm-color-primary: #0086f1;
   --ifm-color-primary-dark: #05a1ec;
@@ -686,4 +689,18 @@ div[class^="announcementBar_"] {
 strong {
   color: #136ef7;
   font-weight: bold;
+}
+
+
+.md-footnote {
+  font-weight: bold;
+  color: #136ef7;
+}
+
+
+/* 高亮 */
+mark {
+  font-weight: bold;
+  background: #0070ff00;
+  color: #ff6b6b;
 }
