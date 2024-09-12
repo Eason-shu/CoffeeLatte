@@ -314,11 +314,11 @@ const config = {
         items: [
           { to: "/blog", label: "🔝 博客", position: "right" },
           {
-            label: "🚀 Java",
+            label: "🚀 Java 编程系列",
             position: "right",
             items: [
               {
-                label: "🔋 Java基础",
+                label: "🔋 Java 基础",
                 to: "/Base",
               },
               {
@@ -334,16 +334,6 @@ const config = {
                 to: "/Redis",
               },
               {
-                label: "🛫 算法",
-                href: "https://www.hello-algo.com/chapter_preface/",
-              },
-            ],
-          },
-          {
-            position: "right",
-            label: "🗻 微服务",
-            items: [
-              {
                 label: "🗼 RPC",
                 to: "/RPC",
               },
@@ -354,12 +344,17 @@ const config = {
               {
                 label: "🗻 Zookeeper",
                 to: "/Zookeeper",
-              }
-            ]
+              },
+              {
+                label: "🛫 算法",
+                href: "https://www.hello-algo.com/chapter_preface/",
+              },
+            ],
           },
+
           {
             position: "right",
-            label: "🌄 WEB",
+            label: "🌄 WEB 开发系列",
             items: [
               {
                 label: "🔫 Angular",
@@ -381,7 +376,7 @@ const config = {
           },
           {
             position: "right",
-            label: "📱 Android",
+            label: "📱 Android 开发系列",
             items: [
               {
                 label: "🛸 Kotlin",
@@ -395,7 +390,7 @@ const config = {
           },
           {
             position: "right",
-            label: "🍃 其他",
+            label: "🍃 生活随笔",
             items: [
               {
                 label: "📷 摄影",

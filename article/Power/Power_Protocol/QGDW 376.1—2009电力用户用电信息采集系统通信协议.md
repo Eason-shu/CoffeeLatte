@@ -1,5 +1,5 @@
 ---
-title: Q/GDW 376.1—2009电力用户用电信息采集系统通信协议
+title: 采集系统通信协议
 sidebar_position: 2
 keywords:
   - 电力
@@ -17,10 +17,9 @@ last_update:
 
 
 备注：需要前提知识：👋计算机中进制的转换，👋进制运算，👋大端序与小端序
-可以参考我之前的文章：[https://shuzhilin.top/archives/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80md](https://shuzhilin.top/archives/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80md)
-参考博客：[https://blog.csdn.net/yangactive/article/details/84775232](https://blog.csdn.net/yangactive/article/details/84775232?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166599569716782388096961%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=166599569716782388096961&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-84775232-null-null.142^v58^control,201^v3^add_ask&utm_term=376.1%20%E8%A7%A3%E6%9E%90&spm=1018.2226.3001.4187)
-新手上路，请多关照🤣🤣🤣。
-[376.1数据帧.xmind](https://www.yuque.com/attachments/yuque/0/2022/xmind/12426173/1666274170418-f09faa15-abf1-4c0f-8fd3-f54dbcb29f99.xmind)
+
+- 参考博客：[https://blog.csdn.net/yangactive/article/details/84775232](https://blog.csdn.net/yangactive/article/details/84775232?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166599569716782388096961%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=166599569716782388096961&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-84775232-null-null.142^v58^control,201^v3^add_ask&utm_term=376.1%20%E8%A7%A3%E6%9E%90&spm=1018.2226.3001.4187)
+
 - 参考资料：https://www.cnblogs.com/Luad/p/13524810.html
 
 # 一 协议基本知识
