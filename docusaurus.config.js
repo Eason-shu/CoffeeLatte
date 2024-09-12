@@ -269,6 +269,19 @@ const config = {
         breadcrumbs: false,
       },
     ],
+    // -------------------------------------------------OpenCv-----------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "opencv",
+        path: "article/AI/OpenCV/",
+        routeBasePath: "opencv",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
 
     "docusaurus-plugin-umami",
     "@cmfcmf/docusaurus-search-local",
@@ -369,6 +382,16 @@ const config = {
                 label: "💘 Android",
                 to: "/Android",
               },
+            ],
+          },
+          {
+            position: "right",
+            label: "🎮 图像处理系列",
+            items: [
+              {
+                label: "📭 OpenCv",
+                to: "/opencv",
+              }
             ],
           },
           {
