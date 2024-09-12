@@ -4,6 +4,44 @@ Java基础源码分析
 
 **String 的源码大家应该都能看懂，这里就不一一分析咯，重点讲一下 equals()和 hashcode()方法，然后看一下 String 类常用方法的实现**
 
+`String` 类在 Java 中是一个非常基础且重要的类，它用于表示文本字符串。由于 `String` 是不可变的，因此在创建后就不能改变其内容。这个特性使得 `String` 可以安全地在多线程环境中使用，并且有助于提高性能，因为多个程序可以共享同一个字符串对象。
+
+**String 类定义**
+
+Java 中的 `String` 类定义如下：
+
+```java
+public final class String
+    implements java.io.Serializable, Comparable<String>, CharSequence {
+}
+```
+
+这里我们可以看到 `String` 类是 `final` 的，这意味着你不能继承这个类。
+
+**字符串常量池**
+
+`String` 类利用了字符串常量池来存储字符串字面量，这有助于节省内存并提高效率。当创建一个字符串时，如果该字符串已经存在于常量池中，则将引用返回给调用者，而不是创建一个新的对象。
+
+**构造函数**
+
+`String` 类提供了多种构造函数来创建字符串实例，包括从字符数组、字节数组以及 `Reader` 对象等创建。
+
+**字符串不可变性**
+
+字符串的不可变性是由 `String` 类的设计决定的。`String` 类内部维护了一个私有的 `char[] value` 成员变量，用于存储实际的字符数据。这个数组一旦初始化就不能更改。
+
+**常用方法**
+
+`String` 类提供了大量的方法来处理字符串，如 `charAt()`, `getBytes()`, `compareTo()`, `concat()`, `equals()`, `equalsIgnoreCase()`, `indexOf()`, `lastIndexOf()`, `replace()`, `split()`, `substring()` 等。
+
+实例方法分析
+
+- **equals 方法**：用来比较两个字符串是否相等，这里的相等指的是两个字符串具有相同的字符序列。
+
+- **hashCode 方法**：重写了 `Object` 类中的 `hashCode` 方法，确保当两个字符串相等时，它们的哈希码也相等。
+
+- **concat 方法**：用于连接两个字符串，由于 `String` 是不可变的，所以 `concat` 方法会返回一个新的 `String` 实例。
+
 ```java
 public final class String
     implements java.io.Serializable, Comparable<String>, CharSequence {
@@ -206,9 +244,47 @@ public final class String
 }
 ```
 
-## 1.2 ThreadLocal 源码分析
+## 1.2 Thread 源码分析
 
 实现多线程从本质上都是由 Thread 类 来完成的，其源码量很多，本次只看一些常见且重要的部分，源码和解析如下。
+
+在 Java 多线程环境中，线程在其生命周期内会经历不同的状态。以下是线程的状态及其之间的转换关系：
+
+1. **新建 (New)**: 线程被创建后，但在调用 `start()` 方法之前的状态。
+2. **就绪 (Runnable)**: 线程已经准备好并等待 CPU 分配给它的时间片。
+3. **运行 (Running)**: 线程正在执行中。
+4. **阻塞 (Blocked/Waiting)**: 线程由于等待某种条件满足而暂时停止执行，这可能是由于 I/O 操作、同步锁或其他原因。
+5. **死亡 (Dead)**: 线程已执行完毕或被强制终止。
+
+下面是这些状态之间的转换关系：
+
+- **新建 -> 就绪**: 当 `new Thread(...).start()` 被调用时，线程从新建状态变为就绪状态。
+- **就绪 -> 运行**: 当线程获得了 CPU 时间片时，它从就绪状态变为运行状态。
+- **运行 -> 阻塞**: 如果线程执行过程中遇到阻塞操作（如 `Thread.sleep()`、`synchronized` 块等待、`wait()` 等），则它会从运行状态进入阻塞状态。
+- **阻塞 -> 就绪**: 当阻塞条件解除后（例如 `sleep` 时间结束或 `notify` 被调用），线程返回到就绪状态，等待 CPU 时间片。
+- **运行 -> 死亡**: 当线程执行完毕其 `run()` 方法或被 `Thread.stop()` 强制停止时，线程从运行状态变为死亡状态。
+
+如果要用图形表示，可以用圆圈代表每一种状态，并用箭头连接各个状态来表示可能的状态转换方向。例如：
+
+```
++------------+       +-----------+       +-----------+
+| 新建 (New) | -->  | 就绪 (R)  | -->  | 运行 (R)   |
++------------+       +-----------+       +-----------+
+                      |                          |
+                      |                          v
+                      +--------------------------+
+                                               |
+                                               v
+                      +--------------------------+
+                      |                         |
+                      |                         |
+                      |                         v
+                      +-----------+           +-----------+
+                      | 阻塞 (W) | <----    | 死亡 (D)  |
+                      +-----------+           +-----------+
+```
+
+请注意，这里的 "W" 表示 Waiting（等待）或 Blocked（阻塞），而在实际的 Java 多线程模型中，阻塞状态可能会细分更多子状态，比如 `WAITING`、`TIMED_WAITING` 等。此外，线程状态转换的具体细节可能会受到操作系统和JVM实现的影响。
 
 ```java
 public class Thread implements Runnable {
@@ -531,11 +607,36 @@ public class Thread implements Runnable {
 
 ## 1.3 ThreadLocal 源码分析
 
-前面我们分析了 Thread 类的源码，有了前面的铺垫，通过源码 理解 ThreadLocal 的秘密就容易多了。
+- ThreadLocal 类 提供了 get/set 线程局部变量的实现，ThreadLocal 成员变量与正常的成员变量不同，每个线程都可以通过 ThreadLocal 成员变量 get/set 自己的专属值。ThreadLocal 实例 通常是类中的私有静态变量，常用于将状态与线程关联，例如：用户 ID 或事务 ID。
 
-ThreadLocal 类 提供了 get/set 线程局部变量的实现，ThreadLocal 成员变量与正常的成员变量不同，每个线程都可以通过 ThreadLocal 成员变量 get/set 自己的专属值。ThreadLocal 实例 通常是类中的私有静态变量，常用于将状态与线程关联，例如：用户 ID 或事务 ID。
+- `ThreadLocal` 是 Java 中的一个类，它位于 `java.lang` 包中。这个类提供了一种机制来创建线程局部变量，即这些变量对于每个线程来说都是独立的副本。这意味着每一个线程访问一个 `ThreadLocal` 变量的时候，实际上是在访问它自己线程的局部存储空间里的一个副本，而不是共享的全局对象。
 
-tips：在类中定义 ThreadLocal 变量时，一般在定义时就进行实例化！
+  当你在一个类中定义 `ThreadLocal` 变量时，通常会这样做：
+
+  ```java
+  public class Example {
+      private static final ThreadLocal<Integer> threadLocalVariable = new ThreadLocal<>();
+  
+      // 可以在需要的地方使用get()和set()方法
+      public void someMethod() {
+          int initialValue = 0;
+          threadLocalVariable.set(initialValue);
+  
+          // 在线程中可以安全地获取或设置这个变量
+          int value = threadLocalVariable.get();
+          // 使用value...
+      }
+  }
+  ```
+
+  这里有几个要点需要注意：
+
+  - `ThreadLocal` 变量通常被声明为 `private static` 的，因为它是为整个类服务的，并且每个线程都应该能够访问它而不会相互影响。
+  - 当你创建一个 `ThreadLocal` 实例时，你可以选择在声明时立即实例化它，这样可以在类加载时就准备好这个 `ThreadLocal` 对象。
+  - `ThreadLocal` 提供了 `get()` 方法来获取当前线程的副本，以及 `set()` 方法来设置该线程的副本。
+  - `ThreadLocal` 也可以配合构造函数或者自定义的初始化逻辑来使用，以便在线程开始执行时为每个线程设置初始值。
+
+  使用 `ThreadLocal` 可以帮助避免一些多线程编程中常见的问题，比如数据竞争条件（race conditions），因为每个线程都有自己的变量副本。但是，不当的使用也可能导致内存泄漏，如果 `ThreadLocal` 变量引用了非线程安全的对象，而且这些对象没有适当地清理。因此，在不再需要 `ThreadLocal` 变量中的值时，应该确保适当释放资源。
 
 ```java
 public class ThreadLocal<T> {
@@ -800,4 +901,98 @@ public class ThreadLocal<T> {
 1. ThreadLocal 不是用来解决线程安全问题的，多线程不共享，不存在竞争！其目的是使线程能够使用本地变量。
 
 2. 项目如果使用了线程池，那么线程回收后 ThreadLocal 变量要 remove 掉，否则线程池回收线程后，变量还在内存中，可能会带来意想不到的后果！例如 Tomcat 容器的线程池，可以在拦截器中处理：继承 HandlerInterceptorAdapter，然后复写 afterCompletion()方法，remove 掉变量！！！
+
+## 1.4 线程池的运用
+
+Java 中的线程池是一种管理线程的方法，它通过重用预分配的线程来提高响应速度和避免创建新线程的成本。线程池的主要好处包括减少创建新线程的开销、提高响应时间和系统整体性能、以及简化并发任务的管理。
+
+Java 在 `java.util.concurrent` 包中提供了强大的并发工具类，其中 `ExecutorService` 接口是创建和管理线程池的核心接口。`ExecutorService` 定义了一些基本的操作，如提交任务、关闭线程池等。
+
+**创建线程池**
+
+在 Java 中，最常用的创建线程池的方式是通过 `Executors` 工厂类或者直接使用 `ThreadPoolExecutor` 构建器来创建 `ExecutorService`。
+
+**使用 `Executors` 创建线程池**
+
+1. **固定大小的线程池**：
+   ```java
+   ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
+   ```
+   这个线程池的大小是固定的，当一个工作完成后将会有另一个等待的工作被指派给这个线程。
+
+2. **缓存线程池**：
+   ```java
+   ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+   ```
+   这种线程池可以创建新线程，但如果线程没有活动则会终止，适合执行很多短期异步任务的程序。
+
+3. **单一线程的线程池**：
+   ```java
+   ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+   ```
+   总是使用相同的线程执行任务，保证任务执行顺序。
+
+4. **定时线程池**：
+   ```java
+   ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);
+   ```
+   提供了调度功能，能够定期或延迟执行任务。
+
+**使用 `ThreadPoolExecutor` 构建器**
+
+`ThreadPoolExecutor` 是 `ExecutorService` 的一个实现，提供了更多的灵活性来定制线程池的行为。
+
+```java
+int corePoolSize = 5;
+int maximumPoolSize = 10;
+long keepAliveTime = 5000;
+ TimeUnit unit = TimeUnit.MILLISECONDS;
+ BlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<>(100);
+
+ ThreadPoolExecutor executor = new ThreadPoolExecutor(
+     corePoolSize,
+     maximumPoolSize,
+     keepAliveTime,
+     unit,
+     workQueue,
+     Executors.defaultThreadFactory(),
+     new ThreadPoolExecutor.AbortPolicy());
+```
+
+在这个例子中，我们设置了核心线程数为 5，最大线程数为 10，并且当线程数超过核心线程数时，多余的空闲线程的存活时间不超过 5000 毫秒。队列 `workQueue` 能够容纳最多 100 个任务。
+
+**管理线程池**
+
+使用线程池时，需要注意正确地启动和关闭线程池。正确的做法是在不再需要使用线程池时调用 `shutdown()` 方法，并且如果有必要的话，可以通过调用 `awaitTermination()` 方法等待所有任务完成。
+
+```java
+// 启动线程池
+ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+// 提交任务
+for (int i = 0; i < 10; i++) {
+    final int taskNumber = i;
+    Runnable worker = new Runnable() {
+        @Override
+        public void run() {
+            System.out.println("Hello from task " + taskNumber);
+        }
+    };
+    executorService.execute(worker);
+}
+
+// 关闭线程池
+executorService.shutdown();
+
+try {
+    if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+        executorService.shutdownNow(); // Cancel currently executing tasks
+    }
+} catch (InterruptedException e) {
+    executorService.shutdownNow(); // (Re-)Cancel if current thread was interrupted
+    Thread.currentThread().interrupt(); // Preserve interrupt status
+}
+```
+
+
 
