@@ -465,7 +465,7 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         defaultLanguage: "markdown",
-        additionalLanguages: ["java", "git", "nginx", "http"],
+        additionalLanguages: ["java", "git", "nginx", "http"]
       },
       mermaid: {
         theme: { light: "neutral", dark: "forest" },

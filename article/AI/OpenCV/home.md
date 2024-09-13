@@ -1,7 +1,7 @@
 ---
 slug: /
 title: OpenCV 学习笔记 
-sidebar_position: 1
+sidebar_position: 2
 keywords:
   - OpenCV
   - Python
