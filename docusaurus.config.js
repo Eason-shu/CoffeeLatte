@@ -282,6 +282,33 @@ const config = {
         breadcrumbs: false,
       },
     ],
+    // -------------------------------------------------PaddlePaddle-----------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "PaddlePaddle",
+        path: "article/AI/PaddlePaddle/",
+        routeBasePath: "PaddlePaddle",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
+    // -------------------------------------------------Transformers-----------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Transformers",
+        path: "article/AI/Transformers/",
+        routeBasePath: "Transformers",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
+
 
     "docusaurus-plugin-umami",
     "@cmfcmf/docusaurus-search-local",
@@ -391,6 +418,14 @@ const config = {
               {
                 label: "📭 OpenCv",
                 to: "/opencv",
+              }
+              , {
+                label: "🚀 PaddlePaddle",
+                to: "/PaddlePaddle",
+              },
+              {
+                label: "🤖 Transformers",
+                to: "/Transformers",
               }
             ],
           },
