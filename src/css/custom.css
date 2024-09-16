@@ -704,3 +704,11 @@ mark {
   background: #0070ff00;
   color: #ff6b6b;
 }
+
+
+.navbar {
+  box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  opacity: 1;
+}
