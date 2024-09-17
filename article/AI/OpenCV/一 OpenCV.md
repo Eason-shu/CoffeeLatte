@@ -1,5 +1,5 @@
 ---
-title: OpenCV 基础知识
+title: OpenCV 基础知识（一）
 sidebar_position: 2
 keywords:
   -  OpenCV
@@ -59,13 +59,13 @@ last_update:
 
 ## 2.1 Python 环境配置
 
-```Python
+```python
 pip install opencv-python
 ```
 
 ## 2.1 测试
 
-```Python
+```python
 import cv2
 # 读一个图片并进行显示(图片路径需自己指定)
 lena=cv2.imread("1.jpg")
@@ -89,7 +89,7 @@ Note
 
 - 你可以简单地分别传递整数 1、0 或 -1，而不是这三个 flag。
 
-```Python
+```python
 """
  @Author: EasonShu
  @FileName: ReadImagesTest.py
@@ -116,7 +116,7 @@ if __name__ == '__main__':
 
 - [cv.imwrite()](https://docs.opencv.org/4.0.0/d4/da8/group__imgcodecs.html#gabbc7ef1aa2edfaa87772f1202d67e0ce)：第一个参数是文件名，第二个参数是你要保存的图像。
 
-```Python
+```python
 """
  @Author: EasonShu
  @FileName: ReadImagesTest.py
@@ -149,7 +149,7 @@ if __name__ == '__main__':
 
 > 直线：cv2.line
 
-```Python
+```python
 def drawLine(image_file):
     image = cv2.imread(image_file)
     # (x1, y1), (x2, y2): 直线的起点和终点, thickness: 线宽, color: 颜色
@@ -160,7 +160,7 @@ def drawLine(image_file):
 
 > 矩形：cv2.rectangle
 
-```Python
+```python
 '''
 绘制矩形
 '''
@@ -174,7 +174,7 @@ def drawRectangle(image_file):
 
 > 圆：cv2.circle
 
-```Python
+```python
 '''
 绘制圆形
 '''
@@ -188,7 +188,7 @@ def drawCircle(image_file):
 
 > 绘制文字：cv2.putText
 
-```Python
+```python
 '''
 绘制文字
 '''
@@ -204,7 +204,7 @@ def drawText(image_file):
 
 - 获取像素点信息
 
-```Python
+```python
 '''
 获取像素点信息
 '''
@@ -223,7 +223,7 @@ def getPixel(image_file):
 
 > 拆分：cv2.split
 
-```Python
+```python
 '''
 通道拆分
 '''
@@ -239,7 +239,7 @@ def splitChannels(image_file):
 
 > 合并：cv2.merge
 
-```Python
+```python
 '''
 通道合并
 '''
@@ -257,7 +257,7 @@ def mergeChannels(image_file):
 
 OpenCV中有150多种颜色空间转换方法。最广泛使用的转换方法有两种，BGR→ →→Gray 和 BGR→ →→HSV。
 
-```Python
+```python
 '''
 灰度化
 '''
@@ -1013,6 +1013,4 @@ cv2.imshow('Sobel Gradient Magnitude', magnitude)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
-
-## 3.18 梯度计算方法
 
