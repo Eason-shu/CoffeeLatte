@@ -1,6 +1,6 @@
 ---
 slug: /
-title: 工作协议
+title: 工作学习
 sidebar_position: 1
 keywords:
   - 电力

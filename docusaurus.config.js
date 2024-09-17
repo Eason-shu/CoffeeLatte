@@ -437,7 +437,7 @@ const config = {
                 label: "📷 摄影",
                 to: "/photography",
               }, {
-                label: "⛵ 协议文档",
+                label: "⛵ 工作",
                 to: "/power_protocol",
               },
             ],
