@@ -543,10 +543,127 @@ if __name__ == '__main__':
 
 ## 4.1 图像直方图
 
-- 图像直方图是图像处理中的一个重要概念，它是一种统计图表，用于显示图像中像素值的分布情况。具体来说，对于灰度图像，直方图显示了每个灰度级出现的频率；对于彩色图像，可以分别计算每个颜色通道（通常是红、绿、蓝）的直方图。
+
+
+- 图像直方图是一种描述图像中亮度或颜色分布的统计图表。它显示了图像中不同强度级别（对于灰度图像）或颜色（对于彩色图像）的像素数量。直方图在图像处理和计算机视觉中非常有用，可以用来进行各种操作，比如图像增强、特征提取以及图像对比等。
 - 在 OpenCV 中，可以通过 `cv2.calcHist()` 函数来计算图像的直方图。
 
+```python
+# _*_ coding: utf-8 _*_
+"""
+Time:     2024/9/18 下午7:37
+Author:   EasonShu
+Version:  V 0.1
+File:     calcHist.py
+Describe: 
+"""
+if __name__ == '__main__':
+    import cv2
+    import matplotlib.pyplot as plt
 
+    # 读取图像
+    image_path = 'images/img_2.png'
+    image = cv2.imread(image_path)
 
+    # 检查是否正确加载图像
+    if image is None:
+        print("无法加载图像，请检查路径是否正确")
+    else:
+        # 如果需要，可以转换颜色空间从 BGR 到 RGB
+        image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
+        # 计算直方图
+        hist = cv2.calcHist([image_rgb], [0], None, [256], [0, 256])
 
+        # 绘制直方图
+        plt.figure()
+        plt.title("Grayscale Histogram")
+        plt.xlabel("Bins")
+        plt.ylabel("# of Pixels")
+        plt.plot(hist)
+        plt.xlim([0, 256])
+        plt.show()
+```
+
+![image-20240918193821668](images/image-20240918193821668.png)
+
+### 4.1.1 直方图均衡化
+
+直方图均衡化（Histogram Equalization）是一种在图像处理中用来改善图像对比度的技术。它通过重新分配图像的亮度值来增强图像的整体对比度，从而使得图像看起来更加清晰。直方图均衡化通常适用于增强具有非均匀光照条件的图像中的细节。
+
+```python
+# _*_ coding: utf-8 _*_
+"""
+Time:     2024/9/18 下午7:37
+Author:   EasonShu
+Version:  V 0.1
+File:     calcHist.py
+Describe: 
+"""
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+if __name__ == '__main__':
+    # 读取图像
+    image_path = 'images/img_2.png'
+    image = cv2.imread(image_path)
+
+    # 检查是否正确加载图像
+    if image is None:
+        print("无法加载图像，请检查路径是否正确")
+    else:
+        # 转换为灰度图像
+        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+        # 执行直方图均衡化
+        equalized_image = cv2.equalizeHist(gray_image)
+
+        # 显示原始图像及其直方图
+        plt.figure(figsize=(12, 6))
+        plt.subplot(1, 2, 1)
+        plt.imshow(gray_image, cmap='gray')
+        plt.title('Original Image')
+        plt.axis('off')
+
+        # 计算原始图像的直方图
+        hist_original, bins = np.histogram(gray_image.flatten(), 256, [0, 256])
+        cdf_original = hist_original.cumsum()
+        cdf_normalized = cdf_original * hist_original.max() / cdf_original.max()
+
+        plt.subplot(1, 2, 2)
+        plt.plot(cdf_normalized, color='b')
+        plt.hist(gray_image.flatten(), 256, [0, 256], color='r')
+        plt.xlim([0, 256])
+        plt.legend(('cdf', 'histogram'), loc='upper left')
+        plt.title('Original Histogram')
+
+        # 显示均衡化后的图像及其直方图
+        plt.figure(figsize=(12, 6))
+        plt.subplot(1, 2, 1)
+        plt.imshow(equalized_image, cmap='gray')
+        plt.title('Equalized Image')
+        plt.axis('off')
+
+        # 计算均衡化后图像的直方图
+        hist_equalized, bins = np.histogram(equalized_image.flatten(), 256, [0, 256])
+        cdf_equalized = hist_equalized.cumsum()
+        cdf_equalized_normalized = cdf_equalized * hist_equalized.max() / cdf_equalized.max()
+
+        plt.subplot(1, 2, 2)
+        plt.plot(cdf_equalized_normalized, color='b')
+        plt.hist(equalized_image.flatten(), 256, [0, 256], color='r')
+        plt.xlim([0, 256])
+        plt.legend(('cdf', 'histogram'), loc='upper left')
+        plt.title('Equalized Histogram')
+
+        plt.show()
+```
+
+## 5.1 图像转换
+
+### 5.1.1 傅立叶变换
+
+傅立叶变换用于分析各种滤波器的频率特性。对于图像，使用 **2D离散傅里叶变换（DFT）** 查找频域。快速算法称为 **快速傅立叶变换（FFT）** 用于计算DFT。
+
+- 参考文章：https://www.cnblogs.com/h2zZhou/p/8405717.html
