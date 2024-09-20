@@ -684,3 +684,102 @@ if __name__ == '__main__':
 ![image-20240919164221947](images/image-20240919164221947.png)
 
 ![image-20240919164245004](images/image-20240919164245004.png)
+
+```python
+ 
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+# 读取图像
+image = cv2.imread("./image/20240626-3.jpg") #多图
+grayImg = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+matchImg = cv2.imread("./image/20240626-4.jpg", 0) #匹配的图
+ 
+# 模板匹配
+result = cv2.matchTemplate(grayImg, matchImg, cv2.TM_CCORR_NORMED)
+threshold = 0.999
+ 
+# 找到匹配的位置
+loc = np.where(result >= threshold)
+ 
+# 绘制矩形
+for pt in zip(*loc[::-1]):  # 交换坐标顺序
+    cv2.rectangle(image, pt, (pt[0] + matchImg.shape[1], pt[1] + matchImg.shape[0]), (0, 0, 255), 2)
+ 
+# 显示结果
+# 使用 OpenCV 显示
+cv2.imshow('Matched Image', image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+ 
+# 或者使用 Matplotlib 显示（如果需要）
+# plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))  # 注意：将 BGR 转换为 RGB 以供 Matplotlib 显示
+# plt.show()
+```
+
+## 7.1 霍夫变换
+
+霍夫变换（Hough Transform）是图像处理中的一种技术，主要用于检测图像中的直线、圆或其他形状。它通过将图像空间中的点映射到参数空间来实现，这样，图像空间中在同一直线上的点在参数空间中会形成一条曲线，而这条曲线上的交点对应于图像空间中的直线。
+
+- 1、霍夫变换
+  **lines = cv2.HoughLines(img, rho, theta, threshold)**
+  img：源图像，必须是8位的单通道二值图像。所以在进行霍夫变换之前要先把源图像[二值化](https://zhida.zhihu.com/search?q=二值化&zhida_source=entity&is_preview=1)，或者进行canny[边缘检测](https://zhida.zhihu.com/search?q=边缘检测&zhida_source=entity&is_preview=1)。
+  rho：就是r，一般情况下使用的精度是1。 theta：就是θ， 一般情况下使用pi除以180，表示要搜索所有可能的角度。
+  threshold：是阈值，是判断要多少个点落在直线上，这个参数和我们前面的累加器里面的结果相对应。如果我们想检测多条直线，这个阈值就设置的小一点，反之设置的大一点。
+  [返回值](https://zhida.zhihu.com/search?q=返回值&zhida_source=entity&is_preview=1)lines是(r,θ),是一对儿浮点数，是numpy.ndarray类型的。
+- 2、概率霍夫变换
+  上面的霍夫变换检测直线时，非常容易出现误检测，并且检测出很多重复的结果，为了解决这些缺点，科学家们又提出了霍夫变换的改进版——概率霍夫变换，是霍夫变换算法的优化。
+  概率霍夫变换没有考虑所有的点，它只需要一个足以进行线检测的随机点子集即可。此外概率霍夫变换算法还对选取直线的方法进行了2点改进：
+
+　　(1)所接受直线的最小长度。如果有超过阈值个数的像素点构成了一条直线，但是这条直线很短，那么就不会接受该直线作为判断结果，而认为这条直线仅仅是图像中的若干个像素点恰好随机构成了一种算法上的直线关系而已，实际上原图中并不存在这条直线。
+　　(2)接受直线时允许的最大像素点间距。如果有超过阈值个数的像素点构成了一条直线，但是这组像素点之间的距离都很远，就不会接受该直线作为判断结果，而认为这条直线仅仅是图像中的若干个像素点恰好随机构成了一种算法上的直线关系而已，实际上原始图像中并不存在这条直线。
+
+- **lines = cv2.HoughLinesP(img, rho, theta, [threshold](https://zhida.zhihu.com/search?q=threshold&zhida_source=entity&is_preview=1), minLineLength, maxLineGap)**
+  img：必须是[二值图像](https://zhida.zhihu.com/search?q=二值图像&zhida_source=entity&is_preview=1)。
+  rho：r
+  theta：θ
+  threshold：阈值，该值越小，判定出的直线越多，反之，判断出的直线越少。
+  minLineLength：默认值是0，用来控制"接受直线的最小长度"
+  maxLineGap：默认值是0，用来控制接受公共线段之间的最小间隔，即在[一条线](https://zhida.zhihu.com/search?q=一条线&zhida_source=entity&is_preview=1)中两点的最大间隔。如果两点间的间隔超过了该参数值，就认为这两个点不在一条直线上。
+  返回值lines是两个点的坐标。
+
+
+
+```python
+#例16.1 对图像进行霍夫变换、概率霍夫变换，并观察变换效果          
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+img = cv2.imread(r'C:\Users\25584\Desktop\computer.jpg',0)  #img.shape返回(460, 460)
+edges = cv2.Canny(img, 50, 150)
+
+lines1 = cv2.HoughLines(edges, 1, np.pi/180, 200)   #霍夫变换
+lines2 = cv2.HoughLinesP(edges, 1, np.pi/180, 1, minLineLength=100, maxLineGap=10)   #概率霍夫变换
+
+#绘制霍夫变换的图像
+result1 = img.copy()
+for i in lines1:
+    rho, theta = i[0]
+    x0 = rho * np.cos(theta)
+    y0 = rho * np.sin(theta)
+    x1 = int(x0+1000*(-np.sin(theta)))
+    y1 = int(y0+1000*np.cos(theta))
+    x2 = int(x0-1000*(-np.sin(theta)))
+    y2 = int(y0-1000*np.cos(theta))
+    cv2.line(result1, (x1,y1), (x2, y2), 255, 2)
+    
+#绘制概率霍夫变换的图像    
+result2 = img.copy()
+for i in lines2:
+    x1,y1,x2,y2 = i[0]
+    cv2.line(result2, (x1,y1), (x2,y2), 255, 2)
+
+#可视化：
+plt.figure(figsize=(12,3))
+plt.subplot(141), plt.imshow(img, cmap='gray')    #原图
+plt.subplot(142), plt.imshow(edges, cmap='gray')   #模板
+plt.subplot(143), plt.imshow(result1, cmap='gray')  #霍夫变换结果
+plt.subplot(144), plt.imshow(result2, cmap='gray')  #概率霍夫变换结果
+plt.show()
+```
+
