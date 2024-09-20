@@ -1,4 +1,17 @@
-# Opencv项目实战：01 文字检测OCR（1）
+---
+title: Opencv项目实战：01 文字检测OCR
+sidebar_position: 1
+keywords:
+  -  OpenCV
+  - Python
+tags:
+  - OpenCV
+  - Python
+  - 学习笔记
+last_update:
+  date: 2024-09-01
+  author: EasonShu
+---
 
 - 参考文章：https://blog.csdn.net/bugang4663/article/details/131720149
 
