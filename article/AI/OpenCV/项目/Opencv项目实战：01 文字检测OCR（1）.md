@@ -1,5 +1,5 @@
 ---
-title: Opencv项目实战：01 文字检测OCR
+title: 01 文字检测OCR
 sidebar_position: 1
 keywords:
   -  OpenCV
