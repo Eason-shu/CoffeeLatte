@@ -1,3 +1,20 @@
+---
+slug: /
+title: (1) Anaconda 环境配置
+sidebar_position: 1
+keywords:
+  - OpenCV
+  - Python
+  - Anaconda
+tags:
+  - Python
+  - 图像处理
+  - Anaconda
+last_update:
+  date: 2024-07-31
+  author: EasonShu
+---
+
 # Anaconda 环境配置
 
 就是可以便捷获取包且对包能够进行管理，同时对环境可以统一管理的发行版本。Anaconda包含了conda、Python在内的超过180个科学包及其依赖项。即它可以在你的电脑上创建多个你想要的python环境，并为每个python环境安装不同的包，不同环境相互切换，操作简单，使用方便！

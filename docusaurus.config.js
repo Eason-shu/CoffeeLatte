@@ -308,6 +308,19 @@ const config = {
         breadcrumbs: false,
       },
     ],
+    // YOLOV
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "YOLOV",
+        path: "article/AI/YOLOV/",
+        routeBasePath: "YOLOV",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+     },
+    ],
 
 
     "docusaurus-plugin-umami",
@@ -426,7 +439,11 @@ const config = {
               {
                 label: "🤖 Transformers",
                 to: "/Transformers",
-              }
+              },
+              {
+                label: "🚀 YOLOV",
+                to: "/YOLOV",
+              },
             ],
           },
           {
