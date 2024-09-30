@@ -1,3 +1,23 @@
+---
+title:  PP-Structure 文档分析
+sidebar_position: 4
+keywords:
+  -  OpenCV
+  - Python
+  - PaddleOCR
+tags:
+  - OpenCV
+  - Python
+  - 学习笔记
+  - PaddleOCR
+  - PPOCRLabel
+last_update:
+  date: 2024-07-01
+  author: EasonShu
+---
+
+
+
 # PP-Structure 文档分析
 
 PP-Structure是PaddleOCR团队自研的智能文档分析系统，旨在帮助开发者更好的完成版面分析、表格识别等文档理解相关任务。

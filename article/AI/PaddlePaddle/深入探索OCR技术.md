@@ -1,3 +1,20 @@
+---
+title: 深入探索OCR技术
+sidebar_position: 1
+keywords:
+  -  OpenCV
+  - Python
+  - PaddleOCR
+tags:
+  - OpenCV
+  - Python
+  - 学习笔记
+  - PaddleOCR
+  - PPOCRLabel
+last_update:
+  date: 2024-07-01
+  author: EasonShu
+---
 
 
 ## 深入探索OCR技术：前沿算法与工业级部署方案揭秘
