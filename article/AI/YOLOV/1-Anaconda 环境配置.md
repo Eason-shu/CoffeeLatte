@@ -132,3 +132,11 @@ conda config --set show_channel_urls yes
 - conda remove -n env_name --all 移除环境，也可在Anaconda Navigator中移除
 
 ![image-20240618095552096](images/image-20240618095552096.png)
+
+## 1.7 PYCHAR 中使用
+
+![image-20240929171021989](images/image-20240929171021989.png)
+
+![image-20240929171049522](images/image-20240929171049522.png)
+
+![image-20240929171102079](images/image-20240929171102079.png)

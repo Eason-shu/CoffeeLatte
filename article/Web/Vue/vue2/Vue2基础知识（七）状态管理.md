@@ -13,15 +13,6 @@ last_update:
   author: EasonShu
 ---
 
-![](https://cdn.nlark.com/yuque/0/2023/gif/12426173/1697695389598-01376028-0111-4de9-a2de-b5f21f123b74.gif#averageHue=%23fcfcfc&clientId=ua8dfa591-4c93-4&from=paste&id=u0ed3a455&originHeight=80&originWidth=640&originalType=url&ratio=1.25&rotation=0&showTitle=false&status=done&style=none&taskId=u634e7ae1-ba5e-4b6e-b637-79674a6e2cd&title=)
-
-- 💌 所属专栏：【Vue2】
-- 😀 作 者：长安不及十里
-- 💻 工作：目前从事电力行业开发
-- 🌈 目标：全栈开发
-- 🚀 个人简介：一个正在努力学技术的Java工程师，专注基础和实战分享 ，欢迎咨询！
-- 💖 欢迎大家：这里是CSDN，我总结知识的地方，喜欢的话请三连，有问题请私信 😘 😘 😘
-
 ---
 
 - 📏 官网：[https://v2.cn.vuejs.org](https://v2.cn.vuejs.org/)
