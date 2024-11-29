@@ -142,19 +142,6 @@ const config = {
         breadcrumbs: true,
       },
     ],
-    // -----------------------------------------------------Angular------------------------------
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "Angular",
-        path: "article/Web/Angular",
-        routeBasePath: "Angular",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: true,
-      },
-    ],
     // -----------------------------------------------------Vue----------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -162,19 +149,6 @@ const config = {
         id: "Vue",
         path: "article/Web/Vue",
         routeBasePath: "Vue",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: true,
-      },
-    ],
-    // -----------------------------------------------------React--------------------------------
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "React",
-        path: "article/Web/React",
-        routeBasePath: "React",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
@@ -224,19 +198,6 @@ const config = {
         id: "Android",
         path: "article/Android/Android",
         routeBasePath: "Android",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: false,
-      },
-    ],
-    // HarmonyOs
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "HarmonyOs",
-        path: "article/Android/HarmonyOs",
-        routeBasePath: "HarmonyOs",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
@@ -295,34 +256,6 @@ const config = {
         breadcrumbs: false,
       },
     ],
-    // -------------------------------------------------Transformers-----------------------------------
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "Transformers",
-        path: "article/AI/Transformers/",
-        routeBasePath: "Transformers",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: false,
-      },
-    ],
-    // YOLOV
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "YOLOV",
-        path: "article/AI/YOLOV/",
-        routeBasePath: "YOLOV",
-        sidebarPath: require.resolve("./sidebars.js"),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-        breadcrumbs: false,
-     },
-    ],
-
-
     "docusaurus-plugin-umami",
     "@cmfcmf/docusaurus-search-local",
     "./src/plugin/postcss-tailwind-loader.js",
@@ -330,13 +263,13 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      announcementBar: {
-        id: "support_us",
-        content: `🎉🎉🎉 Opencv已上线！欢迎大家学习！🎉🎉🎉`,
-        backgroundColor: "#fafbfc", // Defaults to `#fff`.
-        textColor: "#091E42", // Defaults to `#000`.
-        isCloseable: false, // Defaults to `true`.
-      },
+      // announcementBar: {
+      //   id: "support_us",
+      //   content: `🎉🎉🎉 Opencv已上线！欢迎大家学习！🎉🎉🎉`,
+      //   backgroundColor: "#fafbfc", // Defaults to `#fff`.
+      //   textColor: "#091E42", // Defaults to `#000`.
+      //   isCloseable: false, // Defaults to `true`.
+      // },
       metadata: [
         {
           name: "lottecoffee",
@@ -393,16 +326,8 @@ const config = {
             label: "🌄 WEB 开发系列",
             items: [
               {
-                label: "🔫 Angular",
-                to: "/Angular",
-              },
-              {
                 label: "🎱 Vue",
                 to: "/Vue",
-              },
-              {
-                label: "🎰 React",
-                to: "/React",
               },
               {
                 label: "🤡 扩展工具",
@@ -435,15 +360,7 @@ const config = {
               , {
                 label: "🚀 PaddlePaddle",
                 to: "/PaddlePaddle",
-              },
-              {
-                label: "🤖 Transformers",
-                to: "/Transformers",
-              },
-              {
-                label: "🚀 YOLOV",
-                to: "/YOLOV",
-              },
+              }
             ],
           },
           {
