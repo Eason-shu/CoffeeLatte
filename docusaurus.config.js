@@ -318,6 +318,17 @@ const config = {
                 label: "🛫 算法",
                 href: "https://www.hello-algo.com/chapter_preface/",
               },
+
+            ],
+          },
+          {
+            label: "🎀 孙哥说",
+            position: "right",
+            items: [
+              {
+                label: "🚧 RPC",
+                to: "/RPC",
+              },
             ],
           },
 
@@ -326,7 +337,7 @@ const config = {
             label: "🌄 WEB 开发系列",
             items: [
               {
-                label: "🎱 Vue",
+                label: "🚄 Vue",
                 to: "/Vue",
               },
               {
@@ -374,6 +385,15 @@ const config = {
                 label: "⛵ 工作",
                 to: "/power_protocol",
               },
+              {
+                label: "💸 投资",
+                to: "/investment",
+              },
+              {
+                label: "🎬 剪辑",
+                to: "/clipping",
+              },
+
             ],
           },
         ],
@@ -404,7 +424,7 @@ const config = {
           {
             className: 'theme-code-block-highlighted-line',
             line: 'highlight-next-line',
-            block: {start: 'highlight-start', end: 'highlight-end'},
+            block: { start: 'highlight-start', end: 'highlight-end' },
           },
           {
             className: 'code-block-error-line',

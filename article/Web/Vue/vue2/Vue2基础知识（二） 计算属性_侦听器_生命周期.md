@@ -1,5 +1,5 @@
 ---
-title: Vue2基础知识（二） 计算属性_侦听器_生命周期
+title: Vue2基础知识（二） 计算属性
 sidebar_position: 2
 keywords:
   - Vue
@@ -15,13 +15,7 @@ last_update:
 
 
 ---
-
 - 📏 官网：[https://v2.cn.vuejs.org](https://v2.cn.vuejs.org/)
-- ⛳ 参考教程：[https://www.bilibili.com/video/BV1HV4y1a7n4](https://www.bilibili.com/video/BV1HV4y1a7n4?p=1)
-- 🔧 Vue脚手架：[https://cli.vuejs.org/zh](https://cli.vuejs.org/zh/)
-- 🔧 VueRouter：[https://router.vuejs.org/zh](https://router.vuejs.org/zh/)
-- 🔧 VueX：[https://vuex.vuejs.org/zh](https://vuex.vuejs.org/zh/)
-
 ---
 
 # 一 计算属性
