@@ -385,14 +385,14 @@ const config = {
                 label: "⛵ 工作",
                 to: "/power_protocol",
               },
-              {
-                label: "💸 投资",
-                to: "/investment",
-              },
-              {
-                label: "🎬 剪辑",
-                to: "/clipping",
-              },
+              // {
+              //   label: "💸 投资",
+              //   to: "/investment",
+              // },
+              // {
+              //   label: "🎬 剪辑",
+              //   to: "/clipping",
+              // },
 
             ],
           },
