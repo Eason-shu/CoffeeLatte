@@ -256,6 +256,19 @@ const config = {
         breadcrumbs: false,
       },
     ],
+    // -------------------------------------------------RPC系列课程-----------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "RPC系列课程",
+        path: "article/Sun/Rpc-Service/",
+        routeBasePath: "RPC系列课程",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
+      },
+    ],
     "docusaurus-plugin-umami",
     "@cmfcmf/docusaurus-search-local",
     "./src/plugin/postcss-tailwind-loader.js",
@@ -356,11 +369,11 @@ const config = {
               {
                 label: "📭 OpenCv",
                 to: "/opencv",
-              }
-              , {
+              },
+              {
                 label: "🚀 PaddlePaddle",
                 to: "/PaddlePaddle",
-              }
+              },
             ],
           },
           {
@@ -370,7 +383,8 @@ const config = {
               {
                 label: "📷 摄影",
                 to: "/photography",
-              }, {
+              },
+              {
                 label: "⛵ 工作",
                 to: "/power_protocol",
               },
@@ -399,16 +413,31 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         defaultLanguage: "markdown",
-        additionalLanguages: ["java", "git", "nginx", "http", "python", "css", "javascript", "bash", "sql", "cpp", "go", "typescript", "yaml", "scss"],
+        additionalLanguages: [
+          "java",
+          "git",
+          "nginx",
+          "http",
+          "python",
+          "css",
+          "javascript",
+          "bash",
+          "sql",
+          "cpp",
+          "go",
+          "typescript",
+          "yaml",
+          "scss",
+        ],
         magicComments: [
           {
-            className: 'theme-code-block-highlighted-line',
-            line: 'highlight-next-line',
-            block: {start: 'highlight-start', end: 'highlight-end'},
+            className: "theme-code-block-highlighted-line",
+            line: "highlight-next-line",
+            block: { start: "highlight-start", end: "highlight-end" },
           },
           {
-            className: 'code-block-error-line',
-            line: 'This will error',
+            className: "code-block-error-line",
+            line: "This will error",
           },
         ],
       },
@@ -419,7 +448,7 @@ const config = {
   markdown: {
     mermaid: true,
   },
-  themes: ["@docusaurus/theme-mermaid"]
+  themes: ["@docusaurus/theme-mermaid"],
 };
 
 module.exports = config;
