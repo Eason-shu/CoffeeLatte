@@ -260,9 +260,9 @@ const config = {
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "RPC系列课程",
+        id: "Rpc-Service",
         path: "article/Sun/Rpc-Service/",
-        routeBasePath: "RPC系列课程",
+        routeBasePath: "Rpc-Service",
         sidebarPath: require.resolve("./sidebars.js"),
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
@@ -331,6 +331,17 @@ const config = {
                 label: "🛫 算法",
                 href: "https://www.hello-algo.com/chapter_preface/",
               },
+
+            ],
+          },
+          {
+            label: "🎀 孙哥说",
+            position: "right",
+            items: [
+              {
+                label: "🚧 RPC",
+                to: "/Rpc-Service",
+              },
             ],
           },
 
@@ -339,7 +350,7 @@ const config = {
             label: "🌄 WEB 开发系列",
             items: [
               {
-                label: "🎱 Vue",
+                label: "🚄 Vue",
                 to: "/Vue",
               },
               {
@@ -388,6 +399,15 @@ const config = {
                 label: "⛵ 工作",
                 to: "/power_protocol",
               },
+              // {
+              //   label: "💸 投资",
+              //   to: "/investment",
+              // },
+              // {
+              //   label: "🎬 剪辑",
+              //   to: "/clipping",
+              // },
+
             ],
           },
         ],

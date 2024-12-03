@@ -14,12 +14,7 @@ last_update:
 ---
 
 ---
-
 - 📏 官网：[https://v2.cn.vuejs.org](https://v2.cn.vuejs.org/)
-- ⛳ 参考教程：[https://www.bilibili.com/video/BV1HV4y1a7n4](https://www.bilibili.com/video/BV1HV4y1a7n4?p=1)
-- 🔧 Vue脚手架：[https://cli.vuejs.org/zh](https://cli.vuejs.org/zh/)
-- 🔧 VueRouter：[https://router.vuejs.org/zh](https://router.vuejs.org/zh/)
-- 🔧 VueX：[https://vuex.vuejs.org/zh](https://vuex.vuejs.org/zh/)
 # 一 Vuex
 Vuex 是一个专为 Vue.js 应用程序开发的**状态管理模式**。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
 ## 1.1 安装使用
