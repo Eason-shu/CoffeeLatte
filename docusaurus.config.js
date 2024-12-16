@@ -142,6 +142,19 @@ const config = {
         breadcrumbs: true,
       },
     ],
+    // -----------------------------------------------------Css--------------------------------
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "Css",
+        path: "article/Web/Css",
+        routeBasePath: "Css",
+        sidebarPath: require.resolve("./sidebars.js"),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: true,
+      },
+    ],
     // -----------------------------------------------------Vue----------------------------------
     [
       "@docusaurus/plugin-content-docs",
@@ -276,13 +289,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // announcementBar: {
-      //   id: "support_us",
-      //   content: `🎉🎉🎉 Opencv已上线！欢迎大家学习！🎉🎉🎉`,
-      //   backgroundColor: "#fafbfc", // Defaults to `#fff`.
-      //   textColor: "#091E42", // Defaults to `#000`.
-      //   isCloseable: false, // Defaults to `true`.
-      // },
       metadata: [
         {
           name: "lottecoffee",
@@ -349,6 +355,11 @@ const config = {
             position: "right",
             label: "🌄 WEB 开发系列",
             items: [
+              // css
+              {
+                label: "🎨 CSS",
+                to: "/CSS",
+              },
               {
                 label: "🚄 Vue",
                 to: "/Vue",
